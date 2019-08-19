@@ -1,0 +1,295 @@
+\documentclass{beamer}
+\usetheme[logo=brasaoUFSC.png]{fibeamer}
+%% These macros specify information about the presentation
+\title{Aula 1: Matrizes}
+%\subtitle{2019.2}
+\author{Melissa Weber Mendonça}
+%% These additional packages are used within the document:
+\usepackage{ragged2e}  % `\justifying` text
+\usepackage{booktabs}  % Tables
+\usepackage{tabularx}
+\usepackage{tikz}      % Diagrams
+\usetikzlibrary{calc, shapes, backgrounds, }
+\usepackage{pgfplots}
+\usepackage{amsmath, amssymb}
+\usepackage{url}       % `\url`s
+\usepackage{listings}  % Code listings
+\usepackage{verbatim}
+\usepackage{animate}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks = true,
+    allcolors = [rgb]{1,0.83,0.39}
+}
+\frenchspacing
+
+\makeatletter
+\setlength\fibeamer@lengths@logowidth{4em}
+\setlength\fibeamer@lengths@logoheight{5em}
+\makeatother
+
+\begin{document}
+\frame{\maketitle}
+
+\begin{darkframes}
+
+\begin{frame}
+\frametitle{Introdução}
+\begin{columns}
+\column{0.3\textwidth}
+\begin{equation*}
+  \begin{cases}
+    2x-y = 1\\
+    x+y = 5.
+  \end{cases}
+\end{equation*}
+\column{0.7\textwidth}
+\only<2->{%
+\begin{figure}[h!]
+  \begin{center}
+    \begin{tikzpicture}[scale=0.6]
+      \begin{axis}
+        [
+        tick scale binop=\times,
+        axis x line=center, 
+        axis y line=center, 
+        ]
+        \only<3->{\addplot[domain=-1:6, blue, ultra thick,samples=20] {2*x-1};
+        \draw[anchor=west] (axis cs:{2,8}) node {$2x-y=1$};}
+        \only<4->{\addplot[domain=-1:6, green, ultra thick,samples=20] {5-x};
+        \draw[anchor=west] (axis cs:{4,1.6}) node {$x+y=5$};}
+        \only<5->{\addplot[black, thick, dashed] coordinates {(2,0) (2,3)};
+        \addplot[black, thick, dashed] coordinates {(2,3) (0,3)};}
+      \end{axis}
+    \end{tikzpicture}
+    \caption{\label{fig:sistemalinear} Resolução gráfica do sistema linear. \only<5->{A solução é $(x,y) = (2,3)$.}}
+  \end{center}
+\end{figure}
+}
+\end{columns}
+\end{frame}
+
+\begin{frame}\frametitle{Introdução}
+\begin{equation*}
+  \begin{cases}
+    2x-y = 1\\
+    x+y = 5.
+  \end{cases}
+\end{equation*}
+  \begin{itemize}
+  \item<2-> Eliminação de variáveis
+  \item<3-> Regra de Cramer
+  \end{itemize}
+  \only<4->{\begin{center} \alert{Algoritmos}\end{center}}
+\end{frame}
+
+\begin{frame}{Geometria Analítica}
+\begin{equation*}
+  \begin{cases}
+ a_{11}x_1+a_{12}x_2+\ldots +a_{1n}x_n=b_1\\
+ a_{21}x_1+a_{22}x_2+\ldots +a_{2n}x_n=b_2\\
+ \vdots\\
+ a_{m1}x_1+a_{m2}x_2+\ldots +a_{mn}x_n=b_m\\
+  \end{cases}
+\end{equation*}
+pode ser reescrito em uma forma matricial, como sendo
+\begin{equation*}
+  Ax=b
+\end{equation*}
+\end{frame}
+
+\begin{frame}{Sistema matricial}
+Opções:
+\begin{itemize}
+  \item<2-> $A$ quadrada e inversível: $x=A^{-1}b$, ou seja, é possível encontrarmos solução única do sistema para qualquer lado direito $b$. \textbf{Sistema possível e determinado}
+  \item<3-> $A$ não é inversível (não é quadrada, ou é quadrada mas não tem inversa): a existência e unicidade de soluções dependem do lado direito $b$. Para algumas escolhas de $b$ o sistema terá infinitas soluções (\textbf{sistema possível e indeterminado}) e para outras o sistema não terá soluções (\textbf{sistema impossível}). 
+\end{itemize}
+\end{frame}
+
+\begin{frame}{O que é uma matriz?}
+\begin{block}{}
+     Uma matriz é uma tabela de elementos dispostos em linhas e colunas.
+\end{block}
+
+\only<2>{\begin{equation*}
+     	\begin{pmatrix}
+         	1 &2 &3\\
+             4 &5 &6\\
+             7 &8 &9
+         \end{pmatrix}
+         \end{equation*}
+         }
+
+\only<3>{\begin{equation*}
+\begin{pmatrix}
+             2 & -1\\
+             2 & 3\\
+             0 & 1
+         \end{pmatrix}
+         \end{equation*}
+         }
+         
+\only<4>{\begin{equation*}
+    \begin{pmatrix}
+             1\\
+             0\\
+             3
+         \end{pmatrix}
+         \end{equation*}
+         }
+         
+\only<5>{\begin{equation*} \begin{pmatrix}
+ 	        0 & 1 & -3     
+         \end{pmatrix}
+         \end{equation*}
+         }
+         
+\only<6>{\begin{equation*}
+        \left( \, 2 \, \right).
+     \end{equation*}
+     }
+\end{frame}
+
+\begin{frame}{Matrizes}
+Os elementos de uma matriz podem ser números (reais ou complexos), funções, ou ainda outras matrizes. Representamos uma matriz de $m$ linhas e $n$ colunas por
+\begin{equation*}
+ A_{m\times n} = \begin{pmatrix}
+             a_{11} & a_{12} & \cdots & a_{1n}\\
+             a_{21} & a_{22} & \cdots & a_{2n}\\
+             \vdots & \vdots & \ddots & \vdots\\
+             a_{m1} & a_{m2} & \cdots & a_{mn}
+         \end{pmatrix} = (a_{ij})_{m\times n}.
+ \end{equation*}
+\end{frame}
+
+\begin{frame}{Tipos especiais de matrizes}
+
+\begin{itemize}
+    \item<2-> Matriz Quadrada
+    \item<3-> Matriz Nula
+    \item<4-> Matriz coluna
+    \item<5-> Matriz linha
+    \item<6-> Matriz simétrica
+    \item<7-> Matriz diagonal
+    \item<8-> Matriz triangular (superior ou inferior)
+    \item<9-> Matriz esparsa
+    \item<10-> Matriz identidade
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Operações com matrizes}
+
+\begin{itemize}
+    \item<1-> Soma
+    \begin{itemize}
+        \item<2-4> $A+B=B+A$ (comutatividade)
+        \item<3-4> $A+(B+C)=(A+B)+C$ (associatividade)
+        \item<4-4> $A+0 = A$, onde $0$ denota a matriz nula $m\times n$.
+    \end{itemize}
+    \item<5-> Multiplicação por escalar
+    \begin{itemize}
+        \item<6-9> $k(A+B) = kA+kB$
+        \item<7-9> $(k_1+k_2)A = k_1A+k_2A$
+        \item<8-9> $0A = 0$, ou seja, se multiplicarmos o número $0$ pela matriz $A_{m\times n}$ obteremos a matriz nula $0_{m\times n}$.\footnote{Novamente, aqui poderíamos substituir o escalar (número) $0$ pelo elemento neutro do conjunto que estamos considerando.}
+        \item<9-9> $k_1(k_2A) = (k_1k_2)A$.
+    \end{itemize}
+    \item<10-> Transposição
+    \begin{itemize}
+        \item<11-> Uma matriz é \emph{simétrica} se e somente se ela é igual à sua transposta.
+        \item<12-> $\left(A^T\right)^T = A$.
+        \item<13-> $(A+B)^T = A^T + B^T$.
+        \item<14-> $(kA)^T = kA^T$, para todo escalar $k$.
+    \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Produto de matrizes}
+Vamos supor que temos dois alimentos, com certas quantidades de vitaminas A, B e C, definidas na seguinte tabela.
+
+\begin{center}
+ \begin{tabular}{l c c c}
+     & A & B & C\\
+     Alimento 1 & 4 & 3 & 0\\
+     Alimento 2 & 5 & 0 & 1
+ \end{tabular}
+\end{center}
+
+Se ingerirmos 5 unidades do Alimento 1 e 2 unidades do Alimento 2, quanto teremos consumido de cada tipo de vitamina?
+\end{frame}
+
+\begin{frame}{Produto de matrizes}
+A operação que nos fornecerá a quantidade total de cada vitamina ingerida é o produto definido por
+\begin{align*}
+     & \left( 5 \quad 2 \right)
+         \begin{pmatrix}
+             4 & 3 & 0\\
+             5 & 0 & 1
+         \end{pmatrix}\\
+     &= \left( 5\cdot 4 + 2\cdot 5 \quad 5\cdot 3 + 2\cdot 0 \quad 5\cdot 0 + 2\cdot 1 \right)\\
+     &= \left( 30 \quad 15 \quad 2\right)
+ \end{align*}
+
+Ou seja, serão ingeridas 30 unidades de vitamina A, 15 de vitamina B e 2 de C.
+\end{frame}
+
+\begin{frame}{Produto de matrizes}
+Sejam $A = (a_{ij})_{m\times n}$ e $B = (b_{ij})_{n\times p}$. Definimos $AB = (c_{ij})_{m\times p}$, com
+ \begin{equation*}
+     c_{ij} = \sum_{k = 1}^n a_{ik}b_{kj} = a_{i1}b_{1j} + \ldots + a_{in}b_{nj}.
+ \end{equation*}
+
+OBS. Só podemos efetuar o produto de duas matrizes se o número de colunas da primeira for igual ao número de linhas da segunda.
+\end{frame}
+
+\begin{frame}{Propriedades do produto de matrizes}
+ \begin{itemize}
+     \item<2->[(i)] Em geral, $AB\ne BA$. Além disso, $AB$ pode ser nula sem que $A$ ou $B$ sejam nulas.
+     \item<3->[(ii)] $AI = IA = A$
+     \item<4->[(iii)] $0A = 0$ e $A0 = 0$.
+     \item<5->[(iv)] Sejam $A_{m\times p}$, $B_{p\times n}$ e $C_{p\times n}$. Então, $A(B+C) = AB+AC$ (distributividade à esquerda da multiplicação)
+     \item<6->[(v)] $(A+B)C = AC+BC$ (distributividade à direita da multiplicação)
+     \item<7->[(vi)] Sejam $A_{m\times p}$, $B_{p\times q}$, $C_{q\times n}$. Então, $(AB)C = A(BC)$ (associatividade da multiplicação).
+     \item<8->[(vii)] $(AB)^T = B^T A^T$ (Exercício!)
+ \end{itemize}
+ \end{frame}
+
+\begin{frame}{Matriz Inversa}
+
+Dada $A_{n\times n}$, se pudermos encontrar uma outra matriz $B_{n\times n}$ tal que 
+ $$AB=BA=I,$$
+ então diremos que $A$ é inversível e que $B=A^{-1}$. Senão, diremos que $A$ é singular.
+\end{frame}
+
+\begin{frame}{Matriz inversa}
+ \begin{block}{Teorema}
+   A inversa de $A_{n\times n}$ é única.
+ \end{block}
+
+\textbf{Demonstração.} \only<2->{Suponha que existem duas inversas de $A$, $B$ e $C$. Então,} 
+\only<3->{$$BA = I \Leftrightarrow (BA)C = IC = C.$$}
+\only<4->{No entanto, 
+     $$AC = I \Leftrightarrow B(AC) = BI = B.$$}
+\only<5->{Logo, como $(BA)C=B(AC)$ pela propriedade associativa do produto de matrizes, temos que $B=C$.}
+\end{frame}
+
+\begin{frame}{}
+\begin{block}{Teorema}
+Se $A, B$ são matrizes $n\times n$ inversíveis, então $(AB)^{-1} = B^{-1}A^{-1}$.
+\end{block}
+
+\textbf{Demonstração.} \only<2->{Basta verificarmos que $(AB)B^{-1}A^{-1} = B^{-1}A^{-1} AB$, já que a inversa é única.}
+\end{frame}
+
+\begin{frame}{}
+\begin{block}{Teorema}
+   Se $A$ é inversível, $A^T$ também o é, e $(A^T)^{-1} = (A^{-1})^T$.
+\end{block}
+
+\textbf{Demonstração.} \only<2->{Basta verificarmos que $(A^T)(A^{-1})^T = (A^{-1})^TA^T = I$.}
+\only<3->{Mas $A^T(A^{-1})^T = (A^{-1}A)^T = I^T = I$. Além disso, $(A^{-1})^TA^T = (AA^{-1})^T = I^T = I.$}
+\end{frame}
+
+\end{darkframes}
+\end{document}
+
+
