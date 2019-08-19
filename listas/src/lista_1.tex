@@ -1,0 +1,147 @@
+\documentclass[12pt]{article}
+\usepackage[portuguese]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage{amsmath,amssymb,amsthm,amsfonts}
+\usepackage[T1]{fontenc}
+\usepackage{fourier}
+\usepackage[listings,skins,breakable]{tcolorbox}
+\usepackage{ctable}
+
+\begin{document}
+
+\ \vspace{-1.4cm}
+\begin{tcolorbox}[colback=black!0]
+    \noindent
+    \begin{minipage}{0.14\linewidth}
+        \hspace*{-0.2cm}\includegraphics[height = 2.5cm]{UFSC.png}
+    \end{minipage}
+	\noindent
+	\begin{minipage}{0.79\linewidth}
+	    \begin{center}
+	        \vspace*{0.2cm}
+	        {\bf \large Universidade Federal de Santa Catarina} \\ \vspace{0.3cm}
+			{\bf \large Centro de Ciências Físicas e Matemáticas} \\ \vspace{0.3cm}
+			{\bf \large Departamento de Matemática}
+		\end{center}
+	\end{minipage}
+\end{tcolorbox}
+
+\noindent\textbf{Disciplina:} MTM5812 - H-Álgebra II\\
+\textbf{Professora:} Melissa Weber Mendonça
+
+\begin{center}
+    \Large{1\textordfeminine\ Lista de Exercícios}
+\end{center}
+
+\section{Matrizes}
+\begin{enumerate}
+   \item Considere cada um dos pares de sistemas lineares abaixo. Eles são equivalentes? Em caso positivo, escreva (em cada item) cada uma das equações de um sistema como combinação linear das equações do outro sistema.
+   \begin{itemize}
+      \item[(a)]
+      \begin{equation*}
+         \left\{
+            \begin{array}{r c l}
+               x_1 -x_2 &=& 0\\
+               2x_1+x_2 &=& 0
+            \end{array}
+         \right. \qquad \left\{
+            \begin{array}{r c l}
+               3x_1 + x_2 &=& 0\\
+               x_1+x_2 &=& 0
+            \end{array}
+         \right.
+      \end{equation*}
+      \item[(b)] 
+      \begin{equation*}
+         \left\{
+            \begin{array}{r c l}
+               -x_1 +x_2 +4x_3&=& 0\\
+               x_1+3x_2+8x_3 &=& 0\\
+               \frac{x_1}{2} + x_2 + \frac{5}{2}x_3 &=& 0
+            \end{array}
+         \right. \qquad \left\{
+            \begin{array}{r c l}
+               x_1 - x_3 &=& 0\\
+               x_2+3x_3 &=& 0
+            \end{array}
+         \right.
+      \end{equation*}
+   \end{itemize}
+%
+   \item Se 
+   \begin{equation*}
+      A =
+      \begin{pmatrix}
+         3 & -1 & 2\\
+         2 & 1 & 1\\
+         1 & -3 & 0
+      \end{pmatrix}
+   \end{equation*}
+   \begin{itemize}
+      \item[(a)] Encontre todas as soluções do sistema $Ax=0$ através do escalonamento de $A$.
+      \item[(b)] Para quais vetores $y = (y_1,y_2,y_3)$ o sistema $Ax=y$ tem solução? 
+   \end{itemize}
+%
+   \item Se 
+   \begin{equation*}
+      A =
+      \begin{pmatrix}
+         6 & -4 & 0\\
+         4 & -2 & 0\\
+         -1 & 0 & 3
+      \end{pmatrix}
+   \end{equation*}
+   encontre todas as soluções dos sistemas $Ax=2x$ e $Ax=3x$. 
+%
+   \item Considere o sistema $Ax=0$, em que
+   \begin{equation*}
+      A = 
+      \begin{pmatrix}
+         a & b\\
+         c & d
+      \end{pmatrix}
+      \in \Re^{2\times 2}.
+   \end{equation*}
+   Mostre que
+   \begin{itemize}
+      \item[(a)] Se todos os elementos de $A$ são nulos, então qualquer par $(x_1,x_2)$ é solução do sistema $Ax=0$.
+      \item[(b)] Se $ad-bc \ne 0$, o sistema $Ax=0$ só tem solução trivial $(0,0)$.
+      \item[(c)] Se $ad-bc=0$ e um elemento de $A$ for não-nulo, então existe uma solução $(x_1,x_2)$ tal que todas as outras soluções são múltiplos desta.
+   \end{itemize}
+%
+   \item Dê um exemplo de um sistema com duas equações e duas incógnitas que não tenha solução.
+%
+   \item Mostre que o sistema
+   \begin{eqnarray*}
+      x_1-2x_2+x_3+2x_4 &=&1\\
+      x_1+x_2-x_3+x_4 &=&2\\
+      x_1+7x_2-5x_3-x_4 &=&3
+   \end{eqnarray*}
+   não tem soluções.
+%
+   \item Encontre duas matrizes em $\Re^{2\times 2}$ diferentes, tais que $A^2=0$ mas $A\ne 0$.
+%
+   \item Seja 
+   \begin{equation*}
+      C = 
+      \begin{pmatrix}
+         C_{11} & C_{12}\\
+         C_{21} & C_{22}
+      \end{pmatrix}
+      \in \Re^{2\times 2}.
+   \end{equation*}
+   Sob quais condições é possível encontrar matrizes $A,B \in \Re^{2\times 2}$ tais que
+   $$C = AB-BA.$$
+   Prove que estas matrizes podem ser encontradas se e somente se 
+   $$C_{11} + C_{22} = 0.$$
+%
+   \item Suponha que $A\in \Re^{2\times 1}$ e que $B\in \Re^{1\times 2}$. Prove que $C=AB$ não é inversível.
+%
+   \item Seja $A\in \Re^{n\times n}$. Prove as afirmações seguintes:
+   \begin{itemize}
+      \item[(a)] Se $A$ é inversível e $AB=0$ para alguma $B\in \Re^{n\times n}$, então $B=0$.
+      \item[(b)] Se $A$ não é inversível, então existe $B\in \Re^{n\times n}$ tal que $AB=0$ mas $B\ne 0$.
+   \end{itemize}
+\end{enumerate}
+
+\end{document}
