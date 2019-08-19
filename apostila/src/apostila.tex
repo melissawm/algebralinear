@@ -1,0 +1,78 @@
+\documentclass[12pt]{report}
+% Transferido para o Overleaf em 08/11/2015
+\usepackage[portuguese]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{graphicx}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage[T1]{fontenc}
+\usepackage{fourier}
+\usepackage{xfrac}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usepackage{pgf,pgfplots}
+\usepackage{titlesec}
+
+\usepackage{natbib}
+\bibpunct{[}{]}{,}{n}{,}{,}
+
+\newtheorem{teo}{Teorema}
+\newtheorem{coro}{Corolário}
+\newtheorem{defi}{Definição}
+\newtheorem{exemplo}{Exemplo}[section]
+\newtheorem*{exemplo*}{Exemplo}
+
+\renewcommand{\theexemplo}{\arabic{section}.\arabic{exemplo}}
+\newcommand{\bpr}{{\bf Demonstra\c{c}\~ao.} \hspace{1.5mm}}
+\newcommand{\epr}{\hfill $\Box$ \vspace*{1em}}
+
+\titleformat{\chapter}[display]
+{\normalfont\Large\filcenter\sffamily}
+{\titlerule[1pt]%
+\vspace{2pt}%
+\titlerule
+\vspace{1pc}%
+\LARGE\MakeUppercase{\chaptertitlename} \thechapter}
+{1pc}
+{\titlerule
+\vspace{1pc}%
+\huge}
+
+\titleformat{\section}[block]
+{\Large \scshape}
+{\thesection}{10pt}{}
+
+\title{1. Matrizes}
+\author{}
+\date{2019.2}
+
+\begin{document}
+\begin{titlepage}
+    \centering % Center everything on the title page
+	\scshape % Use small caps for all text on the title page
+	\vspace*{1.5\baselineskip} % White space at the top of the page
+    % ===================
+    %	Title Section 	
+    % ===================
+	\rule{13cm}{1.6pt}\vspace*{-\baselineskip}\vspace*{2pt} % Thick horizontal rule
+	\rule{13cm}{0.4pt} % Thin horizontal rule
+	\vskip1cm % Whitespace above the title
+    % ========== Title ===============	
+	{ {\ } \Huge Álgebra Linear}
+    % ======================================
+	\vskip0.9cm % Whitespace below the title
+	\rule{13cm}{0.4pt}\vskip-11pt % Thin horizontal rule
+	\rule{13cm}{1.6pt} % Thick horizontal rule
+	\vskip2cm % Whitespace after the title block
+    % =================
+    %	Information	
+    % =================
+	{\large Melissa Weber Mendonça \\
+		\vspace*{1.2\baselineskip}
+	2019.2} \\
+\end{titlepage}
+\tableofcontents
+
+\input{capitulo_1.tex}
+
+\end{document}
