@@ -28,6 +28,12 @@
 \setlength\fibeamer@lengths@logoheight{5em}
 \makeatother
 
+\newcommand{\zerodisplayskips}{%
+  \setlength{\abovedisplayskip}{0pt}%
+  \setlength{\belowdisplayskip}{0pt}%
+  \setlength{\abovedisplayshortskip}{0pt}%
+  \setlength{\belowdisplayshortskip}{0pt}}
+
 \begin{document}
 \frame{\maketitle}
 
@@ -99,9 +105,8 @@
   \only<3>{\begin{itemize}
     \item Para todo número natural $n$, o conjunto ${\mathbb{K}}^n$, definido como
       \begin{equation*}
-        \setlength\abovedisplayskip{0pt}
+        \zerodisplayskips
         {\mathbb{K}}^n = {\mathbb{K}} \times \cdots \times {\mathbb{K}} = \{ (u_1,\ldots,u_n) : u_i \in {\mathbb{K}}, \forall i = 1,\ldots, n\}
-        \setlength\belowdisplayskip{0pt}
       \end{equation*}
       é um espaço vetorial sobre ${\mathbb{K}}$.
     \end{itemize}}
@@ -109,8 +114,7 @@
   \only<4>{\begin{itemize}
     \item Os elementos do espaço vetorial ${\mathbb{R}}^{\infty}$ são as sequências infinitas de números reais do tipo
       \begin{equation*}
-        \setlength\abovedisplayskip{0pt}
-        \setlength\belowdisplayskip{0pt}
+        \zerodisplayskips
         u = (\alpha_1,\ldots,\alpha_n,\ldots).
       \end{equation*}
       \begin{itemize}
@@ -193,8 +197,7 @@ Um espaço vetorial sobre um corpo ${\mathbb{K}}$ é um conjunto $E$ de \emph{ve
   \only<1>{\begin{itemize}
     \item Note que no caso de um subespaço, não é necessário verificar as seis propriedades listadas anteriormente pois elas já são satisfeitas para $E$, e $F \subset E$. No entanto, um subespaço deve ser \emph{fechado} para a adição e a multiplicação por escalar. Mais geralmente, dados $v_1,\ldots,v_m \in F$ e $\alpha_1,\ldots,\alpha_m \in {\mathbb{K}}$, 
       \begin{equation*}
-        \setlength\abovedisplayskip{0pt}
-        \setlength\belowdisplayskip{0pt}
+        \zerodisplayskips
         v = \alpha_1v_1+\ldots+\alpha_mv_m
       \end{equation*}
       deve pertencer a $F$.
@@ -323,95 +326,112 @@ Um espaço vetorial sobre um corpo ${\mathbb{K}}$ é um conjunto $E$ de \emph{ve
   Como vimos no último exemplo, a união de dois subespaços vetoriais não é necessariamente um subespaço vetorial. No entanto, podemos construir um conjunto $S$ que contém $F_1$ e $F_2$ e que é subespaço de $E$, como veremos no Teorema a seguir.
 \end{frame}
 
-% \begin{teo}
-%   Sejam $F_1$ e $F_2$ subespaços de um espaço vetorial $E$. Então o conjunto
-%   \begin{equation*}
-%     S = F_1+F_2 = \{ w \in E : w = w_1+w_2, w_1\in F_1, w_2\in F_2\}
-%   \end{equation*}
-%   é um subespaço de $E$.
-% \end{teo}
-% \begin{proof}
-% Vamos verificar as condições para que $S$ seja um subespaço de $E$. Primeiramente, note que $0\in S$ pois $0 \in F_1$ e $0\in F_2$. 
-% \begin{itemize}
-% \item[(i)] Sejam $v, w \in S$. Então $v = v_1+v_2$, $v_1 \in F_1$, $v_2 \in F_2$ e $w = w_1+w_2$, $w_1 \in F_1$, $w_2 \in F_2$. Assim
-%   \begin{align*}
-%     v+w &= (v_1+v_2)+(w_1+w_2)\\
-%     &= (v_1+w_1) + (v_2+w_2) \in S,
-%   \end{align*}
-%   pois $v_1+w_1 \in F_1$ e $v_2+w_2 \in F_2$ já que ambos são subespaços de $E$ e $v_1,w_1 \in F_1$ e $v_2,w_2 \in F_2$, e a última igualdade segue das propriedades da soma no espaço vetorial $E$.
-% \item[(ii)] Sejam $\alpha \in {\mathbb{K}}$ e $w \in S$. Então,
-%   \begin{equation*}
-%     \alpha w = \alpha (w_1+w_2) = \alpha w_1 + \alpha w_2 \in S
-%   \end{equation*}
-%   já que $\alpha w_1 \in F_1$ e $\alpha w_2 \in F_2$ pois ambos são subespaços de $E$.
-% \end{itemize}
-% \end{proof}
+\begin{frame}{}
+  \begin{block}{Teorema}
+  Sejam $F_1$ e $F_2$ subespaços de um espaço vetorial $E$. Então o conjunto
+  \begin{equation*}
+    S = F_1+F_2 = \{ w \in E : w = w_1+w_2, w_1\in F_1, w_2\in F_2\}
+  \end{equation*}
+  é um subespaço de $E$.
+\end{block}
+\vfill
+\alert{Demonstração. } Vamos verificar as condições para que $S$ seja um subespaço de $E$.
 
-% \begin{exemplo}
-%   No Exemplo \ref{ex:uniaosubespacos}, $S = F_1+F_2$ é o plano que contém as duas retas.
-% \end{exemplo}
+\only<2>{Primeiramente, note que $0\in S$ pois $0 \in F_1$ e $0\in F_2$. }
+\only<3>{%
+  \begin{itemize}
+  \item[(i)] Sejam $v, w \in S$. Então $v = v_1+v_2$, $v_1 \in F_1$, $v_2 \in F_2$ e $w = w_1+w_2$, $w_1 \in F_1$, $w_2 \in F_2$. Assim \vspace*{-0.5cm}
+    \begin{align*}
+      v+w &= (v_1+v_2)+(w_1+w_2)\\
+          &= (v_1+w_1) + (v_2+w_2) \in S,
+    \end{align*}
+    \vskip-0.5cm
+    pois $v_1+w_1 \in F_1$ e $v_2+w_2 \in F_2$ já que ambos são subespaços de $E$ e $v_1,w_1 \in F_1$ e $v_2,w_2 \in F_2$, e a última igualdade segue das propriedades da soma no espaço vetorial $E$.
+  \end{itemize}}
+\only<4>{%
+  \begin{itemize}
+  \item[(ii)] Sejam $\alpha \in {\mathbb{K}}$ e $w \in S$. Então,
+    \begin{equation*}
+      \alpha w = \alpha (w_1+w_2) = \alpha w_1 + \alpha w_2 \in S
+    \end{equation*}
+    já que $\alpha w_1 \in F_1$ e $\alpha w_2 \in F_2$ pois ambos são subespaços de $E$.
+  \end{itemize}}
+\end{frame}
 
-% Considere agora uma matriz $A\in {\mathbb{R}}^{m\times n}$. Chegamos então ao caso interessante de subespaços ligados à matriz $A$ em um sistema linear $Ax=b$, com $x\in {\mathbb{R}}^n$ e $b\in {\mathbb{R}}^m$. Para relacionarmos o conceito de subespaços vetoriais à resolução de sistemas de equações lineares, precisamos do conceito de combinação linear.
+\begin{frame}{Exemplo}
+  No Exemplo da união dos subespaços, $S = F_1+F_2$ é o plano que contém as duas retas.
+\end{frame}
 
-% \begin{defi}
-%   Seja $E$ um espaço vetorial, e sejam $u_1,u_2,\ldots,u_n \in E$ vetores neste espaço. Então uma \emph{combinação linear} destes vetores é um vetor $u$ no espaço $E$ dado por
-%   \begin{equation*}
-%     u = \alpha_1 u_1+\ldots+\alpha_n u_n,
-%   \end{equation*}
-%   para $\alpha_1,\ldots,\alpha_n \in {\mathbb{K}}$.
-% \end{defi}
+\begin{frame}{Subespaços de uma matriz}
+  Considere agora uma matriz $A\in {\mathbb{R}}^{m\times n}$. Chegamos então ao caso interessante de subespaços ligados à matriz $A$ em um sistema linear $Ax=b$, com $x\in {\mathbb{R}}^n$ e $b\in {\mathbb{R}}^m$. Para relacionarmos o conceito de subespaços vetoriais à resolução de sistemas de equações lineares, precisamos do conceito de combinação linear.
+\end{frame}
 
-% \begin{defi}
-%   Uma vez fixados os vetores $\{ v_1,\ldots,v_n\}$ em $V$, o conjunto $W\subset V$ que contém todas as combinações lineares destes vetores é chamado de \emph{espaço gerado} pelos vetores $v_1,\ldots,v_n$. Denotamos isto por
-%   \begin{align*}
-%     W &= \text{span}\{v_1,\ldots,v_n\}\\
-%     &= \{ v \in V : v = a_1v_1 + a_2v_2 + \ldots + a_n v_n, a_i\in {\mathbb{K}}, 1\leq i \leq n\}.
-%   \end{align*}
-% \end{defi}
+\begin{frame}{Combinação Linear}
+  \begin{block}{Definição}
+    Seja $E$ um espaço vetorial, e sejam $u_1,u_2,\ldots,u_n \in E$ vetores neste espaço. Então uma \emph{combinação linear} destes vetores é um vetor $u$ no espaço $E$ dado por
+   \begin{equation*}
+     u = \alpha_1 u_1+\ldots+\alpha_n u_n,
+   \end{equation*}
+   para $\alpha_1,\ldots,\alpha_n \in {\mathbb{K}}$.
+ \end{block}
+\end{frame}
 
-% Uma outra caracterização de subespaço gerado é a seguinte: $W$ é o menor subespaço de $V$ que contém o conjunto de vetores $\{ v_1,\ldots,v_n\}$ no sentido que qualquer outro subespaço $W'$ de $V$ que contenha estes vetores satisfará $W' \supset W$, já que como $v_1,\ldots,v_n \in W'$ e $W'$ é um subespaço vetorial, então qualquer combinação linear destes vetores também está incluida em $W'$; logo $W\subset W'$.
+\begin{frame}{Espaço Gerado: span}
+  \begin{block}{Definição}
+   Uma vez fixados os vetores $\{ v_1,\ldots,v_n\}$ em $V$, o conjunto $W\subset V$ que contém todas as combinações lineares destes vetores é chamado de \emph{espaço gerado} pelos vetores $v_1,\ldots,v_n$. Denotamos isto por
+   \begin{align*}
+     W &= \text{span}\{v_1,\ldots,v_n\}\\
+     &= \{ v \in V : v = a_1v_1 + a_2v_2 + \ldots + a_n v_n, a_i\in {\mathbb{K}}, 1\leq i \leq n\}.
+   \end{align*}
+ \end{block}
+\end{frame}
 
-% \section{Dependência linear entre vetores}
+\begin{frame}{Espaço Gerado: span}
+ Uma outra caracterização de subespaço gerado é a seguinte: $W$ é o menor subespaço de $V$ que contém o conjunto de vetores $\{ v_1,\ldots,v_n\}$ no sentido que qualquer outro subespaço $W'$ de $V$ que contenha estes vetores satisfará $W' \supset W$, já que como $v_1,\ldots,v_n \in W'$ e $W'$ é um subespaço vetorial, então qualquer combinação linear destes vetores também está incluida em $W'$; logo $W\subset W'$.
+\end{frame}
 
-% \begin{defi}
-% 	Seja $X=\{v_1,v_2,\ldots,v_n\}\subset E$ um conjunto de vetores. Se nenhum dos vetores $v_i$ puder ser escrito como combinação linear dos outros vetores, dizemos que este conjunto é linearmente independente (l.i.). Formalmente, o conjunto $X$ é l.i. se e somente se a única combinação linear nula dos vetores de $X$ for aquela cujos coeficientes são todos nulos, ou seja,
-%     \begin{equation*}
-%     \alpha_1v_1+\alpha_2 v_2 + \ldots + \alpha_n v_n = 0 \Rightarrow \alpha_1=\alpha_2=\ldots=\alpha_n=0.
-%     \end{equation*}
-% \end{defi}
 
-% Evidentemente, todo subconjunto de um conjunto l.i. é também l.i.
+\begin{frame}{Independência Linear}
+  \begin{block}{Definição}
+    Seja $X=\{v_1,v_2,\ldots,v_n\}\subset E$ um conjunto de vetores. Se nenhum dos vetores $v_i$ puder ser escrito como combinação linear dos outros vetores, dizemos que este conjunto é linearmente independente (l.i.). Formalmente, o conjunto $X$ é l.i. se e somente se a única combinação linear nula dos vetores de $X$ for aquela cujos coeficientes são todos nulos, ou seja,
+    \begin{equation*}
+      \alpha_1v_1+\alpha_2 v_2 + \ldots + \alpha_n v_n = 0 \Rightarrow \alpha_1=\alpha_2=\ldots=\alpha_n=0.
+    \end{equation*}
+  \end{block}
 
-% \begin{exemplo}
-% 	Em ${\mathbb{R}}^2$, quaisquer dois vetores que não sejam colineares são l.i. 
-% \end{exemplo}
+\only<2>{\alert{Evidentemente}, todo subconjunto de um conjunto l.i. é também l.i.}
+\end{frame}
 
-% \begin{exemplo}
-% 	Em ${\mathbb{R}}^n$, chamamos de vetores canônicos os vetores definidos como, para todos $i,j = 1,\ldots,n$
-%     \begin{equation*}
-%     (e_i)_j = \begin{cases}
-%     1, & \mbox{ se } j = i\\
-%     0, & \mbox{ caso contrário.}
-%     \end{cases}
-%     \end{equation*}
-%     em que o subíndice $j$ denota a coordenada $j$ do i-ésimo vetor canônico. Estes vetores são l.i.
-% \end{exemplo}
-
-% \begin{exemplo}
-% 	Em ${\mathbb{R}}^{2\times 2}$, as matrizes
-%     \begin{equation*}
-%     A = \begin{pmatrix} 1 & 0\\0 & 0\end{pmatrix} \text{ e } B = \begin{pmatrix} 0 & 1\\0 & 0\end{pmatrix}
-%     \end{equation*}
-%     são l.i.
-% \end{exemplo}
-
-% \begin{exemplo}
-%   O conjunto ${\mathcal{P}}({\mathbb{R}})$ dos polinômios
-%   \begin{equation*}
-%     p(x) = a_0 + a_1x + \ldots + a_nx^n
-%   \end{equation*}
-%   é um subespaço de ${\mathcal{F}}({\mathbb{R}} ;{\mathbb{R}})$, assim como o conjunto ${\mathcal{P}}_n$ dos polinômios de grau $\leq n$. Note que o conjunto dos polinômios de grau $n$ não é um subespaço, pois a soma de dois polinômios de grau $n$ pode ter grau $<n$. Então, os monômios $1,x,\ldots,n^n$ em ${\mathcal{P}}_n$ são l.i., pois $\alpha_0 + \alpha_1 x + \ldots + \alpha n x^n = p(x)$ é o vetor nulo em ${\mathcal{P}}_n$ somente quando $p(x)$ é o polinômio identicamente nulo, ou seja, $p(x) = 0 $ para todo $x\in {\mathbb{R}}$. Isto implica que $\alpha_0 = \ldots = \alpha_n=0$, pois um polinômio não nulo de grau $k$ tem no máximo $k$ raízes reais. Podemos, além disso, concluir que o conjunto $X = \{ 1,x,\ldots,x^n,\ldots\}\subset {\mathcal{P}}$ é um conjunto infinito l.i.
-% \end{exemplo}
+\begin{frame}{Exemplos}
+  \only<1>{\begin{itemize}
+    \item Em ${\mathbb{R}}^2$, quaisquer dois vetores que não sejam colineares são l.i. 
+    \end{itemize}}
+  \only<2>{\begin{itemize}
+    \item Em ${\mathbb{R}}^n$, chamamos de vetores canônicos os vetores definidos como, para todos $i,j = 1,\ldots,n$
+      \begin{equation*}
+        (e_i)_j = \begin{cases}
+          1, & \mbox{ se } j = i\\
+          0, & \mbox{ caso contrário.}
+        \end{cases}
+      \end{equation*}
+      em que o subíndice $j$ denota a coordenada $j$ do i-ésimo vetor canônico. Estes vetores são l.i.
+    \end{itemize}}
+  \only<3>{\begin{itemize}
+      \item Em ${\mathbb{R}}^{2\times 2}$, as matrizes
+      \begin{equation*}
+        A = \begin{pmatrix} 1 & 0\\0 & 0\end{pmatrix} \text{ e } B = \begin{pmatrix} 0 & 1\\0 & 0\end{pmatrix}
+      \end{equation*}
+      são l.i.
+    \end{itemize}}
+  \only<4>{\begin{itemize}
+    \item O conjunto ${\mathcal{P}}({\mathbb{R}})$ dos polinômios
+      \begin{equation*}
+        p(x) = a_0 + a_1x + \ldots + a_nx^n
+      \end{equation*}
+      é um subespaço de ${\mathcal{F}}({\mathbb{R}} ;{\mathbb{R}})$, assim como o conjunto ${\mathcal{P}}_n$ dos polinômios de grau $\leq n$.
+    %Note que o conjunto dos polinômios de grau $n$ não é um subespaço, pois a soma de dois polinômios de grau $n$ pode ter grau $<n$. Então, os monômios $1,x,\ldots,n^n$ em ${\mathcal{P}}_n$ são l.i., pois $\alpha_0 + \alpha_1 x + \ldots + \alpha n x^n = p(x)$ é o vetor nulo em ${\mathcal{P}}_n$ somente quando $p(x)$ é o polinômio identicamente nulo, ou seja, $p(x) = 0 $ para todo $x\in {\mathbb{R}}$. Isto implica que $\alpha_0 = \ldots = \alpha_n=0$, pois um polinômio não nulo de grau $k$ tem no máximo $k$ raízes reais. Podemos, além disso, concluir que o conjunto $X = \{ 1,x,\ldots,x^n,\ldots\}\subset {\mathcal{P}}$ é um conjunto infinito l.i.
+    \end{itemize}}
+\end{frame}
 
 % \begin{teo}
 %   Se $v=\alpha_1v_1+\ldots+\alpha_mv_m = \beta_1v_1+\ldots+\beta_mv_m$ e os vetores $v_1,\ldots,v_m$ são l.i., então $\alpha_1=\beta_1, \alpha_2=\beta_2, \ldots, \alpha_m=\beta_m$.
