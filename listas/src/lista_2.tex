@@ -1,0 +1,215 @@
+\documentclass[12pt]{article}
+\usepackage[portuguese]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage{amsmath,amssymb,amsthm,amsfonts}
+\usepackage[T1]{fontenc}
+\usepackage{fourier}
+\usepackage[listings,skins,breakable]{tcolorbox}
+\usepackage{ctable}
+
+\begin{document}
+
+\ \vspace{-1.4cm}
+\begin{tcolorbox}[colback=black!0]
+    \noindent
+    \begin{minipage}{0.14\linewidth}
+        \hspace*{-0.2cm}\includegraphics[height = 2.5cm]{UFSC.png}
+    \end{minipage}
+	\noindent
+	\begin{minipage}{0.79\linewidth}
+	    \begin{center}
+	        \vspace*{0.2cm}
+	        {\bf \large Universidade Federal de Santa Catarina} \\ \vspace{0.3cm}
+			{\bf \large Centro de Ciências Físicas e Matemáticas} \\ \vspace{0.3cm}
+			{\bf \large Departamento de Matemática}
+		\end{center}
+	\end{minipage}
+\end{tcolorbox}
+
+\noindent\textbf{Disciplina:} MTM5812 - H-Álgebra II\\
+\textbf{Professora:} Melissa Weber Mendonça
+
+\begin{center}
+    \Large{2\textordfeminine\ Lista de Exercícios}
+\end{center}
+
+\section{Espaços Vetoriais}
+
+\begin{enumerate}
+
+\item Seja $V={\mathbb{R}}^2$. Então defina as seguintes operações:
+  \begin{eqnarray*}
+    (x,y) + (x_1,y_1) &=& (x+x_1,y+y_1)\\
+    c(x,y) &=& (cx,y) \qquad (c\in \Re)
+  \end{eqnarray*}
+  Verifique se $V$ com estas operações é um espaço vetorial.
+%
+\item Em ${\mathbb{R}}^n$, defina duas operações
+  \begin{eqnarray*}
+    \alpha + \beta &=& \alpha - \beta\\
+    c\alpha &=& -c\alpha
+  \end{eqnarray*}
+  onde as operações à direita são as operações usuais em $\mathbb{R}$. Quais axiomas dos espaços vetoriais são satisfeitos para este conjunto com estas operações?
+%
+\item Seja $V={\mathbb{R}}^2$ e considere
+  \begin{eqnarray*}
+    (x,y) + (x_1,y_1) &=& (x+x_1,0)\\
+    c(x,y) &=& (cx,0) \qquad (c\in \Re)
+  \end{eqnarray*}
+  Verifique se $V$ com estas operações é um espaço vetorial.
+% 
+\item Quais dos seguintes conjuntos de vetores $\alpha =(\alpha_1,\ldots,\alpha_n) \in {\mathbb{R}}^n$ são subespaços de ${\mathbb{R}}^n$ ($n\geq 3$)?
+  \begin{itemize}
+  \item[(a)] $\{\alpha \in {\mathbb{R}}^n : \alpha_1\geq 0\}$ 
+  \item[(b)] $\{\alpha \in {\mathbb{R}}^n : \alpha_1+3\alpha_2=\alpha_3\}$ 
+  \item[(c)] $\{\alpha \in {\mathbb{R}}^n : \alpha_2=\alpha_1^2\}$ 
+  \item[(d)] $\{\alpha \in {\mathbb{R}}^n : \alpha_1\alpha_2= 0\}$ 
+  \end{itemize}
+  % 
+\item Seja $V$ o espaço de todas as funções $f:{\mathbb{R}} \rightarrow \mathbb{R}$. Quais dos seguintes subconjuntos são subespaços de $V$?
+  \begin{itemize}
+  \item[(a)] $\{f \in V : f(x^2) = f(x)^2\}$ 
+  \item[(b)] $\{f \in V : f(0) = f(1)\}$ 
+  \item[(c)] $\{f \in V : f(3) = 1+f(-5)\}$ 
+  \item[(d)] $\{f \in V : f(-1)=0\}$ 
+  \end{itemize}
+  % 
+\item Seja $V = {\mathbb{R}}^{n\times n}$, $n\geq 2$. Quais dos seguintes subconjuntos são subespaços de $V$?
+  \begin{itemize}
+  \item[(a)] $\{A \in V : A \mbox{ é inversível}\}$ 
+  \item[(b)] $\{A \in V : A \mbox{ não é inversível}\}$ 
+  \item[(c)] $\{A \in V : AB=BA, \mbox{ onde } B \mbox{ é uma matriz fixa em } V\}$ 
+  \item[(d)] $\{A \in V : A^2=A\}$ 
+  \end{itemize}
+  % 
+\item Seja $V$ o espaço de todas as funções $f:\mathbb{R} \rightarrow \mathbb{R}$. Seja $V_p$ o subconjunto de todas as funções pares, e $V_i$ o subconjunto de todas as funções ímpares.
+  \begin{itemize}
+  \item[(a)] Mostre que $V_p$ e $V_i$ são subespaços de $V$.
+  \item[(b)] Mostre que $V_p+V_i=V$
+  \item[(c)] Mostre que $V_p\cap V_i = \{0\}$.
+  \end{itemize}
+  % 
+\item Verifique se os vetores
+  \begin{align*}
+    \alpha_1 &= (1,1,2,4) \\
+    \alpha_2 &= (2,-1,-5,2)\\
+    \alpha_3 &= (1,-1,-4,0)\\
+    \alpha_4 &= (2,1,1,6)
+  \end{align*}
+  são linearmente independentes em ${\mathbb{R}}^4$. Em seguida, encontre uma base para o subespaço gerado por estes vetores.
+  % 
+\item Seja $V \subseteq \Re$ um espaço vetorial e suponha que $\alpha, \beta, \gamma \in V$ são l.i. Prove que $(\alpha + \beta)$, $(\beta +\gamma)$, $(\gamma +\alpha)$ são l.i.
+  % 
+\item Mostre que os vetores 
+  \begin{align*}
+    \alpha_1 &= (1,1,0,0)\\
+    \alpha_2 &= (0,0,1,1)\\
+    \alpha_3 &= (1,0,0,4)\\
+    \alpha_4 &= (0,0,0,2)
+  \end{align*}
+  formam uma base para ${\mathbb{R}}^4$. Encontre as coordenadas de cada um dos vetores da base canônica nesta nova base ordenada $\{ \alpha_1,\alpha_2,\alpha_3,\alpha_4\}$.
+  % 
+\item Seja $W$ o subespaço de ${\cal{M}}(3,2)$ gerado por
+  \begin{equation*}
+    \begin{bmatrix}
+      0& 0\\
+      1 & 1\\
+      0 & 0
+    \end{bmatrix},
+    \begin{bmatrix}
+      0 & 1\\
+      0 & -1\\
+      1 & 0
+    \end{bmatrix}
+    \text{ e }
+    \begin{bmatrix}
+      0 & 1\\
+      0 & 0\\
+      0 & 0
+    \end{bmatrix}.     
+  \end{equation*}
+  O vetor $
+  \begin{bmatrix}
+    0 & 2\\
+    3 & 4\\
+    5 & 0
+  \end{bmatrix}$ pertence a $W$?
+  
+\item Seja $x = (x_1,x_2), y = (y_1,y_2) \in {\mathbb{R}}^2$ tais que
+  \begin{align*}
+    x_1y_1 + x_2y_2 &=& 0\\
+    x_1^2+x_2^2=y_1^2+y_2^2&=&1.
+  \end{align*}
+  Mostre que ${\cal{B}} = \{x,y\}$ é uma base para ${\mathbb{R}}^2$. Encontre as coordenadas de um vetor $(a,b)$ nesta nova base ordenada. O que querem dizer geometricamente estas condições impostas a $x$ e $y$?
+%
+\item Seja ${\cal{P}}_2$ o conjunto de todos os polinômios reais a coeficientes reais de grau menor ou igual a 2. Seja $t\in \mathbb{R}$ um número real fixo e defina 
+  \begin{align*}
+    q_1(x) &= 1\\
+    q_2(x) &= x+t\\
+    q_3(x) &= (x+t)^2
+  \end{align*}
+  Prove que ${\cal{B}} = \{q_1,q_2,q_3\}$ é uma base para ${\cal{P}}_2$. Se
+  $$f(x) = c_0 + c_1x+c_2x^2$$
+  quais são as coordenadas de $f$ na base ${\cal{B}}$?
+  
+\item Considere o sistema linear
+     \begin{equation*}
+       \begin{cases}
+         2x_1+4x_2-6x_3 & = a\\
+         x_1-x_2+4x_3 &= b\\
+         6x_2-14x_3 &= c
+       \end{cases}
+     \end{equation*}
+     Seja 
+     \begin{equation*}
+       W = \{(x_1,x_2,x_3)\in {\mathbb{R}}^3 : (x_1,x_2,x_3) \text{ é solução do sistema.}\}.
+     \end{equation*}
+     Isto é, $W$ é o conjunto solução do sistema.
+     \begin{itemize}
+     \item[a)] Que condições devemos impor a $a$, $b$ e $c$ para que $W$ seja subespaço vetorial de ${\mathbb{R}}^3$?
+     \item[b)] Nas condições determinadas em a), encontre uma base para $W$.
+     \item[c)] Que relação existe entre a dimensão de $W$ e o grau de liberdade do sistema? Seria este resultado válido para quaisquer sistemas homogêneos?
+     \end{itemize}
+
+     \item Seja $U$ o subespaço de ${\mathbb{R}}^3$ gerado por $(1,0,0)$, e $W$ o subespaço de ${\mathbb{R}}^3$ gerado por $(1,1,0)$ e $(0,1,1)$. Mostre que ${\mathbb{R}}^3 = U \oplus W$.
+
+     \item Sejam 
+       \begin{align*}
+         W_1 &= \{ (x,y,z,t) \in {\mathbb{R}}^4 : x+y=0 \text{ e } z-t=0\}\\
+         W_2 &= \{(x,y,z,t) \in {\mathbb{R}}^4 : x-y-z+t=0\}
+       \end{align*}
+       subespaços de ${\mathbb{R}}^4$.
+       \begin{itemize}
+       \item[a)] Determine $W_1\cap W_2$.
+       \item[b)] Exiba uma base para $W_1\cap W_2$.
+       \item[c)] Determine $W_1+W_2$.
+       \item[d)] $W_1+W_2$ é soma direta? Justifique.
+       \item[e)] $W_1+W_2={\mathbb{R}}^4$?
+       \end{itemize}
+
+     \item Sejam
+       \begin{align*}
+         \beta &= \{(1,0),(0,1)\}\\
+         \gamma &= \{(-1,1),(1,1)\}\\
+         \rho &= \{(\sqrt{3},1),(\sqrt{3},-1)\}\\
+         \nu &= \{(2,0),(0,2)\}
+       \end{align*}
+       bases ordenadas de ${\mathbb{R}}^2$.
+       \begin{itemize}
+       \item[a)] Ache as matrizes de mudança de base $[I]_\beta^\gamma$, $[I]_\gamma^\beta$, $[I]_\rho^\beta$, $[I]_\nu^\beta$.
+       \item[b)] Quais são as coordenadas do vetor $v=(3,-2)$ em relação às quatro bases?
+       \item[c)] As coordenadas de um vetor $v$ em relação à base $\gamma$ são dadas por
+         \begin{equation*}
+           [v]_\gamma = \begin{bmatrix} 4\\0\end{bmatrix}.
+         \end{equation*}
+         Quais são as coordenadas de $v$ em relação às outras bases?
+       \end{itemize}
+
+       \item Sejam $\beta_1 = \{(1,0),(0,2)\}$, $\beta_2 = \{(-1,0),(1,1)\}$ e $\beta_3 = \{(-1,-1),(0,-1)\}$ três bases ordenadas de ${\mathbb{R}}^2$.
+         \begin{itemize}
+           \item[a)] Ache $[I]_{\beta_1}^{\beta_2}$, $[I]_{\beta_2}^{\beta_3}$, $[I]_{\beta_1}^{\beta_3}$ e $[I]_{\beta_1}^{\beta_2} \cdot [I]_{\beta_2}^{\beta_3}$.
+           \item[b)] Se for possível, ache uma relação entre estas matrizes de mudança de base.
+           \end{itemize}
+         \end{enumerate}
+\end{document}
+
