@@ -1,0 +1,870 @@
+\chapter{Espaços Vetoriais}
+
+Nesta unidade, estudaremos as propriedades dos espaços vetoriais e sua relação com os sistemas lineares.
+
+\section{Introdução aos espaços vetoriais}
+
+A Álgebra Linear é o estudo dos espaços vetoriais sobre corpos arbitrários e das transformações lineares entre esses espaços.
+
+\begin{defi}
+  Um conjunto não-vazio ${\mathbb{K}}$ é um \emph{corpo} se em ${\mathbb{K}}$ pudermos definir duas operações, denotadas por $+$ (soma) e $\cdot$ (multiplicação), satisfazendo as seguintes propriedades:
+  \begin{itemize}
+  \item[(i)] $a+b=b+a$, $\forall a, b \in {\mathbb{K}}$ (comutativa)
+  \item[(ii)] $a+(b+c) = (a+b)+c$, $\forall a, b, c \in {\mathbb{K}}$ (associativa)
+  \item[(iii)] Existe um elemento em ${\mathbb{K}}$, denotado por $0$ e chamado de \emph{elemento neutro da soma}, que satisfaz $0+a=a+0=a$, $\forall a \in {\mathbb{K}}$.
+  \item[(iv)] Para cada $a\in {\mathbb{K}}$, existe um elemento em ${\mathbb{K}}$ denotado por $-a$ e chamado de \emph{oposto de $a$} (ou \emph{inverso aditivo de $a$}) tal que $a+(-a)=(-a)+a = 0$.
+  \item[(v)] $a\cdot b = b\cdot a$, $\forall a, b \in {\mathbb{K}}$ (comutativa)
+  \item[(vi)] $a\cdot(b\cdot c) = (a\cdot b)\cdot c$, $\forall a, b, c \in {\mathbb{K}}$
+  \item[(vii)] Existe um elemento em ${\mathbb{K}}$ denotado por $1$ e chamado de \emph{elemento neutro da multiplicação}, tal que $1\cdot a = a\cdot 1 = a$, $\forall a \in {\mathbb{K}}$.
+  \item[(viii)] Para cada elemento não-nulo $a\in {\mathbb{K}}$, existe um elemento em ${\mathbb{K}}$, denotado por $a^{-1}$ e chamado de \emph{inverso multiplicativo de $a$}, tal que $a\cdot a^{-1}=a^{-1}\cdot a = 1$.
+  \item[(ix)] $(a+b)\cdot c = a\cdot c + b\cdot c$, $\forall a, b, c \in {\mathbb{K}}$ (distributiva).
+  \end{itemize}
+\end{defi}
+
+\begin{exemplo*}
+  São corpos: ${\mathbb{Q}}$, ${\mathbb{R}}$, ${\mathbb{C}}$. 
+\end{exemplo*}
+
+\begin{defi}
+  Um conjunto não vazio $E$ é um \emph{espaço vetorial} sobre um corpo ${\mathbb{K}}$ se em seus elementos, denominados \emph{vetores}, estiverem definidas duas operações: 
+  \begin{itemize}
+  \item \emph{soma}: A cada $u,v \in E$, associa $u+v \in E$
+  \item \emph{multiplicação por um escalar}: a cada escalar $\alpha \in {\mathbb{K}}$ e a cada vetor $v \in E$, associa $\alpha v \in E$.
+  \end{itemize}
+  Estas operações devem satisfazer as condições abaixo, denominadas \emph{axiomas} de espaço vetorial:
+  \begin{itemize}
+  \item[(i)] {\bf{Comutatividade:}} $u+v = v+u$, $\forall u, v \in E$
+  \item[(ii)] {\bf{Associatividade:}} $(u+v)+w = u+(v+w)$ e $(\alpha \beta)v = \alpha (\beta v)$, $\forall u, v, w\in E$ e $\alpha, \beta \in {\mathbb{K}}$
+  \item[(iii)] {\bf{Existência do vetor nulo:}} existe um vetor $0\in E$, chamado \emph{vetor nulo}, tal que $v+0 = 0+v = v$ para todo $v\in E$.
+  \item[(iv)] {\bf{Existência do inverso aditivo:}} para cada vetor $v\in E$ existe um vetor $-v \in E$ chamado \emph{inverso aditivo} tal que $-v+v = v+(-v) = 0\in E$.
+  \item[(v)] {\bf{Distributividade:}} $(\alpha + \beta)v = \alpha v + \beta v$ e $\alpha(u+v) = \alpha u + \alpha v$, $\forall u, v \in E$ e $\forall \alpha, \beta \in {\mathbb{K}}$
+  \item[(vi)] {\bf{Multiplicação por 1:}} $1\cdot v = v$, em que $1$ é o elemento neutro da multiplicação em ${\mathbb{K}}$.
+  \end{itemize}
+\end{defi}
+
+\begin{exemplo}
+  Todo corpo é um espaço vetorial sobre si mesmo. De fato, se ${\mathbb{K}}$ é um corpo, então as duas operações internas em ${\mathbb{K}}$ podem ser vistas como a soma de vetores e a multiplicação por escalares. 
+\end{exemplo}
+
+\begin{exemplo}
+  Para todo número natural $n$, o conjunto ${\mathbb{K}}^n$, definido como
+  \begin{equation*}
+    {\mathbb{K}}^n = \underbrace{{\mathbb{K}} \times \cdots \times {\mathbb{K}}}_{\text{n vezes}} = \{ (u_1,\ldots,u_n) : u_i \in {\mathbb{K}}, \forall i = 1,\ldots, n\}
+  \end{equation*}
+  é um espaço vetorial sobre ${\mathbb{K}}$.
+  
+  Por definição, a igualdade vetorial $u=v$ significa as $n$ igualdades numéricas
+  \begin{align*}
+    \alpha_1 &= \beta_1\\
+    \alpha_2 &= \beta_2\\
+    &\vdots\\
+    \alpha_n &=\beta_n.
+  \end{align*} 
+  Os números $\alpha_1,\ldots,\alpha_n$ são chamados de \emph{coordenadas} do vetor $u$. As operações do espaço vetorial ${\mathbb{K}}^n$ são definidas naturalmente por
+  \begin{align*}
+    u+v &= (\alpha_1+\beta_1,\alpha_2+\beta_2,\ldots,\alpha_n+\beta_n)\\
+    \rho u &= (\rho \alpha_1, \rho \alpha_2,\ldots,\rho \alpha_n).
+  \end{align*}
+  O vetor zero é, por definição, $(0,0,\ldots,0)$, em que $0$ é o elemento neutro da soma em ${\mathbb{K}}$.
+  
+  O inverso aditivo de $u = (\alpha_1,\ldots,\alpha_n)$ é $-u = (-\alpha_1,\ldots,-\alpha_n)$. 
+\end{exemplo}
+
+\begin{exemplo}
+  Os elementos do espaço vetorial ${\mathbb{R}}^{\infty}$ são as sequências infinitas $u= (\alpha_1,\ldots,\alpha_n,\ldots)$, $v = (\beta_1,\ldots,\beta_n,\ldots)$ de números reais. O elemento zero é a sequência formada por infinitos zeros $0=(0,\ldots,0,\ldots)$ e o inverso aditivo da sequência $u$ é $-u=(-\alpha_1,\ldots,-\alpha_n,\ldots)$. As operações de adição e multiplicação por escalar são definidas por
+  \begin{align*}
+    u+v &= (\alpha_1+\beta_1,\ldots,\alpha_n+\beta_n,\ldots)\\
+    \rho u &= (\rho \alpha_1,\ldots,\rho \alpha_n,\ldots).
+  \end{align*}
+\end{exemplo}
+
+\begin{exemplo}
+  Uma matriz $m\times n$, definida no corpo ${\mathbb{K}}$ e denotada por $A = [a_{ij}]$, é uma lista de elementos $a_{ij} \in {\mathbb{K}}$ com índices duplos, onde $1\leq i\leq m$ e $1\leq j \leq n$. Costuma-se representar a matriz na forma
+  \begin{equation*}
+    A = 
+      \begin{pmatrix}
+        a_{11} & a_{12} & \cdots & a_{1n}\\
+        a_{21} & a_{22} & \cdots & a_{2n}\\
+        \vdots & \vdots & \ddots & \vdots\\
+        a_{m1} & a_{m2} & \cdots & a_{mn}
+      \end{pmatrix}
+  \end{equation*}
+  O vetor 
+  \begin{equation*}
+    (a_{i1},a_{i2},\ldots,a_{in})\in {\mathbb{K}}^n
+  \end{equation*}
+  é o $i$-ésimo vetor linha da matriz $A$ e o vetor 
+  \begin{equation*}
+    (a_{1j},a_{2j},\ldots,a_{mj})\in {\mathbb{K}}^m
+  \end{equation*}
+  é o $j$-ésimo vetor coluna de $A$. Quando $m=n$, dizemos que $A$ é uma matriz quadrada. O conjunto ${\mathcal{M}}_{m\times n}({\mathbb{K}})$ de todas as matrizes $m\times n$ com elementos em ${\mathbb{K}}$ torna-se um espaço vetorial quando nele se define a soma das matrizes $A=[a_{ij}]$ e $B=[b_{ij}]$ como
+  \begin{equation*}
+    A+B = 
+      \begin{pmatrix}
+        a_{11}+b_{11} & a_{12}+b_{12} & \cdots & a_{1n}+b_{1n}\\
+        a_{21}+b_{21} & a_{22}+b_{22} & \cdots & a_{2n}+b_{2n}\\
+        \vdots & \vdots & \ddots & \vdots\\
+        a_{m1}+b_{m1} & a_{m2}+b_{m2} & \cdots & a_{mn}+b_{mn}
+      \end{pmatrix}
+  \end{equation*}
+  e o produto de uma matriz $A$ pelo escalar $\rho \in {\mathbb{K}}$ como 
+  \begin{equation*}
+    \rho A = 
+      \begin{pmatrix}
+        \rho a_{11} & \rho a_{12} & \cdots & \rho a_{1n}\\
+        \rho a_{21} & \rho a_{22} & \cdots & \rho a_{2n}\\
+        \vdots & \vdots & \ddots & \vdots\\
+        \rho a_{m1} & \rho a_{m2} & \cdots & \rho a_{mn}
+      \end{pmatrix}
+  \end{equation*}
+  A matriz nula $0 \in {\mathcal{M}}_{m\times n}$ é aquela formada por zeros e o inverso aditivo da matriz $A=[a_{ij}]$ é a matriz $-A =[-a_{ij}]$.
+\end{exemplo}
+
+\begin{exemplo}
+  O conjunto de polinômios
+  \begin{equation*}
+    {\mathcal{P}}({\mathbb{K}}) = \left \{ p(x) = a_nx^n+\ldots+a_1x+a_0 : a_i \in {\mathbb{K}} \text{ e } n\geq 0\right \}
+  \end{equation*}
+  é um espaço vetorial com as operações usuais de soma de polinômios e multiplicação por escalar. 
+\end{exemplo}
+
+\begin{exemplo}
+  Seja $X$ um conjunto não-vazio qualquer. O símbolo ${\mathcal{F}}(X;{\mathbb{R}})$ representa o conjunto de todas as funções reais $f:X\rightarrow {\mathbb{R}}$. Ele se torna um espaço vetorial quando se define a soma $f+g$ de duas funções e o produto $\alpha f$ do número $\alpha$ pela função $f$ da maneira natural:
+  \begin{equation*}
+    (f+g) (x) = f(x) + g(x) \qquad  \mbox{ e } \qquad (\alpha f)(x) = \alpha f(x).
+  \end{equation*}
+  Variando o conjunto $X$, obtemos diversos exemplos de espaços vetoriais da forma ${\mathcal{F}}(X;{\mathbb{R}})$. Por exemplo, se $X = \{1,\ldots,n\}$, então ${\mathcal{F}}(X;{\mathbb{R}}) = {\mathbb{R}}^n$, pois a cada número em $X$ associamos um número real $\alpha$, gerando assim uma lista de $n$ valores reais para cada elemento do conjunto. Similarmente, se $X={\mathbb{N}}$, então ${\mathcal{F}}(X;{\mathbb{R}}) = {\mathbb{R}}^{\infty}$. Se $X$ é o produto cartesiano dos conjuntos $\{1,\ldots,m\}$ e $\{1,\ldots,n\}$ então ${\mathcal{F}}(X;{\mathbb{R}}) = {\mathcal{M}}_{m\times n}$.
+\end{exemplo}
+
+Como consequência dos axiomas, valem num espaço vetorial as regras operacionais habitualmente usadas nas manipulações numéricas:
+\begin{enumerate}
+\item Para todos $u,v,w \in E$, temos que $w+u = w+v \Rightarrow u=v$. Em particular, $w+u = w \Rightarrow u=0$ e $w+u = 0 \Rightarrow u=-w$.
+\item Dados $0\in {\mathbb{K}}$ e $v\in E$, temos que $0v = 0 \in E$. Analogamente, dados $\alpha \in {\mathbb{K}}$ e $0\in E$, temos que $\alpha 0 = 0$.
+\item Se $\alpha \ne 0$ e $v\ne 0$ então $\alpha v \ne 0$.
+\item $(-1)v = -v$.
+\end{enumerate}
+
+\paragraph*{Observação.} Um espaço vetorial sobre um corpo ${\mathbb{K}}$ é um conjunto $E$ de \emph{vetores}, com uma operação de soma que é uma função $+:E\to E$ e uma operação de produto por escalar, que é uma função $\cdot: {\mathbb{K}}\times E:E$, satisfazendo os axiomas listados acima. Note que os axiomas não involvem a propriedade de inverso multiplicativo do corpo, e podemos definir uma estrutura semelhante à de espaço vetorial sobre um anel, que chamamos de \emph{módulo} sobre ${\mathbb{K}}$. No entanto, a maioria dos teoremas provados para espaços vetoriais não seria válida nos módulos; por exemplo, não podemos falar da dimensão de um módulo.
+
+\section{Subespaços vetoriais}
+
+\begin{defi}
+  Um subespaço vetorial do espaço vetorial $E$ é um subconjunto $F\subset E$ que, relativamente às operações de $E$, é ainda um espaço vetorial, ou seja, satisfaz 
+  \begin{itemize}
+  \item[(i)] Para todo $u,v \in F$, $u+v \in F$
+  \item[(ii)] Para todo $u\in F$ e $\alpha \in {\mathbb{K}}$, $\alpha u \in F$.
+  \end{itemize}
+\end{defi}
+
+Note que no caso de um subespaço, não é necessário verificar as seis propriedades listadas anteriormente pois elas já são satisfeitas para $E$, e $F \subset E$. No entanto, um subespaço deve ser \emph{fechado} para a adição e a multiplicação por escalar. Mais geralmente, dados $v_1,\ldots,v_m \in F$ e $\alpha_1,\ldots,\alpha_m \in {\mathbb{K}}$, 
+\begin{equation*}
+   v = \alpha_1v_1+\ldots+\alpha_mv_m
+\end{equation*}
+deve pertencer a $F$.
+
+\paragraph*{Observação:} O vetor nulo pertence a \emph{todos} os subespaços. Para verificar isto, basta tomarmos $0 \in {\mathbb{K}}$: $0v$ deve pertencer a $F$ para todo $v\in F$. O espaço inteiro $E$ também é um exemplo trivial de subespaço de $E$. Todo subespaço é, em si mesmo, um espaço vetorial. O conjunto vazio não pode ser um subespaço vetorial.
+
+\begin{exemplo}
+  \begin{itemize}
+  \item[(i)] Seja $v\in E$ um vetor não-nulo. O conjunto $F = \{\alpha v: \alpha \in {\mathbb{K}}\}$ de todos os múltiplos de $v$ é um subespaço vetorial de $E$, chamado de \emph{reta que passa pela origem e contém $v$}.
+  \item[(ii)] Seja $E={\mathcal{F}}({\mathbb{R}};{\mathbb{R}})$ o espaço vetorial das funções reais de uma variável real $f:{\mathbb{R}} \rightarrow {\mathbb{R}}$. Para cada $k\in {\mathbb{N}}$, o conjunto ${\mathcal{C}}^k ({\mathbb{R}})$ das funções $k$ vezes continuamente diferenciáveis é um subespaço vetorial de $E$. 
+  \item[(iii)] Sejam $a_1,\ldots,a_n$ números reais. O conjunto ${\mathcal{H}}$ de todos os vetores $v=(x_1,\ldots,x_n) \in {\mathbb{R}}^n$ tais que
+    \begin{equation*}
+      a_1x_1+\ldots+a_nx_n=0
+    \end{equation*}
+    é um subespaço vetorial de ${\mathbb{R}}^n$. No caso trivial em que $a_1=\ldots=a_n=0$, o subespaço ${\mathcal{H}}$ é todo o ${\mathbb{R}}^n$. Se, ao contrário, pelo menos um dos $a_i\ne 0$, ${\mathcal{H}}$ chama-se \emph{hiperplano} de ${\mathbb{R}}^n$ que passa pela origem.
+  \item[(iv)] Seja $E$ o espaço das matrizes $3\times 3$: $E = \{ A \in {\mathbb{R}}^{3\times 3}\}$. O conjunto das matrizes triangulares inferiores de dimensão 3 é um subespaço de $E$, assim como o conjunto das matrizes simétricas.
+  \item[(v)] Dentro do espaço ${\mathbb{R}}^3$, os subespaços possíveis são: o subespaço nulo, o espaço inteiro, as retas que passam pela origem, e os planos que passam pela origem. Qualquer reta que não passe pela origem não pode ser um subespaço (pois não contem o vetor nulo).
+  \end{itemize}
+\end{exemplo}
+
+\section{Interseção e soma de subespaços vetoriais}
+
+\begin{teo}
+  Dados um espaço vetorial $E$ e subespaços $F_1,F_2 \subset E$, a interseção $F_1 \cap F_2$ ainda é um subespaço de $E$.
+\end{teo}
+
+\begin{proof}
+Primeiramente, note que $F_1\cap F_2$ nunca é vazio, pois $0\in F_1$ e $0\in F_2$. Precisamos então verificar as duas condições que definem um subespaço vetorial.
+\begin{itemize}
+\item[(i)] Sejam $u,v \in F_1\cap F_2$. Então, $u,v \in F_1$ e $u,v\in F_2$. Logo, como $F_1$ e $F_2$ são ambos subespaços de $E$, $u+v\in F_1$ e $u+v \in F_2$, portanto $u+v\in F_1 \cap F_2$.
+\item[(ii)] Seja $u\in F_1\cap F_2$ e $\alpha \in {\mathbb{K}}$. Então, $u\in F_1$ e $u\in F_2$. Como ambos $F_1$ e $F_2$ são subespaços de $E$, $\alpha u \in F_1$ e $\alpha u \in F_2$. Portanto, $\alpha u \in F_1 \cap F_2$.
+\end{itemize}
+Assim, provamos que a interseção dos dois subespaços é também um subespaço vetorial de $E$.
+\end{proof}
+
+A união de dois subespaços vetoriais \emph{não} é (em geral) um subespaço vetorial. 
+
+\begin{exemplo}
+  Considere o espaço $E$ das matrizes reais $n\times n$. É fácil verificar que $F_1= \{$matrizes triangulares superiores$\}$ e $F_2= \{$matrizes triangulares inferiores$\}$ são ambos subespaços de $E$. Então, $F_1\cap F_2 = \{$matrizes diagonais$\}$ também é um subespaço de $E$. Já a união de $F_1$ e $F_2$ é formada pelas matrizes triangulares (superiores e inferiores). Note que se tomarmos uma matriz triangular superior e outra matriz triangular inferior, a soma destas matrizes é uma matriz que não tem estrutura especial, e que portanto não está na união dos dois subespaços.
+\end{exemplo}
+
+\begin{exemplo}
+  Considere $E = {\mathbb{R}}^3$. Sejam $F_1,F_2$ dois planos em ${\mathbb{R}}^3$ passando pela origem. Então, $F_1\cap F_2$ é a reta de interseção de $F_1$ e $F_2$ passando pela origem. $F_1\cup F_2$ é a união dos dois planos.
+  \begin{figure}[!ht]
+    \begin{center}
+      \begin{tikzpicture}[axis/.style={thick, ->, >=stealth'}]
+        \draw[axis] (0,0) -- (0,3);
+        \draw[axis] (3,0.75) -- (4,1);
+        \draw[axis] (0,0) -- (2.5,-2.5);
+        \draw[thick] (0,0) -- (0,2) -- (3,2) -- (3,0) -- (0,0);
+        \draw[thick, fill=black!05] (0,0) -- (0,2) -- (2.5,1) -- (2.5,-1) -- (0,0);
+        \draw[thick, dashed] (0,0) -- (3,0.75);
+        \draw[thick, dashed] (0,0) -- (2.5,0);
+        \node[anchor=west] at (1.7,0.8) {$F_1$};
+        \node[anchor=west] at (2.3,1.6) {$F_2$};
+        % 
+        \draw[very thick] (0,0) -- (0,2);
+        \node[anchor=west] at (-1.5,1) {$F_1\cap F_2$};
+        % 
+        \draw[thick, fill=black!10] (6,0) -- (6,2) -- (9,2) -- (9,0) -- (6,0);
+        \draw[thick, fill=black!10] (6,0) -- (6,2) -- (8.5,1) -- (8.5,-1) -- (6,0);
+        \draw[thick, dashed] (6,0) -- (8.5,0);
+        \node[anchor=west] at (7.7,0.8) {$F_1$};
+        \node[anchor=west] at (8.3,1.6) {$F_2$};
+        \node[anchor=west] at (9,1) {$F_1\cup F_2$};
+      \end{tikzpicture}
+      \caption{Interseção e união de subespaços vetoriais.}
+      \label{fig:inter}
+    \end{center}
+  \end{figure}
+\end{exemplo}
+
+\begin{exemplo}\label{ex:uniaosubespacos}
+  Considere $E={\mathbb{R}}^3$, $F_1$ e $F_2$ duas retas que passam pela origem. Ambos $F_1$ e $F_2$ são subespaços, mas sua união, representada pelo feixe das duas retas, não o é, pois a soma de dois elementos nesta união pode se encontrar no plano definido pelas duas retas, que não está inteiramente contido no subespaço união.
+  \begin{figure}[!ht]
+    \begin{center}
+      \begin{tikzpicture}[axis/.style={thick, ->, >=stealth'}]
+        \draw[axis] (0,0) -- (0,3);
+        \draw[axis] (0,0) -- (4,1);
+        \draw[axis, dashed] (0,0) -- (3,-1);
+        \node[anchor=west] at (4,1) {$F_1$};
+        \node[anchor=west] at (0,3) {$F_2$};
+        \draw[very thick, ->, >=stealth'] (0,0) -- (2,0.5);
+        \node[anchor=west] at (2,0.2) {$u$};
+        \draw[very thick, ->, >=stealth'] (0,0) -- (0,2.5);
+        \node[anchor=west] at (-0.5,2.5) {$v$};
+        \draw[dashed] (2,0.5) -- (2,3) -- (0,2.5);
+        \draw[very thick, ->, >=stealth'] (0,0) -- (2,3);
+        \node[anchor=west] at (2,3) {$u+v$};
+      \end{tikzpicture}
+      %\includegraphics{uniao_espacos.pdf}
+    \end{center}
+    \caption{\label{fig:somauniao} União de subespaços vetoriais.}
+  \end{figure}
+\end{exemplo}
+
+Como vimos no último exemplo, a união de dois subespaços vetoriais não é necessariamente um subespaço vetorial. No entanto, podemos construir um conjunto $S$ que contém $F_1$ e $F_2$ e que é subespaço de $E$, como veremos no Teorema a seguir.
+
+\begin{teo}
+  Sejam $F_1$ e $F_2$ subespaços de um espaço vetorial $E$. Então o conjunto
+  \begin{equation*}
+    S = F_1+F_2 = \{ w \in E : w = w_1+w_2, w_1\in F_1, w_2\in F_2\}
+  \end{equation*}
+  é um subespaço de $E$.
+\end{teo}
+\begin{proof}
+Vamos verificar as condições para que $S$ seja um subespaço de $E$. Primeiramente, note que $0\in S$ pois $0 \in F_1$ e $0\in F_2$. 
+\begin{itemize}
+\item[(i)] Sejam $v, w \in S$. Então $v = v_1+v_2$, $v_1 \in F_1$, $v_2 \in F_2$ e $w = w_1+w_2$, $w_1 \in F_1$, $w_2 \in F_2$. Assim
+  \begin{align*}
+    v+w &= (v_1+v_2)+(w_1+w_2)\\
+    &= (v_1+w_1) + (v_2+w_2) \in S,
+  \end{align*}
+  pois $v_1+w_1 \in F_1$ e $v_2+w_2 \in F_2$ já que ambos são subespaços de $E$ e $v_1,w_1 \in F_1$ e $v_2,w_2 \in F_2$, e a última igualdade segue das propriedades da soma no espaço vetorial $E$.
+\item[(ii)] Sejam $\alpha \in {\mathbb{K}}$ e $w \in S$. Então,
+  \begin{equation*}
+    \alpha w = \alpha (w_1+w_2) = \alpha w_1 + \alpha w_2 \in S
+  \end{equation*}
+  já que $\alpha w_1 \in F_1$ e $\alpha w_2 \in F_2$ pois ambos são subespaços de $E$.
+\end{itemize}
+\end{proof}
+
+\begin{exemplo}
+  No Exemplo \ref{ex:uniaosubespacos}, $S = F_1+F_2$ é o plano que contém as duas retas.
+\end{exemplo}
+
+Considere agora uma matriz $A\in {\mathbb{R}}^{m\times n}$. Chegamos então ao caso interessante de subespaços ligados à matriz $A$ em um sistema linear $Ax=b$, com $x\in {\mathbb{R}}^n$ e $b\in {\mathbb{R}}^m$. Para relacionarmos o conceito de subespaços vetoriais à resolução de sistemas de equações lineares, precisamos do conceito de combinação linear.
+
+\begin{defi}
+  Seja $E$ um espaço vetorial, e sejam $u_1,u_2,\ldots,u_n \in E$ vetores neste espaço. Então uma \emph{combinação linear} destes vetores é um vetor $u$ no espaço $E$ dado por
+  \begin{equation*}
+    u = \alpha_1 u_1+\ldots+\alpha_n u_n,
+  \end{equation*}
+  para $\alpha_1,\ldots,\alpha_n \in {\mathbb{K}}$.
+\end{defi}
+
+\begin{defi}
+  Uma vez fixados os vetores $\{ v_1,\ldots,v_n\}$ em $V$, o conjunto $W\subset V$ que contém todas as combinações lineares destes vetores é chamado de \emph{espaço gerado} pelos vetores $v_1,\ldots,v_n$. Denotamos isto por
+  \begin{align*}
+    W &= \text{span}\{v_1,\ldots,v_n\}\\
+    &= \{ v \in V : v = a_1v_1 + a_2v_2 + \ldots + a_n v_n, a_i\in {\mathbb{K}}, 1\leq i \leq n\}.
+  \end{align*}
+\end{defi}
+
+Uma outra caracterização de subespaço gerado é a seguinte: $W$ é o menor subespaço de $V$ que contém o conjunto de vetores $\{ v_1,\ldots,v_n\}$ no sentido que qualquer outro subespaço $W'$ de $V$ que contenha estes vetores satisfará $W' \supset W$, já que como $v_1,\ldots,v_n \in W'$ e $W'$ é um subespaço vetorial, então qualquer combinação linear destes vetores também está incluida em $W'$; logo $W\subset W'$.
+
+\section{Dependência linear entre vetores}
+
+\begin{defi}
+	Seja $X=\{v_1,v_2,\ldots,v_n\}\subset E$ um conjunto de vetores. Se nenhum dos vetores $v_i$ puder ser escrito como combinação linear dos outros vetores, dizemos que este conjunto é linearmente independente (l.i.). Formalmente, o conjunto $X$ é l.i. se e somente se a única combinação linear nula dos vetores de $X$ for aquela cujos coeficientes são todos nulos, ou seja,
+    \begin{equation*}
+    \alpha_1v_1+\alpha_2 v_2 + \ldots + \alpha_n v_n = 0 \Rightarrow \alpha_1=\alpha_2=\ldots=\alpha_n=0.
+    \end{equation*}
+\end{defi}
+
+Evidentemente, todo subconjunto de um conjunto l.i. é também l.i.
+
+\begin{exemplo}
+	Em ${\mathbb{R}}^2$, quaisquer dois vetores que não sejam colineares são l.i. 
+\end{exemplo}
+
+\begin{exemplo}
+	Em ${\mathbb{R}}^n$, chamamos de vetores canônicos os vetores definidos como, para todos $i,j = 1,\ldots,n$
+    \begin{equation*}
+    (e_i)_j = \begin{cases}
+    1, & \mbox{ se } j = i\\
+    0, & \mbox{ caso contrário.}
+    \end{cases}
+    \end{equation*}
+    em que o subíndice $j$ denota a coordenada $j$ do i-ésimo vetor canônico. Estes vetores são l.i.
+\end{exemplo}
+
+\begin{exemplo}
+	Em ${\mathbb{R}}^{2\times 2}$, as matrizes
+    \begin{equation*}
+    A = \begin{pmatrix} 1 & 0\\0 & 0\end{pmatrix} \text{ e } B = \begin{pmatrix} 0 & 1\\0 & 0\end{pmatrix}
+    \end{equation*}
+    são l.i.
+\end{exemplo}
+
+\begin{exemplo}
+  O conjunto ${\mathcal{P}}({\mathbb{R}})$ dos polinômios
+  \begin{equation*}
+    p(x) = a_0 + a_1x + \ldots + a_nx^n
+  \end{equation*}
+  é um subespaço de ${\mathcal{F}}({\mathbb{R}} ;{\mathbb{R}})$, assim como o conjunto ${\mathcal{P}}_n$ dos polinômios de grau $\leq n$. Note que o conjunto dos polinômios de grau $n$ não é um subespaço, pois a soma de dois polinômios de grau $n$ pode ter grau $<n$. Então, os monômios $1,x,\ldots,n^n$ em ${\mathcal{P}}_n$ são l.i., pois $\alpha_0 + \alpha_1 x + \ldots + \alpha n x^n = p(x)$ é o vetor nulo em ${\mathcal{P}}_n$ somente quando $p(x)$ é o polinômio identicamente nulo, ou seja, $p(x) = 0 $ para todo $x\in {\mathbb{R}}$. Isto implica que $\alpha_0 = \ldots = \alpha_n=0$, pois um polinômio não nulo de grau $k$ tem no máximo $k$ raízes reais. Podemos, além disso, concluir que o conjunto $X = \{ 1,x,\ldots,x^n,\ldots\}\subset {\mathcal{P}}$ é um conjunto infinito l.i.
+\end{exemplo}
+
+\begin{teo}
+  Se $v=\alpha_1v_1+\ldots+\alpha_mv_m = \beta_1v_1+\ldots+\beta_mv_m$ e os vetores $v_1,\ldots,v_m$ são l.i., então $\alpha_1=\beta_1, \alpha_2=\beta_2, \ldots, \alpha_m=\beta_m$.
+\end{teo}
+
+Se um conjunto $X$ de vetores em um espaço vetorial $E$ não é l.i., dizemos que ele é linearmente dependente (l.d.).
+
+\subsubsection*{Variedades afins}
+
+\begin{defi}
+  Um subconjunto $V\subset E$ chama-se uma \emph{variedade afim} quando a reta que une dois pontos quaisquer de $V$ está contida em $V$. Assim, $V\subset E$ é uma variedade afim se e somente se cumpre a seguinte condição:
+  \begin{equation*}
+    x,y \in V, \, t \in {\mathbb{R}} \Rightarrow (1-t)x + ty \in V.
+  \end{equation*}
+\end{defi}
+
+\begin{exemplo}
+  Todo subespaço é também uma variedade afim.
+\end{exemplo}
+
+Se $V_1,\ldots, V_m \subset E$ são variedades afins, então a intersecção $V_1 \cap V_2\cap \ldots \cap V_m$ é ainda uma variedade afim. Todo ponto $p\in E$ é uma variedade afim.
+
+\begin{exemplo}
+  Sejam $a_1,\ldots, a_n, b$ números reais. O conjunto dos pontos $x=(x_1,\ldots,x_n)\in {\mathbb{R}}^n$ tais que 
+  \begin{equation*}
+    a_1x_1+\ldots+a_nx_n=b
+  \end{equation*}
+  é uma variedade afim, que não contém a origem quando $b \ne 0$. Se os números $a_i$ não forem todos nulos, chamamos esta veriedade ${\mathcal{H}}$ de \emph{hiperplano}. Se $a_1=\ldots=a_n=0$, então ${\mathcal{H}}=\emptyset$ quando $b\ne 0 $ e ${\mathcal{H}}={\mathbb{R}}^n$ quando $b=0$. Mais geralmente, o conjunto das soluções de um sistema linear de $m$ equações com $n$ incógnitas é uma variedade afim, intersecção das $m$ variedades afins definidas pelas equações do sistema.
+\end{exemplo}
+
+\subsection{Base e dimensão de um espaço vetorial}
+
+Gostaríamos de encontrar, para um espaço $W$ qualquer, um conjunto de vetores de forma que qualquer outro vetor em $W$ possa ser escrito como combinação linear destes vetores (como $i,j,k$ em ${\mathbb{R}}^3$, por exemplo)
+
+\begin{defi}
+  Uma \emph{base} de um espaço vetorial $E$ é um conjunto ${\mathcal{B}}\subset E$ linearmente independente que gera $E$, ou seja, todo vetor $v\in E$ se exprime, de modo único, como combinação linear $v=\alpha_1 v_1 + \ldots + \alpha_m v_m$ de elementos $v_1,\ldots,v_m$ da base ${\mathcal{B}}$. Se ${\mathcal{B}} = \{ v_1,\ldots,v_m\}$ é uma base de $E$ e $v=\alpha_1 v_1 + \ldots +\alpha_mv_m$, então os números $\alpha_1,\ldots,\alpha_m$ chamam-se as \emph{coordenadas} do vetor $v$ na base ${\mathcal{B}}$.   
+\end{defi}
+
+\begin{exemplo}
+  Base canônica no ${\mathbb{R}}^n$.
+\end{exemplo}
+
+\begin{exemplo}
+  Os monômios $1,x,\ldots,x^n$ formam uma base para o espaço vetorial ${\mathcal{P}}_n$ dos polinômios de grau $\leq n$. O conjunto
+  \begin{equation*}
+    \{ 1,x,\ldots,x^n,\ldots \}
+  \end{equation*}
+  dos monômios de graus arbitrários constitui uma base (infinita) para o espaço vetorial ${\mathcal{P}}$ de todos os polinômios reais. 
+\end{exemplo}
+
+\subsubsection{Resultados sobre bases}
+
+\begin{lema}
+  Sejam $v_1,\ldots,v_n\ne 0$ que geram um e.v. $E$. Então dentre estes vetores podemos extrair uma base de $E$.
+\end{lema}
+\begin{proof}
+Se $v_1,\ldots,v_n$ forem l.i., não há nada a fazer. Suponha então que eles sejam l.d. Então,
+\begin{equation*}
+	x_1v_1+\ldots+x_nv_n = 0
+\end{equation*}
+com pelo menos algum $x_i\ne 0$. Sem perda de generalidade, suponha que $x_n\ne 0$ (a ordem não importa). Então, escreva
+\begin{equation*}
+	v_n = -\frac{x_1}{x_n} v_i - \ldots - \frac{x_{n-1}}{x_n} v_{n-1}
+\end{equation*}
+Desta forma, $v_1, \ldots, v_{n-1}$ ainda geram $E$. Prossiga desta maneira até que todos os elementos l.d. tenham sido eliminados e teremos uma base de $E$.
+\end{proof}
+
+O Lema seguinte nos dá uma amostra da ligação entre os espaços vetoriais e as soluções dos sistemas lineares.
+
+\begin{lema}\label{lema:sistemahomogeneo}
+  Todo sistema linear homogêneo cujo número de incógnitas é maior do que o número de equações admite uma solução não-trivial.
+\end{lema}
+\begin{proof}
+Consideremos o sistema
+\begin{equation*}
+	\begin{cases}
+	    a_{11}x_1 + a_{12}x_2 + \ldots + a_{1n}x_n &= 0\\
+	    a_{21}x_1 + a_{22}x_2 + \ldots + a_{2n}x_n &= 0\\
+	    \vdots & \\
+	    a_{m1}x_1 + a_{m2}x_2 + \ldots + a_{mn}x_n &= 0
+  \end{cases}
+\end{equation*}
+de $m$ equações e $n$ incógnitas, onde $m<n$. Vamos provar o resultado por indução no número de equações do sistema.
+
+Se tivermos apenas uma equação do tipo
+\begin{equation*}
+  a_{11}x_1 + \ldots + a_{1n}x_n = 0
+\end{equation*}
+com $n>1$ incógnitas, devemos ter um dos dos coeficientes $a_{1i}\ne 0$ (caso contrário esta equação não faria sentido). Podemos supor então, sem perda de generalidade, que $a_{1n}\ne 0$. Isolando $x_n$ na equação dada, temos
+\begin{equation*}
+  x_n = - \left( \frac{a_{11}}{a_{1n}} x_1 + \ldots + \frac{a_{1,n-1}}{a_{1n}} x_{n-1}\right).
+\end{equation*}
+Para obtermos uma solução não-trivial para a equação do sistema, basta escolhermos valores quaisquer para os $x_1,\ldots,x_{n-1}$ (que são variáveis livres) e obteremos $x_n$.
+
+Para completar a indução, vamos supor que o lema seja verdadeiro para um sistema com $m-1$ equações. Podemos primeiramente admitir que, no sistema original, temos $a_{mn} \ne 0$ (caso contrário, o sistema não teria $m$, mas $m-1$ equações). Então, a $m$-ésima equação pode ser reescrita como
+\begin{equation*}
+  x_n = -\left( \frac{a_{m1}}{a_{mn}} x_1 + \ldots + \frac{a_{m,n-1}}{a_{mn}} x_{n-1}\right).
+\end{equation*}
+Substituindo em cada uma das $m-1$ primeiras equações a incógnita $x_n$ por esta expressão, obtemos um sistema homogêneo de $m-1$ equações nas $n-1$ primeiras incógnitas. Pela hipótese de indução, este sistema admite uma solução não-trivial $(\alpha_1,\ldots,\alpha_{n-1})$, pois $n-1>m-1$. Escrevendo então
+\begin{equation*}
+  \alpha_n = -\left( \frac{a_{m1}}{a_{mn}} \alpha_1 + \ldots + \frac{a_{m,n-1}}{a_{mn}}\alpha_{n-1}\right),
+\end{equation*}
+obtemos uma solução não-trivial $(\alpha_1,\ldots,\alpha_{n-1},\alpha_n)$ do sistema proposto.
+\end{proof}
+
+Usando os lemas anteriores, podemos provar o seguinte resultado.
+
+\begin{teo}\label{teo:33}
+  Se o conjunto finito de vetores $\{v_1,\ldots,v_m\}$ gera o espaço vetorial $E$, então qualquer conjunto com mais de $m$ vetores em $E$ é l.d.
+\end{teo}
+\begin{proof}
+Dados os vetores $w_1,\ldots,w_n\in E$, com $n>m$, para cada $j=1,\ldots,n$ podemos escrever
+\begin{equation*}
+	w_j = \alpha_{1j}v_1 + \ldots + \alpha_{mj}v_m,
+\end{equation*}
+pois os vetores $v_j$ geram $E$. Para mostrar que os vetores $w_j$ são l.d., devemos achar coeficientes $x_1,\ldots,x_n$, com pelo menos um deles não-nulo, tais que $x_1w_1+\ldots+x_nw_n=0$. Substituindo os $w_j$ por suas expressões em termos de $v_j$ e reorganizando a soma, esta igualdade significa que
+\begin{equation*}
+  \left( \sum_{j=1}^n x_j \alpha_{1j} \right) v_1 + \left( \sum_{j=1}^n x_j \alpha_{2j} \right) v_2 + \ldots +\left( \sum_{j=1}^n x_j \alpha_{mj} \right) v_m =0.
+\end{equation*}
+Esta condição será satisfeita se todos os somatórios forem nulos, ou seja,
+\begin{equation*}
+  \begin{cases}
+    \alpha_{11}x_1 + \alpha_{12}x_2 + \ldots + \alpha_{1n}x_n &= 0\\
+    \alpha_{21}x_1 + \alpha_{22}x_2 + \ldots + \alpha_{2n}x_n &= 0\\
+    \vdots &  \\
+    \alpha_{m1}x_1 + \alpha_{m2}x_2 + \ldots + \alpha_{mn}x_n &= 0\\
+  \end{cases}
+\end{equation*}
+Tal solução existe pelo Lema~\ref{lema:sistemahomogeneo}, pois $n>m$. Portanto, $w_j$ são l.d. e o teorema está provado.
+\end{proof}
+
+\begin{coro}\label{cor:1}
+  Se os vetores $v_1,\ldots,v_m$ geram o espaço vetorial $E$ e os vetores $u_1,\ldots,u_n$ são l.i., então $n\leq m$.
+\end{coro}
+
+\begin{coro}
+  Se o espaço vetorial $E$ admite uma base ${\mathcal{B}}=\{ u_1,\ldots,u_n\}$ com $n$ elementos, então qualquer outra base de $E$ possui também $n$ elementos.
+\end{coro}
+\begin{proof}
+Seja ${\mathcal{B}}'$ outra base de $E$ com $m$ elementos. Como ${\mathcal{B}}'$ gera $E$ e ${\mathcal{B}}$ é l.i., temos que $n\leq m$, pelo Corolário \ref{cor:1}. Como ${\mathcal{B}}$ gera $E$ e ${\mathcal{B}}'$ é l.i., do mesmo Corolário segue-se que $m\leq n$. Logo, $m=n$.
+\end{proof}
+
+\begin{defi}
+  Diz-se que o espaço vetorial $E$ tem \emph{dimensão finita} quando admite uma base ${\mathcal{B}}$ com um número finito $n$ de elementos. Este número, que é o mesmo para todas as bases de $E$, chama-se \emph{dimensão} do espaço vetorial $E$, $n=$dim$(E)$. Por extensão, diz-se que o espaço vetorial $E=\{0\}$ tem dimensão zero.   
+\end{defi}
+
+\begin{coro}
+  Se a dimensão de $E$ é $n$, um conjunto com $n$ vetores gera $E$ se e somente se é l.i.
+\end{coro}
+\begin{proof}
+Se $X=\{v_1,\ldots,v_n\}$ gera $E$ e não é l.i., então um dos seus elementos é combinação dos $n-1$ vetores restantes. Logo, estes $n-1$ vetores restantes formariam também um conjunto de geradores de $E$, o que contradiz o Teorema~\ref{teo:33}, pois todas as bases de $E$ devem ter $n$ vetores linearmente independentes. 
+
+Reciprocamente, suponha que $X$ seja l.i. Se $X$ não gerasse $E$, existiria um vetor $v\in E$ que não seria combinação linear dos elementos de $X$. Então o conjunto $\{ v_1,\ldots,v_n,v\}$ seria l.i., em contradição com o Teorema~\ref{teo:33}, pois uma base de $E$ com $n$ elementos gera todo o espaço $E$.
+\end{proof}
+
+\begin{exemplo}
+	Em ${\mathbb{R}}^2$, duas possíveis bases são $\{ (1,0), (0,1)\}$ e $\{(1,1),(0,1)\}$. Este espaço tem dimensão 2.
+\end{exemplo}
+
+\begin{exemplo}
+	O espaço ${\mathbb{R}}^n$ tem dimensão $n$ (basta pensar na base canônica de cada espaço destes, para $n\in {\mathbb{N}}$).
+\end{exemplo}
+
+\begin{exemplo}
+	O espaço ${\mathcal{M}}_{2\times 2}$ tem dimensão 4.
+\end{exemplo}
+
+A seguir, demonstramos um resultado que garante que qualquer espaço vetorial (de dimensão finita) admite uma base.
+
+\begin{teo}
+  Qualquer conjunto l.i. de um espaço vetorial $E$ com dimensão finita pode ser completado para formar uma base.
+\end{teo}
+\begin{proof}
+Seja $n = $dim$(E)$ e $v_1,\ldots, v_r$ um conjunto l.i. Pelo Corolário~\ref{cor:1}, $r\leq n$. Se esse conjunto gera $E$, então ele é base e $n=r$. Suponha que não. Então existe um $v_{r+1} \in E$ tal que $v_{r+1}\not\in \{v_1,\ldots,v_r\}$. Então $v_{r+1}$ não pode ser combinação linear dos $v_i$, pois caso contrário os $v_i$ seriam base para $E$. Logo, $\{v_1,\ldots,v_r,v_{r+1}\}$ é l.i. Se este conjunto gera $E$, terminamos. Senão, continuamos no mesmo procedimento até que uma base tenha sido encontrada.
+\end{proof}
+
+\begin{coro}
+	Seja $E$ um espaço vetorial de dimensão finita. Se $U$ é subespaço de $E$, então 
+  \begin{equation*}
+     \text{dim}(U) \leq \text{dim}(E).
+  \end{equation*}
+\end{coro}
+\begin{proof}
+Para isto, basta pensarmos que uma base de $U$ deve estar contida em $E$, e assim não pode ter mais elementos do que uma base de $E$.
+\end{proof}
+
+\begin{coro}\label{coro:5}
+  Se $n=$dim$(V)$, com $V\subset W$ e dim$(W) = n$, então $V=W$.
+\end{coro}
+
+Mais uma vez, o próximo Corolário é um resultado que pode parecer surpreendente, mas que mostra a ligação entre os espaços vetoriais e os sistemas lineares.
+
+\begin{coro}
+  Seja $A\in {\mathbb{R}}^{n\times n}$ e suponha que as linhas de $A$ formam um conjunto l.i. Então $A$ é inversível.
+\end{coro}
+\begin{proof}
+Seja para cada $i=1,\ldots, n$ o vetor $\alpha_i = (a_{i1}, a_{i2},\ldots, a_{in})$ (a linha $i$ da matriz $A$). Suponha que $W$ é o subespaço gerado por estes vetores. Como as linhas são linearmente independentes por hipótese, a dimensão de $W$ é $n$. Pelo Corolário~\ref{coro:5}, $W={\mathbb{R}}^n$. Portanto, devem existir escalares $b_{ij} \in {\mathbb{R}}$, $1\leq i,j\leq n$, tais que 
+\begin{align*}
+  e_1 &= b_{11}\alpha_1+b_{12}\alpha_2+\ldots+b_{1n}\alpha_n\\
+  e_2 &= b_{21}\alpha_1+b_{22}\alpha_2+\ldots+b_{2n}\alpha_n\\
+  \vdots  & \\
+  e_n &= b_{n1}\alpha_1+b_{n2}\alpha_2+\ldots+b_{nn}\alpha_n\\
+\end{align*}
+em que cada $e_i$ é o i-ésimo vetor canônico em ${\mathbb{R}}^n$.
+Portanto, se construirmos uma matriz com os $b_{ij}$ teremos que 
+\begin{equation*}
+   BA = I
+\end{equation*}
+ou seja, $B=A^{-1}$.
+\end{proof}
+
+Finalmente, temos o seguinte resultado.
+
+\begin{teo}
+  Se $U$ e $W$ são subespaços de $E$ (espaço vetorial com dimensão finita), então 
+  \begin{equation*}
+     \text{dim}(U+W) = \text{dim}(U) + \text{dim}(W) - \text{dim}(U\cap W)
+  \end{equation*}
+\end{teo}
+\begin{proof}
+Note que $U\cap W$ e é subespaço de $E$. Portanto, deve ter dimensão finita e sua dimensão deve ser menor que a dimensão de $E$. Assim, sua base deve ser um subconjunto $\alpha_1,\ldots,\alpha_k$ da base de $U$ e da base de $W$. Escreva isso então como
+\begin{align*}
+  U &= \text{span}[\alpha_1,\ldots,\alpha_k,\beta_{k+1},\ldots,\beta_m]\\
+  W &= \text{span}[\alpha_1,\ldots,\alpha_k,\gamma_{k+1},\ldots,\gamma_n]
+\end{align*}
+Assim, o subespaço $U+W$ é gerado pelos vetores $\{\alpha_i, \beta_j, \gamma_p\}$, com $1\leq i\leq k$, $k+1\leq j\leq m$, $k+1\leq p\leq n$. Agora, note que estes vetores formam um conjunto linearmente independente, pois caso contrário poderíamos escrever, por exemplo, $\sum x_i\alpha_i + \sum y_j\beta_j + \sum z_p\gamma_p = 0$ e assim teríamos 
+\begin{equation*}
+   -\sum y_j\beta_j = \sum x_i \alpha_i + \sum z_p \gamma_p
+\end{equation*}
+o que implicaria que $\beta_j \in W$. Como os $\beta_j \in U$, isso implicaria que poderíamos escrever
+\begin{equation*}
+   \sum y_j \beta_j = \sum c_i\alpha_i
+\end{equation*}
+para escalares $c_i$. Mas, como a base de $U$ é linearmente independente, cada um dos escalares $y_j$ deve ser igual a zero; logo,
+\begin{equation*}
+   0 = -\sum y_j\beta_j = \sum x_i \alpha_i + \sum z_p \gamma_p
+\end{equation*}
+e como $\{\alpha_i,\gamma_q\}$ também é l.i., todos os $x_i$ e todos os $z_p$ devem ser iguais a zero. Portanto, $\{\alpha_i,\beta_j,\gamma_p\}$ formam uma base para $U+W$.
+
+Além disso,
+\begin{equation*}
+   \text{dim}(U) + \text{dim}(W) = m+n = k+(m+n-k) = \text{dim}(U\cap W) + \text{dim}(U+W).
+\end{equation*}
+\end{proof}
+
+\begin{exemplo*}
+  Seja $P$ o espaço dos polinômios em ${\mathbb{R}}$ (de qualquer grau).  Então os vetores deste espaço tem a forma
+  \begin{equation*}
+     f(x) = a_0+a_1x+\ldots +a_nx^n
+  \end{equation*}
+  Seja $f_k(x) = x^k$, $k=0,1,\ldots$. O conjunto infinito $\{f_0, f_1,\ldots\}$ é uma base para $V$. Claramente este conjunto gera $V$ pois as funções $f$ são, como acima,
+  \begin{equation*}
+     f(x) = a_0f_0+a_1f_1+\ldots+a_nf_n
+  \end{equation*}
+  Precisamos mostrar então que as funções na base são l.i. Mas para isto basta mostrarmos que todo subconjunto finito deste conjunto infinito é l.i. (para qualquer coleção finita de vetores neste conjunto). Tome então os conjuntos $\{f_0,\ldots,f_n\}$ para cada $n\in {\mathbb{N}}$. Suponha então que
+  \begin{equation*}
+     a_0f_0+a_1f_1+\ldots +a_nf_n = 0
+  \end{equation*}
+  Isto é o mesmo que dizer que
+  \begin{equation*}
+     a_0+a_1x+a_2x^2+\ldots+a_nx^n = 0
+  \end{equation*}
+  para cada $x\in {\mathbb{R}}$; em outras palavras, todo $x\in {\mathbb{R}}$ seria uma raiz deste polinômio. Mas sabe-se que um polinômio de grau $n$ não pode ter mais do que $n$ raizes distintas; portanto, os coeficientes $a_0=a_1=\ldots=a_n=0$.
+  
+  Mostramos então que existe uma base infinita para $P$. Isto implica que ele não tem dimensão finita, pelo teorema anterior que dizia que um conjunto l.i. não pode ter mais elementos do que a dimensão do espaço. 
+  
+  Uma última observação é que uma base infinita não requer combinações lineares infinitas; de fato, cada vetor no espaço pode ser obtido com uma combinação linear \emph{finita} dos elementos da base. Basta vermos que $\sum_{k=0}^{\infty} a_kx^k$ não está neste espaço.
+\end{exemplo*}
+
+\subsection{Coordenadas e Mudança de Base}
+
+Para determinarmos as coordenadas de um vetor (isto é, os coeficientes da combinação linear dos elementos da base que o definem) precisamos fazer isso numa certa ordem.
+
+\begin{exemplo*}
+  $(2,3) = 2(1,0)+3(0,1)$. Mas se $\overline{e_1} = (0,1)$ e $\overline{e_2} = (1,0)$, então as coordenadas mudam para 
+  \begin{equation*}
+     (2,3) = 3\overline{e_1}+2\overline{e_2} = (3,2)_{\text{(nova base)}}
+  \end{equation*}
+\end{exemplo*}
+
+\begin{defi}
+  Se $E$ é um espaço vetorial de dimensão finita, uma base ordenada de $E$ é uma \emph{sequência} finita de vetores que é l.i. e que gera $E$.
+\end{defi}
+
+Desta forma, dada uma base ordenada ${\mathcal{B}} = \{\alpha_1,\alpha_2,\ldots,\alpha_n\}$ de $V$, então dado $v\in V$, existe uma única $n$-tupla de escalares $x_i$ tais que
+\begin{equation*}
+   v = \sum_{i=1}^n x_i \alpha_i.
+\end{equation*}
+Frequentemente, ao invés de trabalharmos com as coordenadas de um vetor, vamos precisar trabalhar com a matriz de $v$ relativa à base ordenada ${\mathcal{B}}$:
+\begin{equation*}
+   v =
+   \begin{pmatrix}
+      x_1\\\vdots\\ x_n
+   \end{pmatrix}_{\mathcal{B}}
+\end{equation*}
+Isto é útil pois vamos tentar descrever o que acontece quando mudamos de base.
+
+\begin{teo}
+	Seja $E$ um espaço vetorial de dimensão $n$ e sejam ${\mathcal{B}}$ e ${\mathcal{B}}'$ duas bases ordenadas de $E$. Então existe uma matriz única $P$, inversível e $n\times n$, com entradas tais que
+    \begin{equation*}
+    	[v]_{\mathcal{B}} = P[v]_{{\mathcal{B}}'} \quad \mbox{ e } \quad [v]_{{\mathcal{B}}'}=P^{-1}[v]_{\mathcal{B}},
+    \end{equation*}
+    para todo $v\in E$. As colunas de $P$ são dadas por 
+    \begin{equation*}
+    	P_j = [\alpha'_j]_{\mathcal{B}}, \quad j = 1,\ldots,n.
+    \end{equation*}
+\end{teo}
+\begin{proof}
+Sejam as bases
+\begin{equation*}
+   {\mathcal{B}} = \{\alpha_1,\ldots,\alpha_n\} \mbox{ e } {\mathcal{B}}' = \{ \alpha_1',\ldots,\alpha_n'\}
+\end{equation*}
+Então, existe um conjunto único de escalares $P_{ij}$ tais que
+\begin{equation*}
+   \alpha_j' = \sum_{i=1}^n P_{ij} \alpha_i, 1\leq j\leq n.
+\end{equation*}
+Sejam agora $x_1,\ldots,x_n$ as coordenadas de um vetor $v$ na base ordenada ${\mathcal{B}}$ e $x_1',\ldots,x_n'$ as coordenadas do mesmo vetor $v$ na base ordenada ${\mathcal{B}}'$. Então,
+\begin{align*}
+  v &= x_1'\alpha_1'+\ldots + x_n'\alpha_n' = \sum_{j=1}^n x_j'\alpha_j'\\
+  &= \sum_{j=1}^nx_j'\sum_{i=1}^n P_{ij}\alpha_i\\
+  &= \sum_{j=1}^n\sum_{i=1}^n (P_{ij}x_j')\alpha_i\\
+  &= \sum_{j=1}^n\left(\sum_{i=1}^n P_{ij}x_j'\right)\alpha_i
+\end{align*}
+Como as coordenadas são unicamente determinadas para cada base, isso implica que
+\begin{equation*}
+   x_i = \sum_{j=1}^n P_{ij} x_j', 1\leq i\leq n
+\end{equation*}
+Seja então $P$ a matriz formada pelos $P_{ij}$ e $X$ e $X'$ as matrizes coordenadas do vetor $v$ nas bases ${\mathcal{B}}$ e ${\mathcal{B}}'$, respectivamente. Então,
+\begin{equation*}
+   X = PX'.
+\end{equation*}
+Como as duas bases são linearmente independentes, $X=0$ se e somente se $X'=0$. Logo, segue de um teorema anterior que $P$ é inversível; ou seja
+\begin{equation*}
+   X' = P^{-1}X.
+\end{equation*}
+Em outras palavras,
+\begin{equation*}
+   [v]_{\mathcal{B}} = P[v]_{{\mathcal{B}}'} \mbox{ e } [v]_{{\mathcal{B}}'} = P^{-1}[v]_{\mathcal{B}}
+\end{equation*}
+\end{proof}
+
+Isto quer dizer que para construirmos $P$ que leva um vetor descrito na base ${\mathcal{B}}'$ em sua descrição na base ${\mathcal{B}}$, devemos escrever cada vetor da base ${\mathcal{B}}'$ em suas coordenadas na base $B$. Podemos denotar também 
+\begin{equation*}
+	P=I_{\mathcal{B}}^{{\mathcal{B}}'}.
+\end{equation*}
+
+Finalmente, podemos mostrar o seguinte:
+\begin{teo}
+  Seja $P$ uma matriz $n\times n$ inversível, e seja $V$ um espaço $n$-dimensional definido no mesmo corpo; além disso, seja ${\mathcal{B}}$ uma base ordenada de $V$. Então existe uma única base ordenada ${\mathcal{B}}'$ de $V$ tal que $P$ é a matriz de mudança de base de ${\mathcal{B}}'$ para ${\mathcal{B}}$, ou seja, 
+  \begin{equation*}
+     [v]_{\mathcal{B}} = P[v]_{{\mathcal{B}}'} \mbox{ e } [v]_{{\mathcal{B}}'} = P^{-1}[v]_{\mathcal{B}}
+  \end{equation*}
+  para qualquer vetor $v\in V$.
+\end{teo}
+\begin{proof}
+Seja ${\mathcal{B}} = \{\alpha_1,\ldots,\alpha_n\}$. Se ${\mathcal{B}}' = \{ \alpha_1',\ldots,\alpha_n'\}$ for uma base ordenada de $V$ para a qual a primeira igualdade é válida, então devemos ter
+\begin{equation*}
+   \alpha_j' = \sum_{i=1}^n P_{ij} \alpha_i.
+\end{equation*}
+Logo, precisamos somente mostrar que estes vetores $\alpha_j'$ formam uma base de $V$. Mas:
+\begin{align*}
+  \sum_j P^{-1}_{jk}\alpha_j' &= \sum_j P^{-1}_{jk} \sum_i P_{ij}\alpha_i\\
+  &= \sum_j \sum_i P_{ij}P^{-1}_{jk} \alpha_i\\
+  &= \alpha_k
+\end{align*}
+Logo, o subespaço gerado por ${\mathcal{B}}'$ contém ${\mathcal{B}}$ e é portanto igual a $V$. Logo, ${\mathcal{B}}'$ é base; logo é claro que as duas afirmações são verdadeiras.
+\end{proof}
+
+\begin{exemplo*}
+  Seja ${\mathcal{B}} = \{(1,0),(0,1)\}$ e ${\mathcal{B}}' = \{(1,1), (1,0)\}$ bases de ${\mathbb{R}}^2$. Então 
+  \begin{align*}
+    (1,0) &= 0(1,1)+1(1,0)\\
+    (0,1) &= 1(1,1)-1(1,0)
+  \end{align*}
+  Logo,
+  \begin{equation*}
+    \begin{pmatrix}
+      v_1\\v_2
+    \end{pmatrix}_{{\mathcal{B}}'} = 
+    \begin{pmatrix}
+      0 & 1\\
+      1 & -1
+    \end{pmatrix}
+    \begin{pmatrix}
+      v_1\\v_2
+    \end{pmatrix}_{{\mathcal{B}}}
+  \end{equation*}
+  Assim, 
+  \begin{equation*}
+     \begin{pmatrix}
+        2\\3
+     \end{pmatrix}_{{\mathcal{B}}'} =
+     \begin{pmatrix}
+        0 & 1\\ 1 & -1
+     \end{pmatrix} 
+     \begin{pmatrix}
+        2\\3
+     \end{pmatrix}_{\mathcal{B}} = 
+     \begin{pmatrix}
+        3\\-1
+     \end{pmatrix}_{\mathcal{B}}.
+  \end{equation*}
+\end{exemplo*}
+
+\begin{exemplo*}
+	Ainda no ${\mathbb{R}}^2$, considere ${\mathcal{B}} = \{(1,0),(0,1)\}$, ${\mathcal{B}}'=\{(2,3),(-1,2)\}$. Para construirmos $I_{\mathcal{B}}^{{\mathcal{B}}'}$, escrevemos cada vetor da base ${\mathcal{B}}'$ na base ${\mathcal{B}}$:
+    \begin{align*}
+    	(2,3) & = 2(1,0)+3(0,1)\\
+        (-1,2) & = -1(1,0)+2(0,1)
+    \end{align*}
+    Logo,
+    \begin{equation*}
+    	I_{\mathcal{B}}^{{\mathcal{B}}'} = \begin{pmatrix} 2 & -1\\3 & 2\end{pmatrix}
+    \end{equation*}
+    Note que, se $v=(1,1)_{{\mathcal{B}}'}$, então
+    \begin{equation*}
+    	v = 1(2,3)+1(-1,2) = (1,5)_{\mathcal{B}}.
+    \end{equation*}
+    De fato:
+    \begin{equation*}
+    	I_{\mathcal{B}}^{{\mathcal{B}}'} v_{{\mathcal{B}}'} = \begin{pmatrix} 2 & -1\\3 & 2\end{pmatrix} \begin{pmatrix} 1\\1\end{pmatrix} = \begin{pmatrix} 1\\5\end{pmatrix}.
+    \end{equation*}
+    Por outro lado, 
+    \begin{align*}
+    	(1,0) & = \frac{2}{7}(2,3) - \frac{3}{7}(-1,2)\\
+        (0,1) & = \frac{1}{7}(2,3) + \frac{2}{7}(-1,2)
+    \end{align*}
+    Assim,
+    \begin{equation*}
+    	I_{{\mathcal{B}}'}^{\mathcal{B}} = \begin{pmatrix} \sfrac{2}{7} & \sfrac{1}{7}\\\-\sfrac{3}{7} & \sfrac{2}{7}\end{pmatrix}.
+    \end{equation*}
+    De fato,
+    \begin{equation*}
+	    I_{{\mathcal{B}}'}^{\mathcal{B}}v_{\mathcal{B}} = \begin{pmatrix} \sfrac{2}{7} & \sfrac{1}{7}\\ -\sfrac{3}{7} & \sfrac{2}{7}\end{pmatrix} \begin{pmatrix} 1\\5\end{pmatrix} = \begin{pmatrix} 1\\1\end{pmatrix}_{\mathcal{B}}.
+    \end{equation*}
+    Ainda:
+    \begin{equation*}
+    	I_{{\mathcal{B}}'}^{\mathcal{B}}I_{\mathcal{B}}^{{\mathcal{B}}'} = I.
+    \end{equation*}
+\end{exemplo*}
+
+\begin{exemplo*}
+	Se ${\mathcal{B}} = \{ (1,2),(3,5)\}$ e ${\mathcal{B}}' = \{(1,-1),(1,-2)\}$, para encontrarmos $I_{\mathcal{B}}^{{\mathcal{B}}'}$ devemos escrever os elementos de ${\mathcal{B}}'$ na base ${\mathcal{B}}$. Mas isso pode ser difícil. Considere então a base canônica em ${\mathbb{R}}^2$. Então:
+    \begin{equation*}
+    	I_C^{{\mathcal{B}}'} = \begin{pmatrix} 1 & 1\\-1 & -2\end{pmatrix}.
+    \end{equation*}
+    Além disso,
+    \begin{align*}
+    	(1,0) &= -5(1,2)+2(3,5)\\
+        (0,1) &= 3(1,2)-1(3,5)
+    \end{align*}
+    e assim
+    \begin{equation*}
+    	I_{\mathcal{B}}^C = \begin{pmatrix} -5 & 3\\2 & -1\end{pmatrix}.
+    \end{equation*}
+    Então:
+    \begin{equation*}
+    	I_{\mathcal{B}}^{{\mathcal{B}}'} = I_{\mathcal{B}}^C I_C^{{\mathcal{B}}'} = \begin{pmatrix} -5 & 3\\2 & -1\end{pmatrix} \begin{pmatrix} 1 & 1\\-1 & -2\end{pmatrix} = \begin{pmatrix} -8 & -11 \\3 & 4\end{pmatrix}.
+    \end{equation*}
+    Note que
+    \begin{equation*}
+    	I_{\mathcal{B}}^{{\mathcal{B}}'} v_{{\mathcal{B}}'} = \begin{pmatrix} -8 & -11\\3 & 4\end{pmatrix} \begin{pmatrix} 1\\1\end{pmatrix}_{{\mathcal{B}}'} = \begin{pmatrix} -19\\7\end{pmatrix}
+    \end{equation*}
+    De fato,
+    \begin{align*}
+    	(1,1)_{{\mathcal{B}}'} &= (1,-1)+(1,-2) = (2,3)_C\\
+        (-19,7)_{\mathcal{B}} &= -19(1,2)+7(3,5) = (2,-3)_C.
+    \end{align*}
+\end{exemplo*}
+
+\begin{exemplo*}
+	Em ${\mathbb{R}}^3$, se consideramos as bases
+    \begin{align*}
+    	E &= \{ (1,0,0),(0,1,0),(0,0,1)\}\\
+        S &= \{ (1,0,1),(2,1,2),(1,2,2)\}
+    \end{align*}
+    temos que
+    \begin{equation*}
+    	I_E^S = \begin{pmatrix} 1 & 2 & 1\\0 & 1 & 2\\1& 2 & 2\end{pmatrix}
+    \end{equation*}
+    e
+    \begin{equation*}
+    	I_S^E = \begin{pmatrix} -2 & -2 & 3\\2 & 1 & -2\\1 & 0 & 1\end{pmatrix}
+    \end{equation*}
+    Assim, se $v = (1,1,1)_E$, temos
+    \begin{equation*}
+    	I_S^E v_E = \begin{pmatrix} -2 & -2 & 3\\2 & 1 & 2\\1 & 0 & 1\end{pmatrix} \begin{pmatrix} 1\\1\\1\end{pmatrix}_E = \begin{pmatrix} -1\\1\\0\end{pmatrix}_S.
+    \end{equation*}
+\end{exemplo*}
+
+\begin{exemplo*}
+  Seja $\theta \in {\mathbb{R}}$; a matriz 
+   \begin{equation*}
+     P = 
+     \begin{pmatrix}
+        \cos{\theta} & -\sin{\theta}\\
+        \sin{\theta} & \cos{\theta}
+     \end{pmatrix}
+  \end{equation*}
+  é inversível com inversa
+  \begin{equation*}
+     \begin{pmatrix}
+        \cos{\theta} & \sin{\theta}\\
+        -\sin{\theta} & \cos{\theta}
+     \end{pmatrix}
+  \end{equation*}
+  Logo, para cada $\theta$, o conjunto ${\mathcal{B}}'$ formado pelos vetores $(\cos{\theta}, \sin{\theta})$, $(-\sin{\theta}, \cos{\theta})$ é uma base de ${\mathbb{R}}^2$. Intuitivamente esta base é obtida ao rotacionarmos a base canônica num ângulo $\theta$. Se $\alpha =(x_1,x_2)$, então
+  \begin{equation*}
+     [\alpha]_{{\mathcal{B}}'} = 
+     \begin{pmatrix}
+        \cos{\theta} & \sin{\theta}\\
+        -\sin{\theta} &\cos{\theta}
+     \end{pmatrix}
+     \begin{pmatrix}
+        x_1\\x_2
+     \end{pmatrix}
+  \end{equation*}
+  ou ainda
+  \begin{align*}
+    x_1' &= x_1\cos{\theta}+x_2\sin{\theta}\\
+    x_2' &= -x_1\sin{\theta}+x_2\cos{\theta}      
+  \end{align*}
+\end{exemplo*}
