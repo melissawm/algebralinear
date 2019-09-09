@@ -76,7 +76,7 @@
 
 \begin{frame}{Mudança de base}
   \begin{block}{Teorema}
-    Seja $E$ um espaço vetorial de dimensão $n$ e sejam ${\mathcal{B}}$ e ${\mathcal{B}}'$ duas bases ordenadas de $E$. Então existe uma matriz única $P$, inversível e $n\times n$, com entradas tais que
+    Seja $E$ um espaço vetorial de dimensão $n$ e sejam ${\mathcal{B}} =\{\alpha_j\}_{j=1,2,\ldots,n}$ e ${\mathcal{B}}'= \{\alpha_j'\}_{j=1,2,\ldots,n}$ duas bases ordenadas de $E$. Então existe uma matriz única $P$, inversível e $n\times n$, com entradas tais que
     \begin{equation*}
       [v]_{\mathcal{B}} = P[v]_{{\mathcal{B}}'} \quad \mbox{ e } \quad [v]_{{\mathcal{B}}'}=P^{-1}[v]_{\mathcal{B}},
     \end{equation*}
@@ -89,7 +89,7 @@
 
 \begin{frame}{Demonstração}
   \begin{footnotesize}
-    \alert{Demonstração. } \only<1-2>{Considere as bases
+    \only<1-2>{Considere as bases
       \begin{equation*}
         \zerodisplayskips
         {\mathcal{B}} = \{\alpha_1,\ldots,\alpha_n\} \mbox{ e } {\mathcal{B}}' = \{ \alpha_1',\ldots,\alpha_n'\}
@@ -108,7 +108,7 @@
           &= \sum_{j=1}^n\sum_{i=1}^n (P_{ij}x_j')\alpha_i\\
           &= \sum_{j=1}^n\left(\sum_{i=1}^n P_{ij}x_j'\right)\alpha_i
       \end{align*}}
-    \only<3->{Como as coordenadas são unicamente determinadas para cada base, isso implica que
+    \only<3->{\alert{(continuação)} Como as coordenadas são unicamente determinadas para cada base, isso implica que
     \begin{equation*}
       x_i = \sum_{j=1}^n P_{ij} x_j', 1\leq i\leq n
     \end{equation*}
@@ -128,7 +128,7 @@
 \end{frame}
 
 \begin{frame}{Mudança de base}
-  Isto quer dizer que para construirmos $P$ que leva um vetor descrito na base ${\mathcal{B}}'$ em sua descrição na base ${\mathcal{B}}$, devemos escrever cada vetor da base ${\mathcal{B}}'$ em suas coordenadas na base $B$. Podemos denotar também 
+  Isto quer dizer que para construirmos $P$ que leva um vetor descrito na base ${\mathcal{B}}'$ em sua descrição na base ${\mathcal{B}}$, devemos escrever cada vetor da base ${\mathcal{B}}'$ em suas coordenadas na base ${\mathcal{B}}$. Podemos denotar também 
  \begin{equation*}
  	P=I_{\mathcal{B}}^{{\mathcal{B}}'}.
  \end{equation*}
@@ -160,37 +160,37 @@ Logo, precisamos somente mostrar que estes vetores $\alpha_j'$ formam uma base d
 \begin{frame}{Exemplo}
   Seja ${\mathcal{B}} = \{(1,0),(0,1)\}$ e ${\mathcal{B}}' = \{(1,1), (1,0)\}$ bases de ${\mathbb{R}}^2$. Então 
   \begin{align*}
-    (1,0) &= 0(1,1)+1(1,0)\\
-    (0,1) &= 1(1,1)-1(1,0)
+    (1,0) &= \only<2->{0(1,1)+1(1,0)}\\
+    (0,1) &= \only<2->{1(1,1)-1(1,0)}
   \end{align*}
-  Logo,
-  \begin{equation*}
-    \begin{pmatrix}
-      v_1\\v_2
-    \end{pmatrix}_{{\mathcal{B}}'} = 
-    \begin{pmatrix}
-      0 & 1\\
-      1 & -1
-    \end{pmatrix}
-    \begin{pmatrix}
-      v_1\\v_2
-    \end{pmatrix}_{{\mathcal{B}}}
-  \end{equation*}
-  Assim, 
-  \begin{equation*}
-     \begin{pmatrix}
+  \only<3->{Logo,
+    \begin{equation*}
+      \begin{pmatrix}
+        v_1\\v_2
+      \end{pmatrix}_{{\mathcal{B}}'} = 
+      \begin{pmatrix}
+        \only<4->{0 & 1}\\
+        \only<4->{1 & -1}
+      \end{pmatrix}
+      \begin{pmatrix}
+        v_1\\v_2
+      \end{pmatrix}_{{\mathcal{B}}}
+    \end{equation*}}
+  \only<5->{Assim, 
+    \begin{equation*}
+      \begin{pmatrix}
         2\\3
-     \end{pmatrix}_{{\mathcal{B}}'} =
-     \begin{pmatrix}
+      \end{pmatrix}_{{\mathcal{B}}'} =
+      \begin{pmatrix}
         0 & 1\\ 1 & -1
-     \end{pmatrix} 
-     \begin{pmatrix}
+      \end{pmatrix} 
+      \begin{pmatrix}
         2\\3
-     \end{pmatrix}_{\mathcal{B}} = 
-     \begin{pmatrix}
+      \end{pmatrix}_{\mathcal{B}} = 
+      \begin{pmatrix}
         3\\-1
-     \end{pmatrix}_{\mathcal{B}}.
-  \end{equation*}
+      \end{pmatrix}_{\mathcal{B}}.
+    \end{equation*}}
 \end{frame}
 
 \begin{frame}{Exemplo}
