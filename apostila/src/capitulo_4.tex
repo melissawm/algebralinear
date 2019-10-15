@@ -1,0 +1,995 @@
+\chapter{Ortogonalidade} 
+
+Nesta unidade, discutiremos as propriedades que caracterizam a ortogonalidade, exemplos de espaços e transformações ortogonais, e algumas aplicações.
+
+\section{Produtos internos}
+
+Os axiomas de espaço vetorial não são suficientes para abordar certas noções geométricas como ângulo, perpendicularismo, comprimento, distância. Para isso, precisamos introduzir a noção de produto interno.
+
+Observamos aqui que, dependendo do espaço vetorial em que estamos trabalhando, precisamos tomar cuidado na definição do produto interno. Por isso, lembramos que no conjunto dos números complexos ${\mathbb{C}}$, definimos para cada número $x \in {\mathbb{C}}$, com $x=a+bi$, $a,b \in {\mathbb{R}}$ o \emph{conjugado} de $x$ como sendo o número $\overline{x} = a-bi$.
+
+\begin{defi}
+  Um \emph{produto interno} num espaço vetorial \textbf{real} $E$ é uma forma bilinear simétrica e positiva em $E$, ou seja, uma função de $E\times E$ em ${\mathbb{R}}$ que associa a cada par de vetores $u,v\in E$ um escalar $\ip{u}{v}$ chamado o produto interno de $u$ por $v$ de modo que sejam válidas as seguintes propriedades, para quaisquer $u,u',v,v' \in E$ e $\alpha \in {\mathbb{R}}$:
+  \begin{description}
+  \item[Bilinearidade] \begin{align*}
+      \ip{u+u'}{v} &= \ip{u}{v}+\ip{u'}{v},\\
+      \ip{\alpha u}{v} &= \alpha \ip{u}{v},\\
+      \ip{u}{v+v'} &= \ip{u}{v}+\ip{u}{v'},\\
+      \ip{u}{\alpha v} &= \alpha \ip{u}{v}.
+    \end{align*}
+  \item[Comutatividade] $\ip{u}{v} = \ip{v}{u}$
+  \item[Positividade] $\ip{u}{u} > 0$ para todo $u\ne 0$. Como $\ip{0}{v} = \ip{0+0}{v} = \ip{0}{v} + \ip{0}{v}$, segue-se que $\ip{0}{v} = \ip{v}{0} = 0$ para todo $v\in E$.
+  \end{description}
+\end{defi}
+
+\begin{defi}
+  Um \emph{produto interno} num espaço vetorial \textbf{complexo} $V$ é uma forma sesquilinear positiva em $V$, ou seja, uma função de $V \times V$ em $\mathbb{C}$ tal que
+\begin{itemize}
+\item É \emph{antilinear} na primeira coordenada, ou seja, $\ip{(\lambda u + v}{w} = \bar{\lambda} \ip{u}{w} + \ip{v}{w}$, em que $\bar{\lambda}$ representa a conjugação complexa.
+\item É linear na segunda coordenada, ou seja, $f(u, \lambda v + w) = \lambda f(u, v) + f(u, w)\,$;
+Em alguns contextos, $f$ é linear na primeira coordenada e antilinear na segunda; isso não tem consequência nos nossos resultados, \emph{desde que sejamos coerentes e cuidadosos nas conclusões e definições a seguir}. 
+\end{itemize}
+\end{defi}
+
+Segue da definição para espaços vetoriais complexos que 
+\begin{equation*}
+	\ip{u}{v} = \overline{\ip{v}{u}}.
+\end{equation*}
+
+Da positividade resulta que se $\ip{u}{v}=0$ para todo $v\in E$, então $u=0$. Com efeito, se $u\ne 0$ teríamos $\ip{u}{v} \ne 0$ pelo menos quando $v=u$.
+
+Segue-se desta observação que se $u,u'\in E$ são vetores tais que $\ip{u}{v}=\ip{u'}{v}$ para todo $v\in E$ então $u=u'$, pois isto implica que $\ip{u-u'}{v} = 0$ para todo $v\in E$, logo $u-u'=0$ e $u=u'$.
+
+\begin{defi}
+O número não-negativo 
+\begin{equation*}
+	\norm{u}=\sqrt{\ip{u}{u}}
+\end{equation*} 
+chama-se a \emph{norma} ou \emph{comprimento} do vetor $u$ (induzida pelo produto interno). 
+\end{defi}
+
+Com esta notação, temos que $\norm{u}^2 = \ip{u}{u}$ e a igualdade
+\begin{equation*}
+  \ip{u+v}{u+v} = \ip{u}{u} + \ip{u}{v} + \ip{v}{u} + \ip{v}{v}
+\end{equation*}
+lê-se $\norm{u+v}^2 = \norm{u}^2+\norm{v}^2+2\text{Re}(\ip{u}{v})$.
+
+Quando $\norm{u}=1$, diz-se que $u\in E$ é um \emph{vetor unitário}. Todo vetor $u\ne 0$ se escreve como $u=\norm{u}\cdot u'$, onde $u'$ é um vetor unitário. Para isto, basta definirmos $u'=u/\norm{u}$.
+
+\begin{exemplo}
+  No ${\mathbb{R}}^n$, o produto interno canônico dos vetores $u=(\alpha_1,\alpha_2,\ldots,\alpha_n)$ e $v=(\beta_1,\beta_2,\ldots,\beta_n)$ é definido por $\ip{u}{v} = \alpha_1\beta_1+\alpha_2\beta_2+\ldots+\alpha_n\beta_n$. 
+
+  Com isso, pode-se ver que o produto interno pode ser representado, quando lidamos com matrizes, pelo produto
+  \begin{equation*}
+    \ip{u}{v} = u^Tv.
+  \end{equation*}
+  
+  Já em ${\mathbb{C}}^n$, o produto interno canônico entre $u = (u_1,\ldots,u_n)$ e $v=(v_1,\ldots,v_n)$ é dado por
+  \begin{equation*}
+  	\ip{u}{v} = \overline{u}^Tv
+  \end{equation*}  
+  o que motiva a definição a seguir.
+\end{exemplo}
+
+\begin{defi}
+	Para $M \in {\mathbb{C}}^{m\times n}$, definimos a \emph{hermitiana} de $M$ como sendo a matriz transposta e conjugada de $M$, ou seja,
+    \begin{equation*}
+    	M^H = \overline{M}^T
+    \end{equation*}
+\end{defi}
+
+\begin{defi}
+	Seja $M\in {\mathbb{C}}^{m\times n}$. Dizemos que $M$ é \emph{hermitiana} se $M=M^H$.
+\end{defi}
+
+Desta definição segue que uma matriz hermitiana $M$ tem todas as suas entradas diagonais reais.
+
+\begin{exemplo}[Lei dos Cossenos]
+  Considere ${\mathbb{R}}^2$ com o sistema de coordenadas cartesianas. Dados $u=(\alpha_1,\alpha2)$ e $v=(\beta_1,\beta_2)$, os números
+  \begin{equation*}
+    \norm{u} = \sqrt{\alpha_1^2+\alpha_2^2} \qquad \norm{v} = \sqrt{\beta_1^2+\beta_2^2}
+  \end{equation*}
+  medem o comprimento dos vetores definidos por estas coordenadas. Suponha agora que $u,v\ne 0$ e chame de $\theta$ o ângulo formado pelos dois vetores. Afirmamos que o produto interno $\ip{u}{v} = \alpha_1\beta_1+\alpha_2\beta_2$ acima definido satisfaz
+\begin{equation*}
+  \ip{u}{v} = \norm{u}\norm{v} \cos{\theta}.
+\end{equation*}
+Para isto, consideraremos 3 casos.
+\begin{itemize}
+	\item[(i)] Note primeiramente que se $u$ e $v$ são perpendiculares, então 
+	\begin{equation*}
+  		\ip{u}{v} = \norm{u}\norm{v}\cos{90^{\circ}}.
+	\end{equation*}
+	De fato, por um lado temos que
+	\begin{equation*}
+  		\norm{u+v}^2 = \ip{u+v}{u+v} = \norm{u}^2+\norm{v}^2+2\ip{u}{v}
+	\end{equation*}
+	e por outro lado, pelo Teorema de Pitágoras,
+	\begin{equation*}
+  		\norm{u+v}^2 = \norm{u}^2+\norm{v}^2.
+	\end{equation*}
+	Logo, $\ip{u}{v}=0$. 
+
+	\item[(ii)]	Agora, note que se $\norm{u}=\norm{v}=1$, então $\ip{u}{v} = \cos{\theta}$. Com efeito, tomando o vetor unitário $u^*$ perpendicular a $u$ (conforme a Figura~\ref{fig:leidoscossenos}) temos, pela definição de seno e cosseno, que 
+	\begin{equation*}
+  		v=(\cos{\theta})u+(\sin{\theta})u^*.
+	\end{equation*}
+    \begin{figure}[h!]
+    \begin{center}
+    	\begin{tikzpicture}[>=stealth']
+        	\draw[->] (0,0) -- (3,1);
+            \draw[->] (0,0) -- (1,3);
+            \node[anchor=west] at (3,1) {$u$};
+            \node[anchor=west] at (1,3) {$v$};
+            \draw[->] (0,0) -- (-1,3);
+            \node[anchor=west] at (-1,3) {$u^*$};
+            \draw[->] (0.5,0.16) arc (0:56:0.5);
+            \node[anchor=west] at (0.4,0.6) {$\theta$};
+            \draw[densely dashed, thick] (1,3) -- (1.8,0.6);
+            \node[anchor=north west] at (1.8,0.6) {$(\cos{\theta})u$};
+            \draw[densely dashed, thick] (1,3) -- (-0.8,2.4);
+            \node[anchor=east] at (-0.8,2.4) {$(\sin{\theta})u^*$};
+        \end{tikzpicture}
+    \end{center}
+    \caption{\label{fig:leidoscossenos}Caso (ii) da Lei dos Cossenos em ${\mathbb{R}}^2$.}
+    \end{figure}
+	Tomando o produto interno de ambros os membros desta igualdade por $u$, temos que 
+	\begin{equation*}
+  		\ip{u}{v} = \cos{\theta} \ip{u}{u} + \sin{\theta}\ip{u}{u^*}.
+	\end{equation*}
+	Como $\ip{u}{u}=1$ e $\ip{u}{u^*}=0$ pela primeira observação, temos que $\ip{u}{v} = \cos{\theta}$.
+
+	\item[(iii)] Finalmente, consideramos o caso geral: seja $u=\norm{u}u'$ e $v=\norm{v}v'$, onde $u'=(1/\norm{u})u$ e $v'=(1/\norm{v})v$. Então,
+	\begin{equation*}
+  		\ip{u}{v} = \norm{u}\norm{v} \ip{u'}{v'} = \norm{u}\norm{v}\cos{\theta}.
+	\end{equation*}
+	(pois $u',v'$ são unitários.)
+\end{itemize}
+\end{exemplo}
+
+\begin{exemplo}
+  Seja $E={\cal{C}}^0([a,b])$ o espaço vetorial cujos elementos são as funções contínuas $g,f:[a,b]\rightarrow {\mathbb{R}}$. Um produto interno em $E$ pode ser definido por
+  \begin{equation*}
+    \ip{f}{g} = \int_a^b \!f(x) g(x) \, dx
+  \end{equation*}
+Neste caso, a norma da função $f$ é
+\begin{equation*}
+  \norm{f} = \sqrt{\int_a^b \! f(x)^2 \, dx}.
+\end{equation*}
+\end{exemplo}
+
+{\bf{Observação:}} Todo espaço vetorial $E$ de dimensão finita pode ter produto interno. Para isto, dada uma base $\{ u_1,\ldots,u_n\} \subset E$ e $u=\sum \alpha_i u_i$, $v=\sum \beta_i u_i$, basta definirmos $\ip{u}{v} = \sum \alpha_i \beta_i$. 
+
+\subsection{Vetores ortogonais.}
+
+Seja $E$ um espaço vetorial com produto interno. Dois vetores $u,v\in E$ chamam-se \emph{ortogonais} (ou \emph{perpendiculares}) quando $\ip{u}{v}=0$. Em particular, $0$ é perpendicular a qualquer outro vetor. 
+
+Um conjunto $X\subset E$ é ortogonal quando dois vetores distintos quaisquer em $X$ são ortogonais. Se, além disso, todos os vetores de $X$ são unitários então $X$ chama-se conjunto \emph{ortonormal}. 
+
+\begin{teo}
+  Num espaço vetorial $E$ com produto interno, todo conjunto ortogonal $X$ de vetores não-nulos é l.i.
+\end{teo}
+
+\begin{proof}
+Sejam $v_1,\ldots,v_n \in X$. Temos $\ip{v_i}{v_j}=0$ se $i\ne j$. Se $\alpha_1v_1+\ldots+\alpha_nv_n=0$ é uma combinação linear nula destes vetores, então para cada $i=1,\ldots,n$ tomamos o produto interno de ambos os lados da igualdade com $v_i$. Assim,
+\begin{equation*}
+  \ip{v_i}{\alpha_1v_1+\ldots+\alpha_nv_n} = \alpha_1\ip{v_i}{v_1} + \ldots + \alpha_n\ip{v_i}{v_n}=0,
+\end{equation*}
+ou seja, $\alpha_i\ip{v_i}{v_i}=\alpha_i \norm{v_i}^2=0$. Como $v_i\ne 0$ para todo $i$, $\alpha_i=0$. Assim, $\sum \alpha_i v_i =0 \Rightarrow \alpha_i=0$ para todo $i$. Portanto, o conjunto é l.i.
+\end{proof}
+
+\begin{exemplo}
+  A base canônica no ${\mathbb{R}}^n$ é ortonormal.
+\end{exemplo}
+
+Quando $u$ e $v$ são ortogonais, a igualdade $\norm{u+v}^2=\norm{u}^2+\norm{v}^2+2{\text{Re}}(\ip{u}{v})$ torna-se 
+\begin{equation*}
+  \norm{u+v}^2=\norm{u}^2+\norm{v}^2.
+\end{equation*}
+Esta é a versão do Teorema de Pitágoras para um espaço vetorial geral com produto interno.
+
+\begin{teo}
+  Suponha que $\{u_1,\ldots,u_n\}$ seja uma base ortonormal de $V$, um espaço vetorial com produto interno de dimensão finita. Então, para todo $v\in V$, temos que
+  \begin{equation*}
+    v = \ip{u_1}{v} u_1+\ldots+ \ip{u_n}{v}u_n.
+  \end{equation*}
+\end{teo}
+\begin{proof}
+Seja $v\in V$. Sabemos que existem escalares $x_1,\ldots,x_n$ tais que
+\begin{equation*}
+  v = x_1u_1+\ldots+x_nu_n.
+\end{equation*}
+Tomando o produto interno de $v$ com $u_i$, temos que
+\begin{equation*}
+  \ip{u_i}{v} = x_1\ip{u_i}{u_1}+\ldots+x_n\ip{u_i}{u_n} = x_i,
+\end{equation*}
+para todo $i=1,\ldots,n$.
+\end{proof}
+
+\subsection{Adjunta}
+
+% Axler, Linear Algebra Done Right
+
+\begin{teo}[Representação de Riesz, dimensão finita]\label{teo:riesz}
+  Seja $V$ um espaço vetorial de dimensão finita com produto interno com dim$(V)=n$ e $f\in {\mathcal{L}}(V,{\mathbb{K}})$. Então existe único $v\in V$ tal que
+  \begin{equation*}
+    f(u) = \ip{v}{u}, \quad \forall u\in V.
+  \end{equation*}
+\end{teo}
+\begin{proof}
+Primeiramente, vamos mostrar que existe um vetor $v\in V$ tal que $f(u) = \ip{v}{u}$ para todo $u\in V$. Seja $\{ u_1,\ldots,u_n\}$ uma base ortonormal\footnote{Veremos mais à frente que sempre é possível obtermos tal base.} de $V$. Então, para todo $u\in V$, podemos escrever
+\begin{equation*}
+  u = x_1u_1+\ldots+x_nu_n.
+\end{equation*}
+Logo, como $f$ é linear,
+\begin{equation*}
+  f(u) = x_1f(u_1)+\ldots+x_nf(u_n).
+\end{equation*}
+Assim, tome
+\begin{equation*}
+  v \stackrel{\text{def}}{=} \overline{f(u_1)}u_1+\ldots+\overline{f(u_n)}u_n.
+\end{equation*}
+Então
+\begin{align*}
+  \ip{v}{u} &= \ip{\overline{f(u_1)}u_1+\ldots+\overline{f(u_n)}u_n}{x_1u_1+\ldots+u_nx_n}\\
+  &= x_1\ip{\overline{f(u_1)}u_1+\ldots+\overline{f(u_n)}u_n}{u_1} + \ldots + x_n\ip{\overline{f(u_1)}u_1+\ldots+\overline{f(u_n)}u_n}{u_n}\\
+  &= x_1f(u_1) + \ldots + x_nf(u_n)\\
+  &= f(u).
+\end{align*}
+Agora, para mostrarmos que $v$ é único, suponha que tenhamos $v_1$ e $v_2$ tais que
+\begin{equation*}
+  f(u) = \ip{v_1}{u}=\ip{v_2}{u}
+\end{equation*}
+para todo $u\in V$. Então,
+\begin{equation*}
+  0 = \ip{v_1}{u}-\ip{v_2}{u}=\ip{v_1-v_2}{u}
+\end{equation*}
+para todo $u\in V$. Tomando $u=v_1-v_2$ concluimos que $v_1-v_2=0$.
+\end{proof}
+
+O teorema acima nos diz que, assim como usamos uma matriz para representar uma transformação linear entre dois espaços vetoriais, podemos usar uma representação para um funcional através do produto interno. Em particular, se $f \in {\mathcal{L}}({\mathbb{C}}^n,{\mathbb{C}})$, então existe $v \in {\mathbb{C}}^n$ tal que
+\begin{equation*}
+	f(u) = \ip{v}{u} = v^Hu,
+\end{equation*}
+ou seja, podemos representar a aplicação de $f$ em um vetor $u$ qualquer de ${\mathbb{C}}^n$ como sendo a multiplicação de uma matriz $1\times n$ ($v^H$) por $u$.
+
+\begin{defi}
+  Seja $T : E\rightarrow F$ uma transformação linear do espaço vetorial $E$ no espaço vetorial $F$ (ambos com dimensão finita). Então a adjunta de $T$, denotada por $T^{\star}$, é a transformação linear $T^{\star}:F\rightarrow E$ definida da seguinte maneira. Fixe um $v\in F$. Considere o funcional linear $\varphi_v : E\to {\mathbb{K}}$ tal que
+  \begin{equation*}
+    \varphi_v(u) = \ip{v}{T(u)}
+  \end{equation*}
+  definido para todo $u\in E$. Pelo Teorema~\ref{teo:riesz}, existe um único vetor $w\in F$ ($w$ depende de $v$) tal que $\varphi_v (u) = \ip{w}{u}$. Defina agora $T^{\star}:F\to E$ uma função tal que
+  \begin{equation*}
+    T^{\star}(v) = w.
+  \end{equation*}
+  Então
+  \begin{equation*}
+    \ip{v}{T(u)} = \ip{w}{u} = \ip{T^{\star}(v)}{u}.
+  \end{equation*}
+  Finalmente, resta-nos mostrar que $T^{\star}$ é linear. Mas, para todo $x\in E$,
+  \begin{align*}
+    \ip{T^{\star}(\alpha y + z)}{x} &= \ip{\alpha y + z}{T(x)}\\
+    &= \overline{\alpha}\ip{y}{T(x)} + \ip{z}{T(x)}\\
+    &= \overline{\alpha}\ip{T^\star(y)}{x} + \ip{T^{\star}(z)}{x}\\
+    &= \ip{\alpha T^{\star}(y)+T^{\star}(z)}{x}.
+  \end{align*}
+  Por uma das propriedades do produto interno, concluimos que 
+  \begin{equation*}
+    T^{\star}(\alpha y + z) = \alpha T^{\star}(y)+T^{\star}(z)
+  \end{equation*}
+  e assim $T^{\star}$ é uma transformação linear.
+\end{defi}
+
+Note então que, se $A$ for a matriz de uma transformação linear de ${\mathbb{R}}^n$ em ${\mathbb{R}}^m$, temos que
+\begin{equation*}
+  \ip{Av}{w} = (Av)^Tw = v^T(A^Tw) = \ip{v}{A^Tw}.
+\end{equation*}
+Logo, nestes casos, $A^{\star}=A^T$.
+
+Por outro lado, se $M$ for a matriz de uma transformação linear de ${\mathbb{C}}^n$ em ${\mathbb{C}}^m$, então
+\begin{equation*}
+  \ip{Mv}{w} = (Mv)^Hw = v^H(M^Hw) = \ip{v}{M^Hw}.
+\end{equation*}
+Portanto, nos espaços vetoriais complexos temos que a adjunta é a hermitiana da matriz $M$.
+
+\begin{exemplo*}
+  Considere o espaço das matrizes reais $m\times n$, ${\mathbb{R}}^{m\times n}$. Defina para todo $A\in {\mathbb{R}}^{m\times n}$ o funcional
+  \begin{equation*}
+    \text{tr}(A) = a_{11} + a_{22} + \ldots + a_{nn}.
+  \end{equation*}
+  O produto interno no espaço das matrizes reais $m\times n$ é dado por
+  \begin{equation*}
+    \ip{A}{B} = \text{tr}(B^TA).
+  \end{equation*}
+  Note que com esta definição estamos interpretando o espaço das matrizes como o espaço ${\mathbb{R}}^{mn}$ isomorfo ao espaço original, de forma que cada matriz $A$ pode ser vista como um vetor em que se colocam as colunas de $A$ em sequência e se aplica o produto interno canônico em ${\mathbb{R}}^{mn}$.
+\end{exemplo*}
+
+\section{Complemento ortogonal de um subespaço.}
+
+As noções de retas e planos perpendiculares da geometria se estendem em álgebra linear ao conceito de complemento ortogonal, o qual ajuda a entender as relações entre uma transformação linear e sua adjunta.
+
+Seja $E$ um espaço vetorial. Um subespaço $X\subset E$ é ortogonal a outro subespaço $Y\subset E$ quando todo vetor $v\in X$ é ortogonal a todo vetor $w\in Y$.
+
+\begin{defi}
+  Seja $E$ um espaço vetorial com produto interno. O \emph{complemento ortogonal} de um conjunto não-vazio $X\subset E$ é o conjunto $X^{\perp}$ formado pelos vetores $v\in E$ que são ortogonais a todos os vetores $x\in X$. Portanto,
+  \begin{equation*}
+    v\in X^{\perp} \Leftrightarrow \ip{v}{x}=0 \qquad \mbox{ para todo } x\in X.
+  \end{equation*}
+\end{defi}
+
+Note que:
+\begin{itemize}
+\item Dado $X\subset E$, temos que $\ip{0}{x}=0$ para todo $x\in X$. Logo, $0\in X^{\perp}$;
+\item Se $v\in X^{\perp}$ e $\alpha \in {\mathbb{R}}$ então $\ip{\alpha v}{x}=0$ para todo $x\in X$, e assim $\alpha v\in X^{\perp}$;
+\item Se $u,v\in X^{\perp}$, então $\ip{u+v}{x}=\ip{u}{x}+\ip{v}{x}=0$ para todo $x\in X$. Logo, $u+v\in X^{\perp}$.
+\end{itemize}
+Portanto, $X^{\perp}$ é um subespaço vetorial de $E$ (mesmo que $X$ não seja!).
+
+Note também que $X\subset Y \Rightarrow Y^{\perp}\subset X^{\perp}$: seja $y\in Y^{\perp}$. Então, $\ip{u}{y}=0 \forall u\in Y$. Como $X\subset Y$, para todo $x\in X$ também temos que $x\in Y$. Assim,
+\begin{equation*}
+  \ip{x}{y} = 0, \forall x\in X, \forall y\in Y^{\perp}.
+\end{equation*}
+Logo, $y\in X^{\perp} \Rightarrow Y^{\perp} \subset X^{\perp}$.
+
+O contrário não vale. Basta ver para isso que $(Y^{\perp})^{\perp} \ne Y$.
+
+Além disso, $x\in X \cap X^{\perp} \Rightarrow x=0$, e se $v$ é ortogonal aos vetores $x_1,\ldots,x_m$ então $v$ é ortogonal a qualquer combinação linear deles, pois
+\begin{equation*}
+  \left\langle v, \sum_{i=1}^m \alpha_i x_i\right\rangle = \sum_{i=1}^m \alpha_i \ip{v}{x_i}.
+\end{equation*}
+Portanto, o complemento ortogonal $X^{\perp}$ do conjunto $X$ coincide com o complemento ortogonal $S(X)^{\perp}$ do subespaço vetorial $S(X)$ gerado por $X$.
+
+\begin{exemplo}
+  $\{0\}^{\perp}=E$ e $E^{\perp}=\{0\}$. Se $F\subset {\mathbb{R}}^n$ é o subespaço vetorial gerado pelo vetor não-nulo $v=(\alpha_1,\ldots,\alpha_n)$ (reta que passa pela origem), o seu complemento ortogonal $F^{\perp}$ é o hiperplano definido pela equação $\alpha_1x_1+\ldots+\alpha_nx_n=0$.
+\end{exemplo}
+
+Atenção: $V$ e $W$ podem ser ortogonais sem que sejam o complemento um do outro no caso em que as dimensões são pequenas. Duas retas contidas no espaço ${\mathbb{R}}^3$ podem ser ortogonais uma à outra, mas não são o complemento ortogonal uma da outra neste espaço (para isto, precisaríamos de um plano ortogonal).
+
+\begin{teo}\label{teo:provar}
+  Seja $E$ um espaço vetorial de dimensão finita, munido de produto interno. Para todo subespaço vetorial $F\subset E$ tem-se a decomposição em soma direta $E=F\oplus F^{\perp}$.
+\end{teo}
+
+\begin{proof}
+Seja $\{ u_1,\ldots,u_n\}\subset E$ uma base ortonormal cujos primeiros $m$ elementos $u_1,\ldots,u_m$ formam uma base (ortonormal) de $F$. (veremos depois que isto é possível de se fazer começando com uma base qualquer de $F$, estendendo-se a base até uma base de $E$, e depois aplicando um processo de ortonormalização a esta base). Para todo vetor $v\in E$ temos que $v=\alpha_1u_1+\ldots+\alpha_nu_n=z+w$, onde $z=\alpha_1u_1+\ldots+\alpha_mu_m \in F$ e $w=\alpha_{m+1}u_{m+1}+\ldots+\alpha_nu_n\in E\backslash F$. Agora, note que, como os $\{u_i\}$ são ortonormais, $\ip{z}{w}=0$, e assim $E\backslash F = F^{\perp}$. Portanto, $E=F+F^{\perp}$. Como $F\cap F^{\perp}=\{0\}$, segue-se que $E=F\oplus F^{\perp}$.
+\end{proof}
+
+\begin{coro}
+  dim$(F)+$dim$(F^{\perp})=$dim$(E)$.
+\end{coro}
+
+\begin{coro}
+  Para todo subespaço vetorial $F\subset E$, tem-se $(F^{\perp})^{\perp} = F$.
+\end{coro}
+
+A divisão de $E$ em partes ortogonais $F$ e $F^{\perp}$ dividirá cada vetor em $x=v+w$, $v\in F$ e $w\in F^{\perp}$; $v$ é a projeção de $x$ em $F$ e $w$ é a projeção de $x$ em $F^{\perp}$. Veremos daqui pra frente como obter essas projeções.
+
+\section{Segunda parte do Teorema Fundamental da Álgebra Linear}
+
+Vamos relembrar o Teorema Fundamental da Álgebra Linear:
+\begin{teo}[Fundamental da Álgebra Linear, Parte I]
+	Se $T:E\to F$, então
+	\begin{equation*}
+    	dim(E) = dim({\mathcal{N}}(T)) + dim({\mathcal{I}}m(T))
+    \end{equation*}
+\end{teo}
+
+Além disso, se $T:E\rightarrow F$, então $T^{\star}:F\rightarrow E$ e 
+\begin{equation*}
+	dim(F) = dim({\mathcal{N}}(T^{\star})) + dim({\mathcal{I}}m(T^{\star})).
+\end{equation*}
+
+Podemos agora provar a segunda parte do Teorema Fundamental da Álgebra Linear.
+
+\begin{teo}
+  Dada a transformação linear $T:E\rightarrow F$, entre espaços vetoriais de dimensão finita munidos de produto interno, temos que
+  \begin{itemize}
+  \item ${\mathcal{N}}(T^{\star}) = {\mathcal{I}}m(T)^{\perp}$
+  \item ${\mathcal{I}}m(T^{\star}) = {\mathcal{N}}(T)^{\perp}$
+  \end{itemize}
+\end{teo}
+\begin{proof}
+Basta provar a primeira igualdade, pois a segunda segue substituindo-se $T$ por $T^{\star}$. Mas note que
+\begin{equation*}
+  v\in{\mathcal{N}}(T^{\star}) \Leftrightarrow T^{\star}(v)=0 \Leftrightarrow \ip{T^{\star}v}{u}=0 \forall u\in E \Leftrightarrow \ip{v}{T(u)} = 0 \forall u\in E \Leftrightarrow v\in {\mathcal{I}}m(T)^{\perp}.
+\end{equation*}
+\end{proof}
+
+\begin{exemplo}
+Seja $A = \left( \begin{array}{c c} 1 & 3\\ 2 & 6\\ 3 & 9 \end{array}\right)$. 
+
+$A$ tem posto 1, e tanto seu espaço linha quanto seu espaço coluna são retas.
+
+As linhas são múltiplos de $(1,3)$, e o espaço nulo contém $(3,-1)$, sendo ortogonal a todas as linhas. O espaço linha e o espaço nulo são retas perpendiculares em ${\mathbb{R}}^2$.
+
+Em contraste, os outros dois subespaços estão em ${\mathbb{R}}^3$. O espaço coluna é a reta que passa por $(1,2,3)$, e o espaço nulo à esquerda é o plano perpendicular $y_1+2y_2+3y_3=0$, que representa justamente $y^TA=0$.
+\end{exemplo}
+
+\begin{coro}[Alternativa de Fredholm]
+  Para que o sistema linear $Ax=b$ ($A\in {\mathbb{R}}^{m\times n}, x\in {\mathbb{R}}^n, b\in {\mathbb{R}}^m$) tenha solução, é necessário e suficiente que o vetor $b$ seja perpendicular a toda solução $y\in {\mathbb{R}}^m$ do sistema homogêneo
+  \begin{equation*}
+    y^TA=0,
+  \end{equation*}
+  ou seja, $b^Ty=0$.
+\end{coro}
+
+\section{Projeção de um vetor sobre um espaço.}
+
+Num espaço vetorial $E$ com produto interno, seja $u$ um vetor unitário. Dado qualquer $v\in E$, o vetor $\ip{u}{v}u$ chama-se a \emph{projeção ortogonal de $v$ sobre o eixo que contém $u$}. Isso se justifica pois, escrevendo $w=v-\ip{u}{v}u$, tem-se que
+\begin{equation*}
+  v = \ip{u}{v}u+w
+\end{equation*}
+onde $w$ é perpendicular a $u$, pois 
+\begin{equation*}
+  \ip{u}{w} = \ip{u}{v}-\ip{u}{v}\ip{u}{u} = \ip{u}{v}-\ip{u}{v}=0,
+\end{equation*}
+já que $\ip{u}{u}=1$. (ou seja, $w\in \text{span}\{u\}^{\perp}$.)(figura em construção)
+
+Quando $u$ não é unitário mas é não-nulo, o eixo que contém $u$ é o mesmo que contém o vetor unitário $u'=u/\norm{u}$. Portanto, a projeção ortogonal de $v$ sobre este eixo é 
+\begin{equation*}
+  \text{Pr}_u(v) = \frac{\ip{u}{v}}{\ip{u}{u}}\cdot u.
+\end{equation*}
+% Note que este vetor $\text{Pr}_u(v)$ não depende da escolha da base ortogonal sobre a qual estamos projetando, pois a decomposição $E=F\oplus F^{\perp}$ é única, e desta forma $\text{pr}_u(v)$ também o é.
+
+Em particular, se estivermos trabalhando no ${\mathbb{R}}^n$, podemos definir a partir desta operação uma \emph{matriz de projeção ortogonal de $v$ na reta contendo $u$} como sendo
+\begin{equation*}
+  P = \frac{uu^T}{u^Tu},
+\end{equation*}
+de forma que $Pv = \dfrac{u u^T}{u^Tu} v = \dfrac{u^Tv}{u^Tu} u$. Esta matriz é obviamente uma matriz quadrada de posto 1. Analogamente, se estivermos trabalhando no ${\mathbb{C}}^n$, a matriz de projeção ortogonal de $v$ na reta contendo $u$ será
+\begin{equation*}
+  P = \frac{uu^H}{u^Hu},
+\end{equation*}
+de forma que $Pv = \dfrac{u u^H}{u^Hu} v = \dfrac{u^Hv}{u^Hu} u$.
+
+\begin{exemplo}
+  A matriz que projeta na reta que passa por $a=(1,1,1)$ é
+  \begin{equation*}
+    P = \frac{aa^T}{a^Ta} = \frac{1}{3} \left(
+      \begin{array}{c}
+        1\\1\\1
+      \end{array}
+    \right) (1\, 1\, 1) = \left(
+      \begin{array}{c c c}
+        \sfrac{1}{3}&\sfrac{1}{3}&\sfrac{1}{3}\\
+        \sfrac{1}{3}&\sfrac{1}{3}&\sfrac{1}{3}\\
+        \sfrac{1}{3}&\sfrac{1}{3}&\sfrac{1}{3}
+      \end{array}
+    \right).
+  \end{equation*}
+  Esta matriz tem duas propriedades típicas de projeções: $P$ é simétrica ($P^T=P$) e $P^2 = P$. Além disso, note que o espaço coluna de $P$ consiste da linha que passa por $a=(1,1,1)$, e que o espaço nulo de $P$ consiste no plano perpendicular a $a$:
+  \begin{equation*}
+    Pv = 0 \Leftrightarrow \frac{aa^T}{a^Ta}v = 0 \Leftrightarrow \frac{a^Tv}{a^Ta} a=0 \Leftrightarrow a^Tv=0.
+  \end{equation*}
+\end{exemplo}
+
+\begin{teo}
+Sejam $x,y\in E$ ortonormais. Então a projeção de $b\in E$ no espaço gerado por $x$ e $y$ é igual à soma das projeções de $b$ no espaço gerado por $x$ e por $y$.
+\end{teo}
+
+\begin{proof}
+	Queremos mostrar que
+    \begin{equation*}
+    	\text{Pr}_{\text{span}\{x,y\}} = \text{Pr}_{x}+\text{Pr}_{y}.
+    \end{equation*}
+	Se $\norm{x}=\norm{y}=1$, então 
+    \begin{equation*}
+    	\text{Pr}_{x}(v) = \ip{x}{v}x, \text{ e } \text{Pr}_{y}(v) = \ip{y}{v}y.
+    \end{equation*}	
+    Então defina a transformação $P:E\to E$ dada por
+    \begin{equation*}
+    	P(v) = \text{Pr}_x(v) + \text{Pr}_y(v).
+    \end{equation*}
+	Note primeiramente que $P$ é linear, pois se $u,v\in E$ e $\alpha \in {\mathbb{K}}$, temos que
+    \begin{align*}
+    	P(\alpha u + v) & = \text{Pr}_x(\alpha u + v) + \text{Pr}_y(\alpha u + v)\\
+        & = \ip{x}{\alpha u + v}x + \ip{y}{\alpha u + v}y\\
+        & = \alpha \ip{x}{u} + \ip{x}{v} + \alpha \ip{y}{u} + \ip{y}{v}\\
+        & = \alpha \left( \text{Pr}_x(u) + \text{Pr}_y(u)\right) + \text{Pr}_x(v) + \text{Pr}_y(v)\\
+        & = \alpha P(u) + P(v).
+    \end{align*}
+    Vamos mostrar que $P = \text{Pr}_{\text{span}\{x,y\}}$:
+    \begin{itemize}
+    	\item[(i)] $P^2=P$, pois observe que 
+	    \begin{align*}	
+    		P(P(v)) &= P(\text{Pr}_x(v) + \text{Pr}_y(v))\\
+            &= P(\ip{x}{v}x + \ip{y}{v}y)\\
+            &= \text{Pr}_x(\ip{x}{v}x + \ip{y}{v}y) + \text{Pr}_y(\ip{x}{v}x + \ip{y}{v}y)\\
+            &= \ip{x}{\ip{x}{v}x + \ip{y}{v}y}x + \ip{y}{\ip{x}{v}x + \ip{y}{v}y}y\\
+            &= \ip{x}{v}\ip{x}{x}x + \ip{y}{v}\ip{x}{y}x + \ip{x}{v}\ip{y}{x}y + \ip{y}{v}\ip{y}{y}y\\
+            &= \ip{x}{v}x + \ip{y}{v}y\\
+			&= P(v).
+		\end{align*}
+    \item[(ii)] A imagem de $P$ é formada por vetores $y$ que se escrevem como $y = P(v) = \text{Pr}_x(v) + \text{Pr}_y(v)$ para algum $v\in E$. Agora, como $\text{Pr}_x(v)\in \text{span}\{x\}$ e $\text{Pr}_y(v) \in \text{span}\{y\}$ para todo $v\in E$, temos que $y \in \text{span}\{x\}+\text{span}\{y\}$, que é igual a span$\{x,y\}$ já que $x$ e $y$ são l.i. (pois são ortogonais).
+    \item[(iii)] O núcleo de $P$ é formado por todos os vetores $v\in E$v que satisfazem $P(v)=0$. Assim, $v\in {\mathcal{N}}(P)$ se e somente se
+    \begin{equation*}
+    	\text{Pr}_x(v) = -\text{Pr}_y(v).
+    \end{equation*}
+    No entanto, como $x$ e $y$ são ortogonais, isso só ocorre se $v=0$; caso contrário poderíamos escrever um vetor de span$\{x\}$ como múltiplo de um vetor em span$\{y\}$.
+    \end{itemize}
+    Desta forma, $P$ é a projeção ortogonal sobre span$\{x,y\}$.
+\end{proof}
+
+O resultado acima pode ser estendido para um conjunto com qualquer número finito de vetores. Assim, podemos descrever a projeção ortogonal no espaço gerado por um conjunto de vetores ortonormais facilmente. Precisamos então encontrar uma maneira de construir bases ortonormais para qualquer espaço vetorial.
+
+\subsection{Processo de Gram-Schmidt}
+
+Suponha que $\{u_1,\ldots,u_n\} \subset E$ seja uma base de $E$, espaço vetorial com produto interno. Então os vetores da base são l.i. Gostaríamos de, a partir dessa base, construir uma base ortonormal para $E$.
+
+Para começar, podemos observar que é possível transformar qualquer vetor em um vetor unitário dividindo-o pela sua norma. Assim, tomamos inicialmente
+\begin{equation*}
+  q_1 = \frac{u_1}{\norm{u_1}}.
+\end{equation*}
+Se quisermos gerar um vetor $q_2$ ortogonal a $q_1$, precisamos subtrair de $u_2$ qualquer componente dele que esteja na direção de $q_1$:
+\begin{equation*}
+  q_2 = \frac{u_2 - \text{Pr}_{q_1}(u_2)}{\norm{u_2-\text{Pr}_{q_1}(u_2)}}.
+\end{equation*}
+Observe que, de fato, 
+\begin{align*}
+\ip{q_1}{q_2} &= \ip{q_1}{\frac{u_2 - \text{Pr}_{q_1}(u_2)}{\norm{u_2-\text{Pr}_{q_1}(u_2)}}}\\
+&= \frac{1}{\norm{u_2-\text{Pr}_{q_1}(u_2)}}\left( \ip{q_1}{u_2} - \ip{q_1}{\ip{q_1}{u_2}q_1}\right)\\
+&= \frac{1}{\norm{u_2-\text{Pr}_{q_1}(u_2)}}\left( \ip{q_1}{u_2} - \ip{q_1}{u_2}\ip{q_1}{q_1}\right)\\
+&= 0.
+\end{align*}
+
+Para o terceiro vetor, vamos mais uma vez eliminar a componente de $u_3$ que esteja no plano definido por $q_1$ e $q_2$:
+\begin{equation*}
+  q_3 = \frac{u_3 - \text{Pr}_{q_1}(u_3)-\text{Pr}_{q_2}(u_3)}{\norm{u_3 - \text{Pr}_{q_1}(u_3)-\text{Pr}_{q_2}(u_3)}}.
+\end{equation*}
+
+{\bf{Processo de Gram-Schmidt:}} Começando com um conjunto de vetores independentes $\{u_1,\ldots,u_n\}$, obteremos um conjunto de vetores ortonormais $\{q_1,\ldots,q_n\}$ ao final do seguinte procedimento:
+\begin{itemize}
+	\item $q_1 = \dfrac{u_1}{\norm{u_1}}$
+    \item Para $j=2,\ldots,n$, repita:
+    \begin{itemize}
+    	\item[$\bullet$] $q_j' = u_j-\sum_{k=1}^{j-1}\text{Pr}_{q_k}(u_j)$
+        \item[$\bullet$] $q_j = \dfrac{q_j'}{\norm{q_j'}}$
+    \end{itemize}
+\end{itemize}
+
+\subsection{A fatoração QR}
+
+Suponha que $A$ é uma matriz $m\times n$, com $m\geq n$. Se $A$ tiver posto completo, então isso significa que todas as suas colunas são l.i. Então, através do processo de Gram-Schmidt, podemos transformar o conjunto das colunas de $A$ em um conjunto ortonormal. Suponha que o conjunto ortonormal assim obtido seja armazenado nas colunas de uma matriz $Q$. Qual é a relação entre estas matrizes?
+
+Se $A$ é $m\times n$, com $m>n$, então $Q$ deve ser uma matriz de mesma dimensão, pois não mudamos o espaço gerado nem a dimensão dos vetores ao aplicarmos Gram-Schmidt. A ideia então é escrever os vetores coluna de $A$ (que chamaremos de $a_i$) como combinações dos vetores coluna de $Q$ (que chamaremos de $q_i$). No exemplo anterior, vimos que $q_1$ era simplesmente $a_1$ normalizado, enquanto que
+\begin{equation*}
+  q_2' = a_2-\text{Pr}_{q_1}(a_2) 
+\end{equation*}
+Ainda, como $q_2=\frac{q_2'}{\norm{q_2'}}$, e pela definição de projeção, temos
+\begin{equation*}
+	a_2 = q_2\norm{q_2'}+\ip{q_1}{a_2}q_1.
+\end{equation*}
+Já para $a_3$, teremos:
+\begin{equation*}
+	a_3 = q_3\norm{q_3'}+\ip{q_2}{a_3}q_2+\ip{q_1}{a_3}q_1.
+\end{equation*}
+Portanto, podemos escrever em termos matriciais que
+\begin{align*}
+  A &= \begin{pmatrix}
+      |   & |   &        & | \\
+      a_1 & a_2 & \cdots & a_n\\
+      |   & |   &        & |
+    \end{pmatrix}\\
+	&=
+    \begin{pmatrix}
+      |   & |   &        & |\\
+      q_1 & q_2 & \cdots & q_3\\
+      |   & |   &        & |
+    \end{pmatrix}
+    \begin{pmatrix}
+      \ip{q_1}{a_1} & \ip{q_1}{a_2} & \cdots & \ip{q_1}{a_n}\\
+      0             & \ip{q_2}{a_2} & \cdots & \ip{q_2}{a_n}\\
+      \vdots        &               & \ddots &    \vdots    \\
+      0             & \cdots        &        & \ip{q_n}{a_n}
+    \end{pmatrix}\\
+	&= QR
+\end{align*}
+em que $R$ é uma matriz triangular superior $n\times n$ inversível.
+
+A fatoração $QR$ é parecida com a $LU$ mas com as colunas de $Q$ ortogonais. Toda matriz $m$ por $n$ com colunas independentes pode ser fatorada em $A=QR$. As colunas de $Q$ são ortonormais entre si.
+
+\section{Transformações Unitárias; Matrizes Ortogonais}
+
+Uma base ortogonal tem todos os vetores ortogonais entre si; uma base ortonormal tem todos os vetores, além de ortogonais, unitários.
+
+Observe que, se $Q \in {\mathbb{R}}^{m\times n}$ tem colunas ortonormais entre si, então
+\begin{align*}
+	Q^TQ & = \begin{pmatrix}
+    \textemdash & q_1^T & \textemdash\\
+    \textemdash & q_2^T & \textemdash\\
+    & \vdots & \\
+    \textemdash & q_n^T & \textemdash\\
+	\end{pmatrix}
+    \begin{pmatrix}
+    | & | & & |\\
+    q_1 & q_2 &\cdots & q_n\\
+    | & | & & |
+    \end{pmatrix}
+    \\
+    &= \begin{pmatrix}
+    q_1^Tq_1 & q_1^Tq_2 & \cdots & q_1^Tq_n\\
+    q_2^Tq_1 & q_2^Tq_2 & \cdots & q_2^Tq_n\\
+    \vdots & \ddots & & \vdots\\
+    q_n^Tq_1 & q_n^Tq_2 & \cdots & q_n^Tq_n
+    \end{pmatrix}\\
+    & = I_n.
+\end{align*}
+Se $m=n$, então isso significa que $Q$ é inversível e que $Q^T=Q^{-1}$. Se $m>n$ podemos dizer que $Q^T$ é uma inversa à esquerda de $Q$.
+
+Similarmente, se $C\in {\mathbb{C}}^{m\times n}$, temos que
+\begin{equation*}
+	C^HC = I_n.
+\end{equation*}
+Novamente, se $m=n$, então isso significa que $C$ é inversível e que $C^H=C^{-1}$, e se $m>n$ então $C^H$ é uma inversa à esquerda de $C$. 
+
+\begin{defi}
+	Se $T:E\to E$ é uma transformação linear que satisfaz
+    \begin{equation*}
+    	T^*(T(u)) = T(T^*(u))= u, \forall u \in E,
+    \end{equation*}
+    então $T^{-1}=T^*$ e dizemos que $T$ é unitária.
+\end{defi}
+A matriz da transformação unitária também é dita matriz unitária; no caso real, dizemos que a matriz é ortogonal.
+
+\begin{exemplo}
+  \begin{equation*}
+    Q = \left(
+      \begin{array}{c c}
+        \cos{\theta} & -\sin{\theta}\\
+        \sin{\theta} & \cos{\theta}
+      \end{array}
+    \right). Q^T = Q^{-1} = \left(
+      \begin{array}{c c}
+        \cos{\theta} & \sin{\theta}\\
+        -\sin{\theta} & \cos{\theta}
+      \end{array}
+    \right).
+  \end{equation*}
+  $Q$ gira vetores pelo ângulo $\theta$, e $Q^T$ os gira de volta. As colunas são ortonormais e $Q$ e $Q^T$ também são ortogonais.
+\end{exemplo}
+
+\begin{exemplo}
+  Não são somente as matrizes de rotação que são ortogonais; as matrizes de permutação (que representam reflexões) também são ortogonais. Exemplo:
+  \begin{equation*}
+    P = \left(
+      \begin{array}{c c}
+        0 & 1\\
+        1 & 0
+      \end{array}
+    \right)
+  \end{equation*}
+  reflete cada ponto $(x,y)$ no ponto $(y,x)$. Geometricamente, uma $Q$ ortogonal é o produto entre uma rotação e uma reflexão.
+\end{exemplo}
+
+As transformações unitárias possuem algumas propriedades que listamos a seguir.
+
+\begin{teo}
+	Se $T:E\to E$ é unitária, então
+	\begin{equation*}
+    	\norm{T(u)} = \norm{u}
+    \end{equation*}
+    para todo $u\in E$. Além disso, os produtos escalares e os ângulos também são preservados:
+    \begin{equation*}
+    	\ip{T(u)}{T(v)} = \ip{u}{v}
+    \end{equation*}
+    para todos $u,v\in E$.
+\end{teo}
+\begin{proof}
+Pela definição,
+\begin{align*}
+\norm{T(u)}^2 &= \ip{T(u)}{T(u)}\\
+	& = \ip{u}{T^*(T(u))}\\ 
+    & = \ip{u}{u} = \norm{u}^2.
+\end{align*}
+Ainda:
+\begin{equation*}
+\ip{T(u)}{T(v)}  = \ip{u}{T^*(T(u))} = \ip{u}{u}.
+\end{equation*}
+\end{proof}
+
+Isso é intuitivamente verdade pois girar ou refletir o espaço não altera os ângulos entre os vetores.
+
+\section{Desigualdade de Cauchy-Schwarz.}
+
+Se $z=\text{Pr}_u(v)$, temos que $v=z+w$, com $w\perp z$. Pelo Teorema de Pitágoras, teremos que $\norm{v}^2=\norm{z}^2+\norm{w}^2$. Em particular, $\norm{z}\leq \norm{v}$, ou seja, o comprimento da projeção é menor ou igual ao comprimento de $v$.
+
+Por outro lado, sabemos que 
+\begin{equation*}
+	\norm{\text{Pr}_u(v)} = \frac{|\ip{u}{v}|}{\norm{u}}.
+\end{equation*}
+Segue-se então que para quaisquer $u,v \in E$ temos a \emph{Desigualdade de Schwarz}:
+\begin{equation*}
+   |\ip{u}{v}| \leq \norm{u}\norm{v}.
+\end{equation*}
+O argumento acima só serve para $u\ne 0$, mas no caso em que $u=0$ esta prova é óbvia e a desigualdade de Schwarz também é válida.
+
+Um importante caso especial é que $|\ip{u}{v}|=\norm{u}\norm{v}$ somente quando $u,v$ forem múltiplos um do outro (ou seja, colineares). Pode-se ver isto pois, no Teorema de Pitágoras, $\norm{v}^2=\norm{z}^2+\norm{w}^2$, então se $\norm{v}=\norm{z}$ implica que $w=0$, ou seja, $v$ é múltiplo de $u$.
+
+Da desigualdade de Schwarz, podemos então provar a desigualdade triangular. Para isto, basta mostrarmos que $\norm{u+v}^2\leq (\norm{u}+\norm{v})^2$. Mas
+\begin{align*}
+   \norm{u+v}^2 &= \ip{u+v}{u+v}\\
+  	 &= \norm{u}^2+\norm{v}^2+2\ip{u}{v}\\
+     &\leq \norm{u}^2+\norm{v}^2 +2\norm{u}\norm{v}\\
+	 &= (\norm{u}+\norm{v})^2.
+\end{align*}
+Logo, a desigualdade triangular é válida também em qualquer espaço vetorial com produto interno.
+
+\section{O problema de mínimos quadrados}
+
+Até agora, consideramos que a solução de um sistema linear $Ax=b$ ou pode ser encontrada, caso $b\in {\mathcal{I}}m(A)$, ou não pode ser encontrada, caso contrário. Por exemplo, o sistema
+\begin{equation*}
+	\begin{pmatrix} 2\\ 3\\ 4 \end{pmatrix} x = \begin{pmatrix} b_1\\ b_2\\ b_3\end{pmatrix}
+	\Leftrightarrow
+	\begin{cases}
+     2x &= b_1\\
+     3x &= b_2\\
+     4x &= b_3
+   \end{cases}
+\end{equation*}
+só tem solução se os lados direitos estiverem na proporção $2:3:4$. A solução é única se existir, mas só existe se $b$ estiver na mesma reta que o vetor
+\begin{equation*}
+   a = \begin{pmatrix} 2\\ 3\\ 4\end{pmatrix}
+\end{equation*}
+Sistemas inconsistentes aparecem com frequência na prática e devem ser resolvidos, ainda que aproximadamente. Desta forma, a melhor solução é quase sempre encontrar uma solução que minimize o erro encontrado em cada componente, ou seja, minimizar o erro em cada uma das $m$ equações. Existem muitas maneiras de se definir esta média do erro, mas a mais adequada é a soma dos quadrados:
+\begin{equation*}
+   E^2 = \norm{ax-b}^2 = (2x-b_1)^2+(3x-b_2)^2+(4x-b_3)^2
+ \end{equation*}
+Se existir uma solução exata para $ax=b$, o erro mínimo é $E=0$. No caso mais provável em que $b\not \in {\mathcal{I}}m(a)$, a função $E^2$ é uma função quadrática (parábola) com mínimo no ponto onde
+\begin{equation*}
+   \frac{dE^2}{dx} = 2[2(2x-b_1)+3(3x-b_2)+4(4x-b_3)]=0
+\end{equation*}
+ou seja, a solução \emph{em mínimos quadrados} para o sistema $ax=b$ é
+\begin{equation*}
+   \overline{x} = \frac{2b_1+3b_2+4b_3}{2^2+3^2+4^2} = \frac{a^Tb}{a^Ta}.
+\end{equation*}
+No caso geral, em que $a\in {\mathbb{R}}^m$, o resultado é o mesmo. Vamos \emph{resolver} o sistema de $m$ equações $ax=b$ através da minimização do erro quadrático definido por
+\begin{equation*}
+   E^2(x) = \norm{ax-b}^2 = (a_1x-b_1)^2 + \ldots + (a_mx-b_m)^2.
+\end{equation*}
+A derivada desta função é nula no ponto onde
+\begin{equation*}
+   (a_1\hat{x}-b_1)a_1 + \ldots (a_m\hat{x}-b_m)a_m = 0
+\end{equation*}
+Assim, estamos minimizando a distância de $b$ até a reta definida por $a$, e assim
+ \begin{equation*}
+   \hat{x} = \frac{a^Tb}{a^Ta}.
+ \end{equation*}
+Note que $a^T(b-a\hat{x}) = a^Tb-\frac{a^Tb}{a^Ta}a^Ta=0$. Isto significa que \emph{o erro $b-a\hat{x}$ é ortogonal ao espaço gerado por $a$}.
+
+\subsection{Quadrados mínimos em várias variáveis}
+
+Se estendermos este problema de solução de um sistema sobredeterminado para o caso de várias variáveis, queremos encontrar $\hat{x}$ de forma que a distância 
+\begin{equation*}
+	E^2 = \norm{b-A\hat{x}}^2
+\end{equation*}
+seja minimizada, ou seja, queremos encontrar 
+\begin{equation*}
+	p=A\hat{x} \in {\mathcal{I}}m(A)
+\end{equation*}
+o mais próximo possível de $b$. Isso equivale a projetar $b$ no espaço coluna de $A$. Além disso, a projeção deve ser ortogonal, já que o erro $b-A\hat{x}$ deve ser ortogonal ao espaço coluna de $A$.
+
+Sabemos que todos os vetores perpendiculares ao espaço coluna estão no núcleo de $A^T$. Assim:
+\begin{equation*}
+	v \in {\mathcal{I}}m (A) \Leftrightarrow v \in {\mathcal{N}}(A^T)^{\perp}
+\end{equation*}
+Logo, $e=b-A\hat{x}$ deve estar no espaço nulo de $A^T$, e assim
+\begin{equation*}
+  A^T(b-A\hat{x})=0 \Leftrightarrow A^Tb=A^TA\hat{x}.
+\end{equation*}
+Isso pode ser facilmente verificado se derivarmos $E^2(x)=(Ax-b)^T(Ax-b)$, ou seja, $\nabla E^2(\hat{x})$ se e somente se 
+\begin{equation}\label{eq:normais}
+A^TA\hat{x} = A^Tb.
+\end{equation}
+Note então que $A^TA$ é quadrada e simétrica. Chamamos as equações definidas por \eqref{eq:normais} de \emph{equações normais}. Se $A^TA$ for inversível, então
+\begin{equation*}
+	\hat{x}=(A^TA)^{-1}A^Tb.
+\end{equation*}
+A projeção de $b$ na imagem de $A$ é 
+\begin{equation*}
+   p = A\hat{x} = A(A^TA)^{-1}A^Tb.
+\end{equation*}
+
+{\bf Observações:}
+
+\begin{itemize}
+	\item Se $b$ já estiver na imagem de $A$, então $b$ pode ser escrito como $Ax$, logo
+	\begin{equation*}
+    	p = A(A^TA)^{-1}A^TAx = Ax=b.
+	\end{equation*}
+	(obviamente, o ponto $p$ mais próximo de $b$ é simplesmente o ponto $b$)
+	\item No outro extremo, considere que $b$ é perpendicular a todas as colunas, de forma que $A^Tb=0$. Assim, $b$ se projeta sobre o vetor nulo:
+    \begin{equation*}
+    	p = A(A^TA)^{-1}A^Tb = A(A^TA)^{-1}0 = 0.
+    \end{equation*}
+	\item Quando $A$ for quadrada e inversível, a imagem equivale a todo o espaço. Cada vetor é projetado sobre si mesmo:
+    \begin{equation*}
+    	p = A(A^TA)^{-1}A^Tb = AA^{-1}(A^T)^{-1}A^Tb = b.
+    \end{equation*}
+	Observe que só é possível escrever $A^{-1}$ neste caso!
+    \item Se pudermos fazer a fatoração $QR$ de $A$, podemos escrever o sistema definido pelas equações normais como
+	\begin{align*}
+	A^TA = (QR)^T(QR) &= R^TQ^TQR = R^TR.\\
+	A^TA\overline{x} = A^Tb &\Leftrightarrow R^TR\overline{x} = R^TQ^Tb\\
+	& \Leftrightarrow R\overline{x} = Q^Tb.  
+	\end{align*}
+	O último sistema pode ser resolvido por retrosubstituição.
+\end{itemize}
+
+\subsection{O produto $A^TA$ e as matrizes de projeção}
+
+A matriz $A^TA$ é simétrica: $(A^TA)^T = A^T(A^T)^T = A^TA$. 
+
+Além disso, temos o seguinte:
+
+\begin{lema}
+	Seja $T:E\to F$ uma transformação linear e $T^*:F\to E$ sua adjunta. Então o núcleo de $T^*\circ T$ é o mesmo que o núcleo de $T$.
+\end{lema}
+\begin{proof}
+	Se $x \in {\mathcal{N}}(T)$, então $T(x)=0$. Logo, $T^*(T(x))=T^*(0)=0$, o que implica que $x \in {\mathcal{N}}(T^*\circ T)$.
+
+Por outro lado, se $x\in {\mathcal{N}}(T^*\circ T)$, então $T^*(T(x))=0$ e assim
+\begin{equation*}
+	\ip{T(x)}{T(x)}=\ip{x}{T^*(T(x))} = \ip{x}{0} = 0.
+\end{equation*}
+Isto implica que $T(x)=0$, e portanto, $x\in {\mathcal{N}}(T)$.
+\end{proof}
+
+Assim, se ${\mathcal{N}}(A) = \{ 0\}$, então ${\mathcal{N}}(A^TA) = \{0\}$ e assim $A^TA$ é inversível. Isto acontece sempre que $dim({\mathcal{I}}m(A) = $dim$(E)-$dim$({\mathcal{N}}(A)) = $dim$(E)$, ou seja, $A$ tem todas as colunas l.i.  Note que ${\mathcal{I}}m(A)$ não é o espaço de chegada inteiro! Apenas estamos dizendo que $A$ tem posto completo (se $A$ tem mais linha do que colunas, como é o caso aqui, a imagem de $A$ tem dimensão igual ao número de colunas l.i.)
+
+Portanto, se todas as colunas de $A$ forem linearmente independentes, então $A^TA$ será uma matriz quadrada, simétrica e inversível.
+
+Neste caso, definimos a matriz de projeção (analogamente ao que havíamos feito no caso de uma variável) como sendo
+\begin{equation*}
+   P = A(A^TA)^{-1}A^T.
+\end{equation*}
+Esta matriz projeta qualquer vetor $b$ no espaço coluna de $A$. Em outras palavras, $p=Pb$ é o componente de $b$ no espaço coluna de $A$, enquanto que $e=b-Pb$ é o componente no complemento ortogonal deste espaço. Note também que $I-P$ também é uma matriz de projeção: ela projeta $b$ no complemento ortogonal do espaço coluna de $A$.
+
+\begin{exemplo*}
+ 	Sejam
+     \begin{equation*}
+     	A = \begin{pmatrix} 1 & 2\\1 & 3\\0 & 0\end{pmatrix} \text{ e } b = \begin{pmatrix} 4\\5\\6\end{pmatrix}
+     \end{equation*}
+     O sistema $Ax=b$ não tem solução. Vamos encontrar a solução de $A^TA\hat{x}=A^Tb$.
+    
+     \begin{equation*}
+     	A^TA = \begin{pmatrix} 2 & 5\\5 & 13\end{pmatrix}; A^Tb = \begin{pmatrix} 9\\23\end{pmatrix}
+     \end{equation*}
+     Solução: $\hat{x} = (2,1)$.
+    
+     Se calcularmos a projeção de $b$ na imagem de $A$, temos $p=A\hat{x} = (4,5,0)$, o que faz sentido já que a imagem de $A$ é o plano em ${\mathbb{R}}^3$. Note ainda que o erro $e = b-Ax = (0,0,6)$ é ortogonal à imagem de $A$.
+\end{exemplo*}
+
+Suponha então que queremos resolver o problema $Ax=b$ quando $m>n$, e que aplicamos o métoro de Gram-Schmidt nas colunas de $A$ para obter sua decomposição QR, ou seja, $A=QR$. Neste caso, temos
+\begin{equation*}
+   A^TA\hat{x} = A^Tb \Leftrightarrow R^TQ^TQR\hat{x}=R^TQ^Tb \Leftrightarrow \hat{x} = (R^TR)^{-1}R^TQ^Tb = R^{-1}Q^Tb.
+\end{equation*}
+Assim, a projeção de $b$ na imagem de $A$ é simplesmente $p = A\overline{x} = QQ^Tb$, ou seja, a matriz de projeção no espaço coluna de $Q$ é $P=QQ^T$.
+
+\subsection{Representação de dados por mínimos quadrados}
+
+Suponha que temos várias medições (dados) e que queremos aproximar estes dados por uma função linear (reta) $b=C+Dt$. Se não houver erro experimental e a função que queremos encontrar for de fato linear, duas medições bastam para que obtenhamos $C$ e $D$. No entanto, caso haja erro, precisamos ajustar os experimentos e descobrir uma reta que minimize os erros de medição. Atenção: esta reta \emph{não} é a reta definida por $a$ que comentamos na seção passada! A partir do momento que queremos descobrir $C$ e $D$, temos um problema bidimensional. Se tivermos $m$ medições, $C$ e $D$ deveriam satisfazer as $m$ equações lineares
+\begin{align*}
+   C+Dt_1&=b_1\\
+   C+Dt_2&=b_2\\
+   \vdots&\\
+   C+Dt_m&=b_m\\
+\end{align*}
+o que é equivalente ao sistema
+\begin{equation*}
+	\begin{pmatrix}
+       1 & t_1\\
+       1 & t_2\\
+       \vdots & \vdots\\
+       1 & t_m
+    \end{pmatrix}
+    \begin{pmatrix}
+       C\\
+       D
+    \end{pmatrix}
+	=
+    \begin{pmatrix}
+       b_1\\
+       b_2\\
+       \vdots\\
+       b_m
+    \end{pmatrix}
+	\qquad \mbox{ ou } \qquad Ax=b.
+\end{equation*}
+Este sistema é sobredeterminado, com $m$ equações e apenas duas variáveis ($m>2$). Se todas as medições não estiverem na mesma reta, o sistema não terá solução. Assim, como vimos anteriormente, a melhor solução $\hat{x}=(\hat{C},\hat{D})$ é aquela que minimiza o erro ao quadrado:
+\begin{equation*}
+   \hat{x} = \arg \min_{x=(C,D)} \norm{b-Ax}^2 = \arg \min_{x=(C,D)} (b_1-C-Dt_1)^2 + \ldots + (b_m-C-Dt_m)^2.
+\end{equation*}
+Assim, o vetor $p=A\hat{x}$ está o mais próximo possível de $b$.
+
+\subsection{Espaços de Função e Séries de Fourier}
+
+\subsubsection{Espaço de Hilbert}
+
+Vamos considerar o espaço vetorial de dimensão infinita ${\mathbb{R}}^{\infty}$. Este espaço contém todos os vetores com infinitas componentes $v = (v_1,v_2,\ldots,v_n,\ldots)$, cuja norma ao quadrado é finita. Podemos definir a norma como a soma das componentes ao quadrado, como no caso finito, obtendo assim
+\begin{equation*}
+   \norm{v}^2 = \sum_{i=1}^{\infty} v_i < \infty.
+\end{equation*}
+Assim, é possível calcularmos a soma de vetores com módulos finitos (pois $\norm{v+w} \leq \norm{v}+\norm{w}$) e a multiplicação por escalar, de modo que este espaço é um espaço vetorial chamado Espaço de Hilbert.
+
+Neste espaço, os vetores $v$ e $w$ são ortogonais quando seu produto escalar é nulo, ou seja
+\begin{equation*}
+  v\perp w \Leftrightarrow v^Tw = v_1w_1+\ldots+v_nw_n+\ldots=0.
+\end{equation*}
+Para quaisquer dois vetores neste espaço, a desigualdade de Schwarz ainda é satisfeita ($|v^Tw| \leq \norm{v}\norm{w}$).
+
+\subsubsection{Espaço de funções}
+
+Considere o espaço vetorial $E$ das funções contínuas definidas em um intervalo $[a,b]$ dos reais. Suponha que $f\in E$. Esta função pode ser vista como um vetor com infinitas componentes $f(x)$ calculado em todos os valores do intervalo. Para descobrir a norma deste vetor, não podemos usar a regra da soma dos quadrados dos componentes; vamos definir então o produto interno
+\begin{equation*}
+  \ip{f}{g} = \int_a^b\! f(x)g(x)\, dx,
+\end{equation*}
+e a norma
+\begin{equation*}
+  \norm{f}^2 = \int_a^b\! f(x)^2\, dx.
+\end{equation*}
+Por exemplo, se $f(x) = \sin{x}$ no intervalo $[0,2\pi]$, então 
+\begin{equation*}
+	\norm{\sin{x}}^2 = \int_0^{2\pi} \! \sin^2{x} \,dx = \pi.
+\end{equation*}
+O espaço $E$ contém todas as funções cuja norma é finita, exceto por exemplo $f(x) = \frac{1}{x}$, já que a integral de $\frac{1}{x^2}$ é infinita. Perceba que o valor da norma depende da escolha do intervalo de definição da função; se tivéssemos escolhido calcular a norma de $\sin{x}$ no intervalo $[0,\pi]$, teríamos
+\begin{align*}
+	\norm{\sin{x}}^2 = \int_{0}^{\pi} \! \sin^2{x} \, dx = \frac{\pi}{2}.
+\end{align*}
+Definimos igualmente a ortogonalidade entre duas funções $f$ e $g$ do espaço quando $\ip{f}{g}=0$, e ainda obtemos a desigualdade de Schwarz. Note que as funções podem inclusive ser normalizadas, se dividirmos pela sua norma. Além disso, observe que o seno e o cosseno são ortogonais neste espaço entre $[0,2\pi]$:
+\begin{align*}
+  \ip{\sin{x}}{\cos{x}} &= \int_0^{2\pi} \! \sin{x}\cos{x}\, dx \\
+                        &= \frac{1}{2}\int_0^{2\pi} \! \sin{2x}\, dx \\
+                        &= \frac{1}{4} \int_0^{2\pi}\! \sin{u} \, du \\
+                        &= \frac{1}{4}(\cos{2\pi}-\cos{0}) \\
+                        &= 0.
+\end{align*}
+Mostra-se que 
+\begin{align*}
+\ip{\sin{mx}}{\sin{nx}} = 0, \quad \forall m\neq n.\\
+\ip{\cos{mx}}{\cos{nx}} = 0, \quad \forall m\neq n.\\
+\ip{\sin{mx}}{\cos{nx}} = 0, \quad \forall m,n.
+\end{align*}
+
+
+\subsubsection{Série de Fourier}
+
+A série de Fourier de $f(x)$ é uma expansão infinita em senos e cossenos
+\begin{equation*}
+	f(x) = a_0 + a_1\cos{x} + b_1 \sin{x} + a_2\cos{2x} + b_2\sin{2x}+\ldots
+\end{equation*}
+Assim como fizemos antes para vetores em dimensão finita, se quisermos escrever $f$ numa base definida pelos senos e cossenos acima, para descobrirmos cada coeficiente $a_i$ ou $b_i$ basta tomarmos o produto interno nos dois lados da igualdade pela função correspondente a este coeficiente. Por exemplo, para calcularmos $b_1$ basta multiplicarmos por $\sin{x}$ em ambos os lados, obtendo
+\begin{equation*}
+  \int_0^{2\pi} \! f(x)\sin{x}\, dx = a_0 \int_0^{2\pi} \! \sin{x} \, dx + a_1\int_0^{2\pi}\! \cos{x}\sin{x} \, dx + b_2 \int_0^{2\pi} \! \sin^2{x}\, dx + \ldots
+\end{equation*}
+Do lado direito, todas as integrais são nulas exceto aquela em que o seno é multiplicado por ele mesmo, visto que as funções são todas ortogonais umas às outras (notando que $\int_0^{2\pi}\! \sin{x}\sin{nx}\, dx = 0$ para todo $n\in {\mathbb{N}}$ exceto $n=1$). Portanto,
+\begin{equation*}
+  b_1 = \frac{\int_0^{2\pi}\! f(x)\sin{x}\, dx}{\int_0^{2\pi}\! \sin^2{x}\, dx} = \frac{\ip{f}{\sin{x}}}{\ip{\sin{x}}{\sin{x}}} = \frac{\ip{f}{\sin{x}}}{\pi}.
+\end{equation*}
+Assim, é fácil ver que a série de Fourier projeta $f(x)$ no $\sin{x}$. Nessa direção, seu componente é exatamente $b_1\sin{x}$. Ao mesmo tempo, o coeficiente $b_1$ é a solução em mínimos quadrados da equação inconsistente $b_1\sin{x}=f(x)$, o que aproxima $f(x)$. Assim, a série de Fourier fornece as coordenatas do vetor $f(x)$ em relação ao conjunto infinito de eixos perpendiculares dos senos e cossenos.
+
+\subsubsection{Gram-Schmidt para funções}
+
+Vamos supor agora que temos um conjunto de funções simples que gostaríamos de usar como base do espaço de funções, mas que estas funções não são ortogonais entre si. Por exemplo, gostaríamos de escrever uma função qualquer definida no intervalo $[0,1]$ como combinação linear dos monômios $1,x,x^2,\ldots$ Se usarmos para isso o processo de quadrados mínimos, veremos que a matriz $A^TA$ será dada por
+\begin{equation*}
+  \left( 1 \, x \, x^2 \right) \left(
+    \begin{array}{c}
+      a_1\\
+      a_2\\
+      a_3
+    \end{array}
+  \right) = f(x) \Rightarrow A^TA = \left( 
+    \begin{array}{c c c}
+      \ip{1}{1} & \ip{1}{x} & \ip{1}{x^2}\\
+      \ip{x}{1} & \ip{x}{x} & \ip{x}{x^2}\\
+      \ip{x^2}{1} & \ip{x^2}{x} & \ip{x^2}{x^2}
+    \end{array}
+  \right).
+\end{equation*}
+Esta matriz é bastante mal condicionada e resolver o sistema $A^TAx=A^Tb$, neste caso, é muito difícil. Portanto, a alternativa é aplicar o procedimento de Gram-Schmidt aos monômios de forma que estas funções sejam ortogonais, e assim a matriz do sistema será ortogonal e, como já vimos, resolver este sistema por mínimos quadrados torna-se trivial.
+
+Desta forma, tomamos inicialmente o intervalo $-1\leq x \leq 1$ que é simétrico e torna todas as potências ímpares de $x$ ortogonais a todas as potências pares:
+\begin{equation*}
+  \ip{1}{x} = \int_{-1}^1 \! x\, dx = 0, \qquad \ip{x}{x^2} = \int_{-1}^1 \! x^3\, dx = 0.
+\end{equation*}
+Assim, basta tomarmos $v_1=1$ e $v_2=x$ como sendo os dois primeiros eixos perpendiculares. Além disso, uma vez que $\ip{x}{x^2}=0$, teremos somente que corrigir o ângulo entre $1$ e $x^2$. Usando a fórmula de Gram-Schmidt, o terceiro polinômio ortogonal será
+\begin{equation*}
+  v_3 = x^2-\frac{\ip{1}{x^2}}{\ip{1}{1}} \cdot 1- \frac{\ip{x}{x^2}}{\ip{x}{x}} \cdot x = x^2 - \frac{\int_{-1}^1 \! x^2\, dx}{\int_{-1}^1 \! 1\, dx} = x^2-\frac{1}{3}.
+\end{equation*}
+Se seguirmos construindo os polinômios através deste procedimento, obteremos um conjunto de polinômios denominado \emph{Polinômios de Legendre}, que são ortogonais a si mesmos no intervalo $-1\leq x\leq 1$.
