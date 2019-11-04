@@ -831,7 +831,7 @@ Por outro lado, se $x\in {\mathcal{N}}(T^*\circ T)$, então $T^*(T(x))=0$ e assi
 Isto implica que $T(x)=0$, e portanto, $x\in {\mathcal{N}}(T)$.
 \end{proof}
 
-Assim, se ${\mathcal{N}}(A) = \{ 0\}$, então ${\mathcal{N}}(A^TA) = \{0\}$ e assim $A^TA$ é inversível. Isto acontece sempre que $dim({\mathcal{I}}m(A) = $dim$(E)-$dim$({\mathcal{N}}(A)) = $dim$(E)$, ou seja, $A$ tem todas as colunas l.i.  Note que ${\mathcal{I}}m(A)$ não é o espaço de chegada inteiro! Apenas estamos dizendo que $A$ tem posto completo (se $A$ tem mais linha do que colunas, como é o caso aqui, a imagem de $A$ tem dimensão igual ao número de colunas l.i.)
+Assim, se ${\mathcal{N}}(A) = \{ 0\}$, então ${\mathcal{N}}(A^TA) = \{0\}$ e assim $A^TA$ é inversível. Isto acontece sempre que dim$({\mathcal{I}}m(A))$ = dim$(E) - $ dim$({\mathcal{N}}(A)) = $ dim$(E)$, ou seja, $A$ tem todas as colunas l.i.  Note que ${\mathcal{I}}m(A)$ não é o espaço de chegada inteiro! Apenas estamos dizendo que $A$ tem posto completo (se $A$ tem mais linha do que colunas, como é o caso aqui, a imagem de $A$ tem dimensão igual ao número de colunas l.i.)
 
 Portanto, se todas as colunas de $A$ forem linearmente independentes, então $A^TA$ será uma matriz quadrada, simétrica e inversível.
 
@@ -856,7 +856,7 @@ Esta matriz projeta qualquer vetor $b$ no espaço coluna de $A$. Em outras palav
      Se calcularmos a projeção de $b$ na imagem de $A$, temos $p=A\hat{x} = (4,5,0)$, o que faz sentido já que a imagem de $A$ é o plano em ${\mathbb{R}}^3$. Note ainda que o erro $e = b-Ax = (0,0,6)$ é ortogonal à imagem de $A$.
 \end{exemplo*}
 
-Suponha então que queremos resolver o problema $Ax=b$ quando $m>n$, e que aplicamos o métoro de Gram-Schmidt nas colunas de $A$ para obter sua decomposição QR, ou seja, $A=QR$. Neste caso, temos
+Suponha então que queremos resolver o problema $Ax=b$ quando $m>n$, e que aplicamos o método de Gram-Schmidt nas colunas de $A$ para obter sua decomposição QR, ou seja, $A=QR$. Neste caso, temos
 \begin{equation*}
    A^TA\hat{x} = A^Tb \Leftrightarrow R^TQ^TQR\hat{x}=R^TQ^Tb \Leftrightarrow \hat{x} = (R^TR)^{-1}R^TQ^Tb = R^{-1}Q^Tb.
 \end{equation*}
@@ -906,11 +906,11 @@ Vamos considerar o espaço vetorial de dimensão infinita ${\mathbb{R}}^{\infty}
 \begin{equation*}
    \norm{v}^2 = \sum_{i=1}^{\infty} v_i < \infty.
 \end{equation*}
-Assim, é possível calcularmos a soma de vetores com módulos finitos (pois $\norm{v+w} \leq \norm{v}+\norm{w}$) e a multiplicação por escalar, de modo que este espaço é um espaço vetorial chamado Espaço de Hilbert.
+Assim, é possível calcularmos a soma de vetores com normas finitas (pois $\norm{v+w} \leq \norm{v}+\norm{w}$) e a multiplicação por escalar, de modo que este espaço é um espaço vetorial chamado Espaço de Hilbert.
 
 Neste espaço, os vetores $v$ e $w$ são ortogonais quando seu produto escalar é nulo, ou seja
 \begin{equation*}
-  v\perp w \Leftrightarrow v^Tw = v_1w_1+\ldots+v_nw_n+\ldots=0.
+  v\perp w \Leftrightarrow \ip{v}{w} = v_1w_1+\ldots+v_nw_n+\ldots=0.
 \end{equation*}
 Para quaisquer dois vetores neste espaço, a desigualdade de Schwarz ainda é satisfeita ($|v^Tw| \leq \norm{v}\norm{w}$).
 

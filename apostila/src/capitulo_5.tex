@@ -1,0 +1,808 @@
+\chapter{Autovalores}
+
+Nesta unidade, discutiremos a definição e as propriedades dos autovalores e autovetores de uma matriz. Para tanto, discutiremos inicialmente a definição e algumas propriedades do determinante. Estudaremos também o caso especial das matrizes simétricas e das matrizes diagonalizáveis.
+
+\section{Determinantes}
+
+Até agora, não utilizamos o conceito de determinantes. Em geral, esse assunto é tratado de forma superficial na geometria analítica, apenas para matrizes $2\times 2$ ou $3\times 3$.
+
+Para que a função determinante seja útil, exigimos que esta função satisfaça certas propriedades listadas abaixo. É claro que esta definição não é \emph{construtiva}, porém é suficiente para o escopo deste curso.
+
+Seja $E$ um espaço vetorial de dimensão finita e considere ${\mathcal{L}}(E)$, o espaço vetorial dos operadores lineares em $E$. Como já vimos, fixada uma base em $E$, podemos representar cada transformação linear em ${\mathcal{L}}(E)$ por uma matriz. Observe que a escolha da base é arbitrária. Assim, podemos encarar as funções $\phi:{\mathcal{L}}(E)\to {\mathbb{K}}$ como funções $\phi:{\mathbb{K}}^{n\times n}\to {\mathbb{K}}$, em que $n$ é a dimensão de $E$. 
+
+\begin{defi} 
+O determinante é uma função de ${\mathcal{L}}(E)$ em ${\mathbb{K}}$, ou seja, $\det:{\mathcal{L}}(E)\to {\mathbb{K}}$, satisfazendo as seguintes propriedades:
+	\begin{itemize}
+    	\item O determinante muda de sinal quando duas linhas da matriz da transformação são trocadas de lugar;
+        \item O determinante é linear em cada linha da matriz;
+        \item $\det(I)=1$.
+    \end{itemize}
+\end{defi}
+Observamos que, inicialmente, pode parecer que o determinante depende da escolha da base do espaço. Porém, como veremos mais à frente, o valor do determinante será o mesmo independente da base escolhida (ou seja, se duas matrizes representam a mesma transformação linear, mas em bases diferentes do espaço, estas duas matrizes tem o mesmo determinante). Desta forma, podemos interpretar a função determinante como sendo uma função com $n$ entradas (as linhas da matriz). Assim, chame de $a_1,\ldots, a_n$ as linhas da matriz $A$. Então,
+\begin{align*}
+	\det : {\mathbb{K}}^n\times \cdots \times {\mathbb{K}}^n \to {\mathbb{K}}\\
+    \det(A) = \det(a_1,\ldots,a_n).
+\end{align*}
+Desta forma, as propriedades que definem o determinante podem ser assim reescritas: se que $a_1,\ldots,a_n$ são as linhas de $A$, então
+\begin{itemize}
+\item[(i)] $\det(I) = 1$;
+\item[(ii)] O determinante muda de sinal quando duas linhas são trocadas:
+\begin{equation*}
+\det(a_1,\ldots,a_i,\ldots,a_j,\ldots,a_n) = -\det(a_1,\ldots,a_j,\ldots,a_i,\ldots,a_n)
+\end{equation*}
+\item[(iii)] O determinante é linear em cada linha separadamente: se $a$ e $a'$ são vetores em ${\mathbb{K}}^n$ e $k\in {\mathbb{K}}$, então
+\begin{equation*}
+	\det(k a+a',a_2,\ldots,a_n) = k \det(a,a_2,\ldots,a_n)+\det(a',a_2,\ldots,a_n).
+\end{equation*}
+\end{itemize}
+
+Como já mencionamos, esta definição para o determinante não é construtiva, porém uma definição mais precisa exigiria um conhecimento prévio de álgebra que ainda não temos. Vamos aceitar então que o determinante é {\bf{é a única forma $n$-linear alternada que satisfaz $\det(I)=1$}}. Vamos nos concentrar nas propriedades dos determinantes.
+
+Seja $A \in {\mathbb{K}}^{n\times n}$ com linhas $a_1,\ldots,a_n$.
+
+\begin{itemize}
+\item[(iv)] Se duas linhas de $A$ são iguais, $\det(A) = 0$.
+Isto decorre da regra (ii), já que se as linhas iguais forem trocadas, o determinante deve mudar de sinal, mas ele também deve continuar o mesmo, pois as linhas são iguais; logo o determinante deve ser nulo.
+
+\item[(v)] Subtraindo-se o múltiplo de uma linha de uma outra linha, obtém-se o mesmo determinante. Isto segue direto da regra (iii): chame de $A'$ a matriz obtida a partir de $A$, em que se efetua a substituição de uma linha $a_i$ por $a_i-ca_j$, com $i\ne j$ e $c\ne 0$. Então
+\begin{align*}
+	\det(A')&=\det(a_1,\ldots,a_i-ca_j,\ldots,a_j,\ldots,a_n)\\
+    &=\det(a_1,\ldots,a_i,\ldots,a_j,\ldots,a_n)-c\det(a_1,\ldots,a_j,\ldots,a_j,\ldots,a_n)\\
+    &=\det(A)
+\end{align*}
+onde a última igualdade segue da propriedade (iv). Assim, concluimos que \emph{as operações da eliminação gaussiana não afetam o determinante}. (observe que devemos cuidar das trocas de linha!)
+
+\item[(vi)] Se $A$ possui uma linha nula, então $\det(A)=0$.
+Uma maneira da mostrar isso é somar uma outra linha à linha nula; desta forma o determinante ficaria inalterado pela regra acima, mas a matriz terá duas linhas idênticas, e assim $\det(A)=0$.
+
+\item[(vii)] Se $A$ for triangular, então $\det(A)=a_{11}\cdot a_{22} \cdot \ldots \cdot a_{nn}$. 
+
+Primeiramente, note que se $A$ for diagonal, isto é verdade, já que se chamarmos de $e_1,\ldots,e_n$ os vetores da base canônica em ${\mathbb{K}}^n$, então
+\begin{align*}
+	\det(A) &= \det(a_{11}e_1,\ldots,a_{nn})\\
+    &= a_{11}\cdots a_{nn}\det(I)\\
+    &= a_{11}\cdots a_{nn}
+\end{align*}
+pela propriedade (i). Agora, suponha que $A$ é triangular. Se 
+
+Agora, se $A$ for triangular com elementos não nulos fora da diagonal, pela propriedade (iii) podemos observar que
+\begin{align*}
+	\det(a_1,a_2,\ldots,a_n) &= \det(a_{11}e_1,a_2,\ldots,a_n)+\det(a_1-a_{11}e_1,a_2,\ldots,a_n)\\
+    &= a_{11}\det(e_1,a_2,a_3,\ldots,a_n)\\
+    &= a_{11}(\det(e_1,a_{22}e_2,a_3,\ldots,a_n)+\det(e_1,a_2-a_{22}e_2,a_3,\ldots,a_n))\\
+    &= a_{11}a_{22}\det(e_1,e_2,a_3,\ldots,a_n)\\
+    &\vdots\\
+    &= a_{11}a_{22}\cdots a_{nn}\det(I)\\
+    &= a_{11}a_{22}\cdots a_{nn}
+\end{align*}
+já que cada uma das matrizes que contém um termo do tipo $a_i-a_{ii}e_i$ tem determinante nulo, pois contém uma coluna de zeros.
+
+\item[(viii)] Se $A$ é singular (não-inversível), então $\det(A)=0$. 
+
+Se $A$ for singular, então a eliminação gaussiana gera ao menos uma linha nula em $U$. Então  $\det(U)=0$. No entanto, $U$ é obtida a partir de $A$ através de operações que não alteram o determinante, e/ou de troca de linhas (que apenas alteram o sinal do determinante). Assim, se $U$ tiver linhas nulas, $\det(A)=0$. 
+
+\item[(ix)] O determinante de $AB$ é o produto de $\det(A)$ por $\det(B)$.
+
+Suponha primeiramente que $B$ é singular. Então $B$ não é injetora, ou seja, existe $x\in {\mathbb{K}}^n$, $x\ne 0$, tal que $Bx=0$. Então $AB$ não é injetora, pois $x\in {\mathcal{N}}(AB)$. Assim, $\det(AB)=0=\det(A)\det(B)$, não importando o valor de $\det(A)$.
+
+Suponha agora que $B$ é inversível, ou seja, $\det(B)\ne 0$. Então vamos mostrar que a função $d$ definida como
+\begin{equation*}
+	d(A) \doteq \frac{\det(AB)}{\det(B)}
+\end{equation*}
+apresenta as propriedades (i), (ii) e (iii), e portanto, é o determinante de $A$. 
+
+Primeiramente, observe que
+\begin{equation*}
+	d(I) = \frac{\det(B)}{\det(B)} = 1,
+\end{equation*}
+e assim a propriedade (i) é satisfeita. Além disso, se duas linhas de $A$ forem trocadas, as mesmas linhas de $AB$ também serão trocadas; para ver isto, note que
+\begin{equation*}
+	\begin{pmatrix}
+    \textemdash a_2 \textemdash\\
+    \textemdash a_1 \textemdash\\
+    \textemdash a_3 \textemdash\\
+    \vdots\\
+    \textemdash a_n \textemdash
+    \end{pmatrix}
+    \begin{pmatrix}
+    | & | &  & |\\
+    b_1 & b_2 & \cdots & b_n\\
+    | & | & & |
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+    	\textemdash a_2 B \textemdash\\
+        \textemdash a_1 B \textemdash\\
+        \textemdash a_3 B \textemdash\\
+        \vdots
+        \textemdash a_n B \textemdash
+    \end{pmatrix}
+\end{equation*}
+Assim, o sinal de $d$ vai mudar conforme a propriedade (ii). Uma combinação linear em uma linha de $A$ resulta na mesma combinação linear, na mesma linha de $AB$:
+\begin{equation*}
+	\begin{pmatrix}
+    \textemdash k a + a' \textemdash\\
+    \textemdash a_2 \textemdash\\
+    \vdots\\
+    \textemdash a_n \textemdash
+    \end{pmatrix}
+    \begin{pmatrix}
+    | & | &  & |\\
+    b_1 & b_2 & \cdots & b_n\\
+    | & | & & |
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+    	\textemdash k a B \textemdash\\
+        \textemdash a_2 B \textemdash\\
+        \vdots
+        \textemdash a_n B \textemdash
+    \end{pmatrix}
+    +
+    \begin{pmatrix}
+    	\textemdash a' B \textemdash\\
+        \textemdash a_2 B \textemdash\\
+        \vdots
+        \textemdash a_n B \textemdash
+    \end{pmatrix}
+\end{equation*}
+Então, a propriedade (iii) para o determinante de $AB$ implica que a mesma propriedade também é válida para a função $d(A)$. Portanto, $d(A) = \det(A)$.
+
+\paragraph*{Consequências:} 
+\begin{itemize}
+	\item Se $A$ for inversível, então $\det(A)\ne 0$. Se $A$ for não-singular, a eliminação coloca o pivô $d_i$ na diagonal principal, e assim podemos calcular o determinante de $A$ através desta diagonal.
+\begin{equation*}
+  \det(A) = \pm \det(U) = \pm d_1\cdot d_2\cdot \ldots \cdot d_n.
+\end{equation*}
+(onde o sinal depende do número de trocas de linhas efetuadas na eliminação).
+\item Um caso particular desta regra nos diz que 
+\begin{equation*}
+  \det(A^{-1}) = \frac{1}{\det(A)},
+\end{equation*}
+pois $\det(A)\det(A^{-1}) = \det(I)=1$.
+\item O valor do determinante de uma transformação não depende da base escolhida no espaço para escrevermos a matriz desta transformação. De fato, se $A$ é a matriz da transformação em uma base $\beta$ e $A'$ é a matriz da mesma transformação em uma base $\beta'$, então
+\begin{equation*}
+A' = SAS^{-1},
+\end{equation*}
+em que $S$ é a matriz de mudança de base de $\beta$ para $\beta'$. Assim,
+\begin{align*}
+	\det(A') &= \det(S)\det(A)\det(S^{-1})\\
+    &= \det(S) \det(A) \frac{1}{\det(S)}\\
+    &= \det(A).
+\end{align*}
+\end{itemize}
+
+\item[10.] $\det(A^T) = \det(A)$.
+Se $A$ não for singular (novamente, o caso singular é óbvio) então podemos fatorá-la em $PA=LU$. Assim,
+\begin{equation*}
+  \det(P)\det(A) = \det(L)\det(U),
+\end{equation*}
+e assim
+\begin{equation*}
+  \det(A^T) \det(P^T) = \det(U^T)\det(L^T)
+\end{equation*}
+Agora, $L, L^T$ são triangulares com diagonal unitária, e assim seus determinantes são iguais a 1. Além disso, $U$ e $U^T$ são triangulares e assim $\det(U)=\det(U^T)$. Basta assim mostrarmos que $\det(P)=\det(P^T)$. Mas sabemos que $\det(P)=1$ ou $\det(P)=-1$; observe também que $PP^T=I$ ($P$ é ortogonal). Logo,
+\begin{equation*}
+   \det(P)\det(P^T)=I,
+\end{equation*}
+ou seja, os determinantes devem ter o mesmo sinal. Portanto, $\det(P)=\det(P^T)$. Assim, $\det(A)=\det(A^T)$.
+
+{\bf{Observação!}} Agora, podemos aplicar todas as regras para as linhas nas colunas: o determinante muda de sinal quando duas colunas são trocadas; duas colunas iguais ou uma coluna nula produzem um determinante nulo; o determinante depende linearmente de cada coluna. 
+\end{itemize}
+
+Terminamos essa seção com um resultado interessante do ponto de vista histórico, ainda que inútil na prática, já que, como veremos na seção a seguir, o cálculo de determinantes é computacionalmente muito caro.
+
+\begin{prop}[Regra de Cramer]
+   Seja $A\in {\mathbb{R}}^{n\times n}$ uma matriz inversível. Dado $b\in {\mathbb{R}}^n$, chame $A(i;b)$ a matriz obtida substituindo-se a coluna $i$ de $A$ por $b$. Então a solução do sistema linear $Ax=b$ é o vetor $x = (x_1,\ldots,x_n)$ dado por
+   $$x_i = \frac{\det(A(i;b))}{\det(A)}.$$
+\end{prop}
+\bpr
+Se $A = (a_1,\ldots,a_n)$ com $A$ inversível, então $Ax=b$ quer dizer que $b$ pode ser escrito como combinação linear das colunas de $A$:
+$$b = x_1a_1+\ldots+x_na_n$$
+Assim, para cada $i=1,\ldots,n$, teremos que
+\begin{eqnarray*}
+   \det(A(i;b)) &= & \det(A(i;x_1a_1+\ldots+x_na_n))\\
+   &=& x_i \det(A),
+\end{eqnarray*}
+em que a última igualdade segue do fato que o determinante de uma matriz que tem duas colunas iguais é zero.
+\epr
+
+A seguir, queremos encontrar uma fórmula definitiva para o determinante. 
+
+\subsection{Fórmulas para os determinantes}
+
+A primeira fórmula possível para o cálculo de determinantes para matrizes gerais é resultado da eliminação gaussiana. Se $A$ for não-singular, então já mencionamos que podemos escrever $A=P^{-1}LU$, e assim
+\begin{equation*}
+  \det(A) = \det(P^{-1})\det(L)\det(U) = (-1)^k \text{o produto dos pivôs}
+\end{equation*}
+em que $k$ é o número de trocas de linhas realizadas em $P$ a partir da identidade.
+
+Nosso objetivo agora é definir uma fórmula geral para o determinante a partir das entradas $a_{ij}$ da matriz diretamente, sem olhar para os pivôs, ou seja, sem efetuar o escalonamento da matriz. Neste caso, vamos tentar obter esta fórmula a partir das três propriedades fundamentais dos determinantes.
+
+Para isto, considere primeiramente o caso 2 por 2. Neste caso, podemos decompor cada linha em dois vetores que representam as duas direções coordenadas:
+\begin{equation*}
+  \left( a \quad b \right) = \left(a \quad 0 \right) + \left( 0 \quad b\right) \qquad \mbox{e} \qquad \left( c \quad d \right) = \left( c \quad 0\right) + \left( 0 \quad d\right).
+\end{equation*}
+Agora, podemos aplicar a propriedade da linearidade do determinante nas linhas em sequência:
+\begin{align*}
+  \det{\begin{pmatrix}
+      a & b\\
+      c & d
+    \end{pmatrix}} &= \det{\begin{pmatrix}
+      a & 0\\
+      c & d
+    \end{pmatrix}} + \det{\begin{pmatrix}
+      0 & b\\
+      c & d
+    \end{pmatrix}}\\ 
+    &= \det{\begin{pmatrix}
+      a & 0\\
+      c & 0
+    \end{pmatrix}} + \det{\begin{pmatrix}
+      a & 0\\
+      0 & d
+    \end{pmatrix}} + \det{\begin{pmatrix}
+      0 & b\\
+      c & 0
+    \end{pmatrix}} + \det{\begin{pmatrix}
+      0 & b\\
+      0 & d
+    \end{pmatrix}}.
+\end{align*}
+Observe que os termos que contém colunas nulas terão determinantes nulos, como consequência das propriedades dos determinantes. Assim, só precisamos nos preocupar com termos onde as entradas não nulas de cada linha aparecem em colunas diferentes. Portanto, no caso $2\times 2$, os termos resultantes são uma matriz diagonal, e outra matriz que pode ser obtida a partir de uma permutação de linhas de uma matriz diagonal Assim, obtemos a fórmula conhecida:
+\begin{equation*}
+	\det{\begin{pmatrix} a & b\\c & d\end{pmatrix}} = ad-bc.
+\end{equation*}
+No caso 3x3, teremos algo do tipo
+\begin{align*}
+  \det{\begin{pmatrix}
+      a_{11} & a_{12} & a_{13}\\
+      a_{21} & a_{22} & a_{23}\\
+      a_{31} & a_{32} & a_{33}  
+    \end{pmatrix}} &= \det{\begin{pmatrix}
+      a_{11} &  & \\
+      & a_{22} & \\
+      &  & a_{33}  
+    \end{pmatrix}} + \det{\begin{pmatrix}
+      & a_{12} & \\
+      & & a_{23} \\
+      a_{31} & &  
+    \end{pmatrix}} + \det{\begin{pmatrix}
+      & & a_{13}\\
+      a_{21} & &\\
+      &a_{32} &
+    \end{pmatrix}} \\
+    & + \det{\begin{pmatrix}
+      a_{11} &  & \\
+      & & a_{23} \\
+      & a_{32} &
+    \end{pmatrix}} + \det{\begin{pmatrix}
+      & a_{12} & \\
+       a_{21} & & \\
+      &  & a_{33}  
+    \end{pmatrix}} + \det{\begin{pmatrix}
+      & &a_{13}\\
+      & a_{22} & \\
+      a_{31} & &  
+    \end{pmatrix}}.
+\end{align*}
+Para cada termo, podemos calcular o determinante após fazer as permutações necessárias para obtermos matrizes diagonais em cada termo. Assim, obtemos a conhecida fórmula de Sarrus para o determinante $3\times 3$:
+\begin{align*}
+	\det{\begin{pmatrix} a_{11} & a_{12} & a_{13}\\a_{21} & a_{22} & a_{23}\\a_{31} & a_{32} & a_{33}\end{pmatrix}} &= a_{11}a_{22}a_{33}+a_{12}a_{23}a_{31}+a_{13}a_{21}a_{32}\\ &- a_{11}a_{23}a_{32}-a_{12}a_{21}a_{33}-a_{13}a_{22}a_{31}.
+\end{align*}
+Para uma matriz $n$ por $n$, teremos cada linha decomposta em $n$ direções coordenadas. Esta expansão terá $n^n$ termos. Felizmente, a maioria terá determinante nulo automaticamente (como nos casos acima). Em geral, a expressão conterá apenas $n!$ termos não-nulos; teríamos $n$ escolhas para a primeira coluna, $n-1$ possibilidades para a segunda coluna, e assim por diante. 
+
+% Considere então as permutações dos índices $(1,2,3)$:
+% \begin{center}
+%    \begin{tabular}{c | c c c c c c}
+%       1 & 1 & 1 & 2 & 2 & 3 & 3\\
+%       2 & 2 & 3 & 1 & 3 & 1 & 2\\
+%       3 & 3 & 2 & 3 & 1 & 2 & 1\\\hline
+%         & + & - & - & + & + & - 
+%    \end{tabular}
+% \end{center}
+Podemos então escrever uma fórmula geral para $A_{n\times n}$ como
+\begin{equation}\label{eq:cofatores}
+   \det(A) = \sum_{\sigma} \epsilon_{\sigma} \cdot a_{1\sigma(1)} \cdot a_{2\sigma(2)} \cdot \ldots \cdot a_{n\sigma(n)}
+\end{equation}
+em que $\sigma$ é cada uma das permutações possíveis dos índices de $1$ até $n$, $\sigma(i)$ é a i-ésima entrada desta permutação, e $\epsilon_{\sigma}$ é o determinante da matriz de permutação usado em cada termo (1 para permutações pares, -1 para permutações ímpares).
+
+Esta fórmula satisfaz a primeira condição para o determinante ($\det(I)=1$) e a segunda também (mas não vamos aqui verificar isto agora). O mais importante é verificar a terceira condição: o determinante deve depender linearmente de cada linha.
+
+\begin{exemplo}
+    Para uma matriz $3\times 3$, isto resultaria em
+    \begin{equation*}
+        \det(A)=a_{11}(a_{22}a_{33}-a_{23}a_{32}) + a_{12}(a_{23}a_{31}-a_{21}a_{33})+a_{13}(a_{21}a_{32}-a_{22}a_{31}).
+    \end{equation*}
+    %Os cofatores $C_{ij}$ são os determinantes $2\times 2$ que restam quando eliminamos a linha $i$ e a coluna $j$ da matriz $A$:
+    Observe então que podemos escrever isso como
+    \begin{multline*}
+        \det{\begin{pmatrix}
+                a_{11} &a_{12} & a_{13}\\
+                a_{21} &a_{22} & a_{23}\\
+                a_{31} &a_{32} & a_{33}\\
+            \end{pmatrix}} = \\
+            \det{\begin{pmatrix}
+                a_{11} &  &  \\
+                 &a_{22} & a_{23}\\
+                 &a_{32} & a_{33}\\
+            \end{pmatrix}} + \det{\begin{pmatrix}
+                & a_{12} &  \\
+                a_{21} & & a_{23}\\
+                a_{31} & & a_{33}\\
+            \end{pmatrix}} + \det{\begin{pmatrix}
+                & & a_{13} \\
+                a_{21} & a_{22} & \\
+                a_{31} & a_{32} & \\
+            \end{pmatrix}}.
+    \end{multline*}
+\end{exemplo}
+
+Note que para cada termo da soma \eqref{eq:cofatores} podemos agrupar os termos que acompanham, por exemplo, $a_{1j}$ em um coeficiente $C_{1j}$ que é também um determinante:
+\begin{align*}
+   \det(A) &=\sum_{\sigma(1)=1} \epsilon_{\sigma} a_{11} (a_{2\sigma(2)}\cdot \ldots \cdot a_{n\sigma(n)}) + \sum_{\sigma(1)=2} \epsilon_{\sigma} a_{12} (a_{2\sigma(2)}\cdot \ldots \cdot a_{n\sigma(n)})\\
+	& \qquad \qquad {} + \ldots + \sum_{\sigma(1)=n} \epsilon_{\sigma} a_{1n}
+	(a_{2\sigma(2)}\cdot \ldots \cdot a_{n\sigma(n)})\\
+	&= a_{11} C_{11} + a_{12} C_{12} + \ldots + a_{1n} C_{1n}
+\end{align*}
+Os $C_{ij}$ são chamados cofatores de $a_{ij}$. Além disso, agora fica fácil ver que o determinante de $A$ depende linearmente de cada uma de suas linhas: para qualquer linha $i$, 
+\begin{equation*}
+    \det(A) = a_{i1}C_{i1} + a_{i2}C_{i2} + \ldots + a_{in}C_{in}.
+\end{equation*}
+O cofator $C_{ij}$ é o determinante de $M_{ij}$ ($M_{ij}$ obtida de $A$, deletando-se a linha $i$ e a coluna $j$) com o sinal correto:
+\begin{equation*}
+    C_{ij} = (-1)^{i+j}\det(M_{ij}).
+\end{equation*}
+Esta equação nos dá, na verdade, a matriz cofatora de $A$, cujos elementos $i,j$ estão definidos como
+\begin{equation*}
+   (\text{cof}(A))_{ij} = C_{ij}.
+\end{equation*}
+Além disso, podemos chamar de \emph{adjunta clássica} de $A$ a matriz  $cof(A)^T$. Com isso, recuperamos a fórmula tradicional para a inversa de uma matriz $A_{n\times n}$ inversível:
+\begin{equation*}
+   A^{-1} = \frac{1}{\det(A)} \text{adj}(A).
+\end{equation*}
+Esta fórmula, embora historicamente relevante, não é usada na prática devido à dificuldade no cálculo de determinantes e de instabilidades numéricas que podem surgir neste cálculo.
+
+Uma última observação é a seguinte:
+\begin{teo}
+   O posto de $A$ é o maior número $r$ tal que $A$ possui uma submatriz $r\times r$ com determinante não nulo.
+\end{teo}
+\begin{proof}
+Observando primeiramente que o número de linhas l.i. e o número de colunas l.i. é igual, basta selecionarmos para esta submatriz a matriz quadrada formada pelas $r$ linhas e $r$ colunas l.i. de $A$. Esta submatriz deve ter posto $r$ e nenhuma submatriz de $A$ maior que esta pode ter posto maior que $r$ (pois senão $A$ teria posto $>r$.)
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{O problema de autovalores e o cálculo do autoespaço.}
+
+Considere o seguinte problema: dada uma transformação $T:E\to E$, em que $E$ é um espaço vetorial definido sobre um corpo ${\mathbb{K}}$, gostaríamos de encontrar um vetor $v\in E$ não nulo e um número $\lambda \in {\mathbb{K}}$ tais que
+\begin{equation}\label{eq:invariantes}
+	T(v)=\lambda v.
+\end{equation}
+Se pudermos encontrar esta solução, isto significa que existe um subespaço do espaço vetorial $E$ no qual a transformação $T$ age como uma multiplicação por escalar. 
+
+Para entendermos melhor este problema, vamos redefini-lo com respeito à matriz da transformação $A_{n\times n}$. Assim, queremos encontrar um vetor $x$ não nulo, e um número $\lambda$ que satisfaça a equação
+\begin{equation}\label{eq:autovalores}
+	Ax=\lambda x.
+\end{equation}
+Podemos reescrever esta equação como 
+\begin{equation*}
+    (A-\lambda I)x = 0.
+\end{equation*}
+Assim, o vetor $x$ está no espaço nulo de $A-\lambda I$. Portanto, encontraremos $x\ne 0$ satisfazendo essa equação somente nos casos em que $\lambda$ torna $A-\lambda I$ uma matriz singular, pois neste caso $A$ não será injetora. Logo, para que $\lambda$ e $x$ sejam autovalores e autovetores de $A$, devem satisfazer as seguintes condições.
+
+\begin{defi}
+    O número $\lambda$ é um autovalor de $A$ se e somente se $A-\lambda I$ for singular, ou seja,
+    \begin{equation*}
+        \det(A-\lambda I) = 0.
+    \end{equation*}
+    Está é a equação característica (também chamada polinômio característico). Todo $\lambda$ é associado a (um ou mais) autovetores $x$, que satisfazem
+    \begin{equation*}
+        (A-\lambda I)x=0, \mbox{ ou } Ax=\lambda x.
+    \end{equation*}
+\end{defi}
+
+Assim, para resolvermos o problema de autovalores \eqref{eq:autovalores}, vamos resolver dois subproblemas:
+\begin{itemize}
+	\item[1.] Encontrar todas as raizes $\lambda$ do polinômio característico
+    \begin{equation*}
+    	p(\lambda)=\det(A-\lambda I)
+    \end{equation*}
+    \item[2.] Para cada $\lambda$ encontrado no primeiro passo, determinar uma base para o núcleo de $A-\lambda I$. 
+\end{itemize}
+
+Aqui, devemos fazer algumas observações:
+\begin{itemize}
+\item[(i)] Observe que, para cada $\lambda$ encontrado na parte 1 do problema de autovalores, qualquer vetor de uma base de ${\mathcal{N}}(A-\lambda I)$ é autovetor associado. De fato, um autovetor define um \emph{autoespaço}: 
+\begin{itemize}
+   \item Se $Av=\lambda v$, $A(\alpha v) = \alpha \lambda v = \beta v$. 
+   \item Se $Au=\gamma u$, $A(v+u) = Av+Au = \lambda v + \gamma u = (\lambda + \gamma) (v+u) = \beta(v+u)$. 
+\end{itemize}
+\item Como o polinômio característico, para uma matriz $n\times n$, é um polinômio de grau $n$ com coeficientes reais ou complexos (dependendo da composição da matriz), podemos observar os seguintes resultados:
+\begin{teo}[Fundamental da Álgebra]
+  Todo polinômio de uma variável não-constante com coeficientes complexos tem pelo menos uma raiz complexa.
+\end{teo}
+
+\begin{coro}
+  Todo polinômio em uma variável com coeficientes reais pode ser decomposto em polinômios mônicos irredutíveis de grau 1 ou 2. (um polinômio real mônico irredutível de grau 2 não tem raizes reais).
+\end{coro}
+Isto quer dizer que mesmo que a matriz $A$ seja uma matriz real, seus autovalores (e, consequentemente, seus autovetores) podem ser complexos. Assim, o problema \eqref{eq:autovalores} será equivalente ao problema \eqref{eq:invariantes} apenas quando $E$ for um espaço vetorial complexo. Vamos, portanto, considerar daqui pra frente que nosso espaço vetorial é sempre complexo.\footnote{É importante observar que alguns autores fazem um tratamento diferente deste problema, dizendo que uma matriz real só pode ter autovalores reais, e que as raízes complexas do polinômio característico não definem autovalores. Não faremos esta restrição aqui.}
+
+\item[(iii)] É importante observar que os autovalores e autovetores de um operador linear não dependem da base de $E$ escolhida para escrevermos a matriz da transformação.
+\end{itemize}
+
+Como consequência destas observações, podemos enunciar o seguinte resultado:
+\begin{teo}
+	Todo operador linear complexo possui autovetor.
+\end{teo}
+
+\subsection{Exemplos}
+
+\begin{exemplo*}
+   $$A =
+   \begin{pmatrix}
+      2 & 1 \\
+      0 & 3
+   \end{pmatrix}$$
+   $\lambda_1=2$, $v_1 = (1,0)$; $\lambda_2=3$, $v_2=(1,1)$.
+\end{exemplo*}
+
+\begin{exemplo*}
+   $$A =
+   \begin{pmatrix}
+      1 & 0 \\
+      0 & 1
+   \end{pmatrix}$$
+   $\lambda_1=1$, $v_1 = (1,0)$; $\lambda_2=1$, $v_2=(0,1)$.
+\end{exemplo*}
+
+\begin{exemplo*}
+   $$A =
+   \begin{pmatrix}
+      1 & 2 \\
+      0 & 1
+   \end{pmatrix}$$
+   $\lambda_1=1$, $v_1 = (0,1)$; $\lambda_2=1$, $v_2=?$.
+\end{exemplo*}
+
+\begin{exemplo*}
+   $$A =
+   \begin{pmatrix}
+      1 & 1 \\
+      1 & 1
+   \end{pmatrix}$$
+\end{exemplo*}
+
+\begin{exemplo*}
+   $$A =
+   \begin{pmatrix}
+      1 & 0 & 0\\
+      0 & 2 & 0\\
+      0 & 0 & 3
+   \end{pmatrix}$$
+   $\lambda_1=1$, $\lambda_2=2$, $\lambda_3=3$; $v_1=(1,0,0)$, $v_2=(0,1,0)$, $v_3=(0,0,1)$.
+\end{exemplo*}
+
+\begin{exemplo*}
+   $$A =
+   \begin{pmatrix}
+      3 & 0 & 0\\
+      0 & 3 & 0\\
+      0 & 0 & 3
+   \end{pmatrix}$$
+   $\lambda_1=3=\lambda_2=\lambda_3$; $v_1=(1,0,0)$, $v_2=(0,1,0)$, $v_3=(0,0,1)$.
+\end{exemplo*}
+
+\begin{exemplo*}
+   $$A =
+   \begin{pmatrix}
+      1 & 3 & -3\\
+      -3 & 7 & -3\\
+      -6 & 6 & -2
+   \end{pmatrix}$$
+   $\lambda_1=4$, $\lambda_2=4$, $\lambda_3=-2$; $v_1=(1,1,0)$, $v_2=(1,0,-1)$, $v_3=(1,1,2)$.
+\end{exemplo*}
+
+\begin{exemplo*}
+   $$A = 
+   \begin{pmatrix}
+      1 & -1\\
+      5 & -3
+   \end{pmatrix}$$
+   $-1+i$, $-1-i$. $(1,2-i)$, $(1,2+i)$.
+\end{exemplo*}
+
+\begin{exemplo*}
+	$$A=\begin{pmatrix} 0 & i\\-i & 0\end{pmatrix}$$
+\end{exemplo*}
+
+\section{Matrizes diagonalizáveis.}
+
+Uma vez que calculamos todos os autovalores e autovetores de uma matriz, é possível, em alguns casos, decompor a matriz em sua forma diagonal. Vamos aqui analisar em que condições isso é possível e porque.
+
+\begin{teo}\label{teo:diagonalizacao}
+  Suponha que a matriz $A_{n\times n}$ possui $n$ autovalores distintos. Então,
+  \begin{itemize}
+  \item[(i)] $A$ possui $n$ autovetores linearmente independentes;
+  \item[(ii)] $A$ pode ser diagonalizada: existe $S_{n\times n}$
+    \begin{equation*}
+      S^{-1}AS=\Lambda,
+    \end{equation*}
+    onde $S$ é a matriz cujas colunas são os autovetores de $A$, e $\Lambda$ é uma matriz diagonal cujas entradas são os autovalores de $A$.
+  \end{itemize}
+\end{teo}
+\begin{proof}
+Suponha que $v_1,\ldots,v_n$ são os autovetores (e portanto, não-nulos) de $A$, ou seja, $Av_i=\lambda_i v_i$ para todo $i=1,\ldots,n$. Vamos provar que estes vetores são l.i. por indução. A afirmação é óbvia quando $n=1$. Vamos supor então que ela é verdadeira para $n-1$ vetores. Dada a combinação linear nula
+\begin{equation}\label{eq:autovalores}
+  \alpha_1 v_1 + \ldots + \alpha_nv_n = 0,
+\end{equation}
+vamos aplicar o operador $A$ a ambos os lados, obtendo
+\begin{equation*}
+  \alpha_1 Av_i + \ldots + \alpha_n Av_n = \alpha_1\lambda_1v_1 + \ldots +\alpha_n \lambda_n v_n = 0.
+\end{equation*}
+Multiplicando a primeira destas igualdades por $\lambda_n$ e subtraindo da segunda, obtemos
+\begin{equation*}
+  (\lambda_1-\lambda_n)\alpha_1v_1 + \ldots + (\lambda_{n-1}-\lambda_n)\alpha_{n-1}v_{n-1} = 0.
+\end{equation*}
+Pela hipótese de indução, todos estes vetores são l.i., logo, 
+\begin{equation*}
+   (\lambda_1-\lambda_n)\alpha_1 = \ldots = (\lambda_{n-1}-\lambda_n)\alpha_{n-1} = 0.
+\end{equation*}
+Como os autovalores são todos diferentes, os termos $\lambda_i-\lambda_n$ são todos diferentes de zero; logo, $\alpha_i = 0$ para todo $i=1,\ldots,n-1$. Portanto, a equação \eqref{eq:autovalores} se resume a $\alpha_nv_n=0$. Como $v_n\ne 0$, devemos ter $\alpha_n=0$ o que prova nossa afirmação (i).
+
+Para (ii), basta escrevermos $AS=S\Lambda$.
+\end{proof}
+
+A matriz de diagonalização não é única, já que os autovetores definem autoespaços.
+
+\begin{exemplo*}
+   $$A =
+   \begin{pmatrix}
+      1/2 & 1/2\\
+      1/2 & 1/2
+   \end{pmatrix}$$
+   $\lambda_1=1$, $\lambda_2=0$; $S =
+   \begin{pmatrix}
+      1 & 1\\
+      1 & -1
+   \end{pmatrix}$. ($AS=S\Lambda$)
+\end{exemplo*}
+
+\begin{exemplo*}
+   Se $A=
+   \begin{pmatrix}
+      4 & 3\\
+      1 & 2
+   \end{pmatrix}$, 
+   quem é $A^{100}$? $\lambda_1=1, \lambda_2=5$, $v_1=(1,-1)$, $v_2=(3,1)$.
+\end{exemplo*}
+
+\begin{exemplo*}
+   $A=
+   \begin{pmatrix}
+      0 & 1\\
+      0 & 0
+   \end{pmatrix}$
+   não é diagonalizável; $\lambda_1=\lambda_2=0$, $v_1=(1,0)$.
+\end{exemplo*}
+
+\subsection{Potências e Produtos}
+
+Note que os autovalores de $A^2= AA$ são exatamente $\lambda_i^2$, onde $Au_i=\lambda_i u_i$, e todo autovetor de $A$ é também autovetor de $A^2$: 
+
+Seja $Au_i=\lambda_i u_i$. Então, 
+\begin{equation*}
+   A(Au_i) = A^2u_i = \lambda_i (Au_i) = \lambda_i^2 u_i.
+\end{equation*}
+
+É fácil ver que isso é verdadeiro para qualquer $k$; além disso, podemos ver o resultado também através da diagonalização de $A$: se esta for diagonalizável, então
+\begin{equation*}
+  (S^{-1}AS)(S^{-1}AS) = \Lambda^2 \Leftrightarrow S^{-1}A^2S = \Lambda^2.
+\end{equation*}
+
+\begin{teo}
+  Os autovalores de $A^k$ são $\lambda_i^k$, $i=1,\ldots,n$ e todo autovetor de $A$ é ainda um autovetor de $A^k$. Quando $S$ diagonaliza $A$, ela também diagonaliza $A^k$:
+  \begin{equation*}
+    \Lambda^k = (S^{-1}AS)(S^{-1}AS)\ldots (S^{-1}AS) = S^{-1}A^k S.
+  \end{equation*}
+\end{teo}
+
+Se $A$ for inversível, essa regra se aplica também à sua inversa: $k=-1$. Portanto, os autovalores de $A^{-1}$ são $1/\lambda_i$: 
+\begin{equation*}
+  Ax=\lambda x \Leftrightarrow x=\lambda A^{-1}x \Leftrightarrow \frac{1}{\lambda}x = A^{-1}x.
+\end{equation*}
+
+Para um produto de duas matrizes, podemos nos perguntar sobre os autovalores de $AB$. Se $\lambda$ é um autovalor de $A$ e $\mu$ é um autovalor de $B$, então
+\begin{equation*}
+  ABx = A\mu x = \mu Ax = \mu \lambda x.
+\end{equation*}
+Esta equação está errada! \emph{$A$ e $B$ não compartilham o mesmo autoespaço!}
+
+\begin{exemplo}
+  \begin{equation*}
+    AB = \left(
+      \begin{array}{c c}
+        0 & 1\\
+        0 & 0
+      \end{array}
+    \right) \left(
+      \begin{array}{c c}
+        0 & 0\\
+        1 & 0
+      \end{array}
+    \right) = \left(
+      \begin{array}{c c}
+        1 & 0\\
+        0 & 0
+      \end{array}
+    \right).
+  \end{equation*}
+  $A$ e $B$ tem todos os autovalores nulos, enquanto que $AB$ tem um autovalor $\lambda =1$. Os autovetores são completamente diferentes. 
+\end{exemplo}
+
+Pelos mesmos motivos, em geral o autoespaço de $A+B$ não tem relação direta com os autoespaços de $A$ e $B$. Felizmente, podemos provar o seguinte:
+\begin{teo}
+  Matrizes diagonalizáveis compartilham a mesma matriz de autovetores $S$ se e somente se $AB=BA$.
+\end{teo}
+\bpr
+Se a mesma matriz $S$ diagonaliza ambas $A$ e $B$, temos que
+\begin{equation*}
+  AB = S^{-1}\Lambda_A S S^{-1} \Lambda_B S  = S^{-1}\Lambda_A\Lambda_BS \quad \mbox{ e } \quad BA = S^{-1}\Lambda_BSS^{-1}\Lambda_AS = S^{-1}\Lambda_B \Lambda_A S.
+\end{equation*}
+Como matrizes diagonais sempre comutam, temos que $AB=BA$.
+
+Por outro lado, suponha que $AB=BA$. Então
+\begin{equation*}
+  Ax=\lambda x \Rightarrow ABx = BAx = \lambda Bx.
+\end{equation*}
+Desta forma, ambos $x$ e $Bx$ são autovetores de $A$, compartilhando o mesmo $\lambda$ (caso contrário, $Bx=0$. Se supormos que $A$ possui $n$ autovalores distintos, então $Bx$ deve ser múltiplo de $x$ (pois a cada autovalor fica associado um subespaço de dimensão no máximo 1). Em outras palavras, $Bx= \mu x$ e assim $x$ é também autovetor de $B$. O caso de multiplicidade algébrica maior que 1 não será demonstrado. 
+\epr
+
+\subsection{Interpretação como subespaços invariantes}
+
+Segundo a definição do problema \eqref{eq:invariantes}, podemos fazer a seguinte definição.
+\begin{defi}
+  Diz-se que $F\subset E$ é um subespaço invariante por $T:E\rightarrow E$ quando $T(F)\subset F$, ou seja, $\forall v\in F$, $T(v)\in F$.
+\end{defi}
+Assim, achar um autovetor (ou, equivalentemente, achar um autovalor) de um operador $T$ é o mesmo que achar um subespaço de dimensão 1 invariante por $T$, sempre que o polinômio característico de $T$ tiver solução no corpo sobre o qual $E$ está definido.
+
+\begin{teo}\label{teo:13.1}
+  Se o subespaço $F\subset E$ é invariante pelo operador linear $T:E\rightarrow E$ então seu complemento ortogonal $F^{\perp}$ é invariante pelo seu adjunto $T^*$.
+\end{teo}
+\begin{proof}
+Sejam $u\in F$, $v\in F^{\perp}$. Então $T(u)\in F$ e portanto $\ip{T(u)}{v}=0$. Mas então $0 = \ip{T(u)}{v} = \ip{u}{T^*(v)}$. Portanto, $T^*(v)\in F^{\perp}$ para todo $v\in F^{\perp}$, logo $F^{\perp}$ é invariante por $T^*$.
+\end{proof}
+
+\section{Matrizes simétricas e autovalores}
+
+Vamos aqui mostrar que as matrizes simétricas possuem propriedades bastante desejáveis quando se trata de autovalores e autovetores.
+
+Primeiramente, vamos mostrar que o conjunto de autovetores de uma matriz simétrica de um operador linear auto-adjunto $T:E\rightarrow E$ forma uma base ortonormal para o espaço $E$ (ou seja, é um conjunto ortonormal que gera $E$). Para isto, vamos precisar de vários lemas.
+
+\begin{defi}
+	Seja $T:E\to E$ um operador linear. Se $T=T^*$ dizemos que $T$ é auto-adjunto.
+\end{defi}
+
+No caso real, $T$ é auto-adjunto se for representado por uma matriz simétrica; no caso complexo, $T$ é auto-adjunto se for representado por uma matriz hermitiana.
+
+\begin{lema}
+  Um operador $T:E\rightarrow E$ é auto-adjunto se e somente se sua matriz $A=[a_{ij}]$ relativamente a uma (e portanto a qualquer) base ortonormal ${\mathcal{U}}=\{u_1,\ldots,u_n\}$ de $E$ é hermitiana.
+\end{lema}
+\begin{proof}
+A i-ésima coordenada do vetor $T(u_j)$ na base ${\mathcal{U}}$ é $a_{ij} = \ip{u_i}{T(u_j)}$ (pelo Teorema 2 da parte sobre Ortogonalidade). Portanto, a matriz é hermitiana se e somente se $a_{ij} = \overline{a_{ji}}$. Mas, como $T$ é auto-adjunto, 
+\begin{equation*}
+  a_{ij} = \ip{u_i}{T(u_j)} = \ip{T(u_i)}{u_j} = \overline{\ip{u_j}{T(u_i)}} = \overline{a_{ji}}.
+\end{equation*}
+\end{proof}
+
+\begin{coro}[do Teorema~\ref{teo:13.1}]\label{teo:13.2}
+  Seja $T:E\rightarrow E$ um operador auto-adjunto. Se o subespaço $F\subset E$ é invariante por $T$, seu complemento ortogonal $F^{\perp}$ também o é.
+\end{coro}
+
+\begin{teo}
+	Os autovalores de um operador auto-adjunto são todos reais.
+\end{teo}
+\begin{proof}
+	De fato, observe que se $\lambda$ é autovalor associado ao autovetor $v$ de $T$, então $T(u)=\lambda u$. Daí,
+    \begin{align*}
+    \ip{u}{T(u)} = \ip{u}{\lambda u} =\lambda\ip{u}{u}.
+    \end{align*}
+    Por outro lado,
+    \begin{align*}
+    \ip{T(u)}{u} = \ip{\lambda u}{u} =\overline{\lambda}\ip{u}{u}.
+    \end{align*}
+    Como $u$ é autovetor de $T$, então $u\ne 0$ e $\ip{u}{u}\ne 0$. Assim, $\lambda = \overline{\lambda}$, o que só é verdadeiro se $\lambda$ for real.
+\end{proof}
+
+Já vimos que toda matriz que possui $n$ autovalores distintos possui $n$ autovetores linearmente independentes. Para as matrizes simétricas, ou seja, operadores auto-adjuntos, podemos mostrar ainda mais.
+
+\begin{teo}\label{teo:13.4}
+  Se $\lambda_1,\ldots,\lambda_m$ são autovalores distintos do operador auto-adjunto $T:E\rightarrow E$, os autovetores correspondentes $v_1,\ldots,v_m$ são ortogonais.
+\end{teo}
+\begin{proof}
+Para $i\ne j$ quaisquer, temos que
+\begin{align*}
+  (\lambda_i-\lambda_j)\ip{v_i}{v_j} &= \ip{\lambda_i v_i}{v_j} - \ip{v_i}{\lambda_jv_j} \\
+  &= \ip{T(v_i)}{v_j} - \ip{v_i}{T(v_j)}\\
+  &= \ip{T(v_i)}{v_j} - \ip{T^*(v_i)}{v_j}\\ 
+  &= \ip{T(v_i)}{v_j} - \ip{T(v_i)}{v_j} = 0,
+\end{align*}
+pois $T$ é auto-adjunto. Como $\lambda_i \ne \lambda_j$, devemos ter $\ip{v_i}{v_j} = 0$.
+\end{proof}
+
+Nosso objetivo agora é demonstrar que, para todo operador auto-adjunto $T$, mesmo que existam autovalores repetidos, seus autovetores formam uma base (ortonormal) para o espaço $E$.
+
+\begin{teo}[Espectral] %Coelho, Lourenço, p. 228
+	Seja $E$ um espaço vetorial com produto interno de dimensão finita. Se $T:E\to E$ é auto-adjunto, então existe uma base ortonormal de $E$ cujos vetores são autovetores de $T$.
+\end{teo}
+\begin{proof}
+	Vamos supor que dim$(E)=n\geq 1$. Sabemos que $T$ possui ao menos um autovetor, $v$. Se dim$(E)=1$, então $\{v_1=\frac{v}{\norm{v}}\}$ é uma base ortonormal de $E$, o que prova o teorema. Suponha então que $n>1$ e que o resultado seja válido para todo espaço vetorial com dimensão $n-1$. Seja $W=$span$\{v_1\}$. É imediato que $W$ é invariante por $T$, e que então $W^\perp$ é invariante por $T$ (pelo Teorema~\ref{teo:13.2}). Agora, como $W^{\perp}$ é um subespaço de dimensão $n-1$, segue da hipótese de indução que existe uma base de $W$ formada por autovetores de $T$; logo, $\{v_1,v_2\ldots,v_n\}$ é um conjunto ortonormal com $n$ elementos, e portanto é base de $E$.
+\end{proof}
+
+% A recíproca também vale, ou seja: se existe uma base ortonormal formada por autovetores do operador $T:E\rightarrow E$ então este operador é auto-adjunto. Com efeito, usando o Teorema~\ref{teo:diagonalizacao}, temos que a matriz deste operador é hermitiana, e assim
+% \begin{equation*}
+% 	\ip{T(u)}{v} = \lambda\ip{u}{v}
+% \end{equation*}
+
+Podemos reescrever o Teorema Espectral da seguinte maneira:
+
+Se $A\in {\mathbb{K}}^{n\times n}$ é hermitiana, então $\exists Q\in {\mathbb{K}}^{n\times n}$ unitária tal que
+\begin{equation*}
+	Q^HAQ=\Lambda.
+\end{equation*}
+
+\section{Operadores Normais}
+
+\begin{defi}
+Sejam $E$ um espaço vetorial com produto interno e $T:E\to E$. Dizemos que $T$ é normal se $T(T^*(v))=T^*(T(v))$ para todo $v\in E$.
+\end{defi}
+
+Assim, $T$ é normal se a matriz de $T$ comuta com a matriz da sua adjunta.
+
+\begin{itemize}
+	\item Todo operador auto-adjunto é normal.
+    \item Todo múltiplo escalar de um operador normal é normal.
+    \item A soma de operadores normais não é normal. 
+\end{itemize}
+
+\begin{exemplo}
+$$	T(z,w)=(z+iw,z-iw)$$
+\end{exemplo}
+
+\begin{teo}
+	Sejam $E$ um espaço vetorial com produto interno e $T:E\to E$ normal. Então
+    \begin{itemize}
+    \item[(i)] $\norm{T(v)}=\norm{T^*(v)}, \forall v\in E$
+    \item[(ii)] Se $T(v)=\lambda v$ para $\lambda \in {\mathbb{K}}$ e $v\in E$, então $T^*(v)=\overline{\lambda} v$.
+    \item[(iii)] Se $T(v_1)=\lambda_1 v_1$ e $T(v_2)=\lambda_2 v_2$, para $v_1,v_2 \in E$ e $\lambda_1,\lambda_2 \in {\mathbb{K}}$, com $\lambda_1 \ne \lambda_2$, então $\ip{v_1}{v_2}=0$.
+    \end{itemize}
+\end{teo}
+\begin{proof}
+	\begin{itemize}
+    	\item[(i)] Se $v\in E$, então
+        \begin{align*}
+        	\norm{T(v)}^2 &= \ip{T(v)}{T(v)} = \ip{v}{T^*(T(v))} = \ip{v}{T(T^*(v)} = \ip{T^*(v)}{T^*(v)}\\
+            &=\norm{T^*(v)}^2.
+        \end{align*}
+        
+        \item[(ii)] Se $T(v)=\lambda v$, então $(T-\lambda I)(v)=0$. Logo, $\norm{(T-\lambda I)(v)}=0$. Usando o item $(i)$, concluimos que $\norm{(T-\lambda I)^*(v)}=0$. Então $T^*(v)=\overline{\lambda} v$.
+        
+        \item[(iii)] Observe que
+        \begin{equation*}
+        	\ip{T(v_1)}{v_2} = \ip{v_1}{T^*(v_2)} = \ip{v_1}{\overline{\lambda_2}v_2} = \lambda \ip{v_1}{v_2}.
+        \end{equation*}
+        Por outro lado,
+        \begin{equation*}
+        	\ip{T(v_1)}{v_2} = \ip{\lambda_1 v_1}{v_2} = \lambda\ip{v_1}{v_2}.
+        \end{equation*}
+        Daí, $\lambda_1\ip{v_1}{v_2} = \lambda_2\ip{v_1}{v_2}$, e portanto $\ip{v_1}{v_2}=0$, já que $\lambda_1\ne \lambda_2$.
+    \end{itemize}
+\end{proof}
+
+\begin{teo}
+	Sejam $E$ um espaço vetorial complexo com produto interno de dimensão finita e $T:E\to E$. Então $T$ será um operador normal se e somente se existir uma base ortonormal de $E$ cujos vetores sejam autovetores de $T$.
+\end{teo}
+
+\begin{proof}
+Usando os teoremas anteriores é possível mostrarmos que se $v_1$ é autovetor de $T$, então $W=\text{span}\{v_1\}$ é invariante por $T^*$; pelo mesmo lema que usamos para a demonstração do teorema espectral, concluimos que $W^{\perp}$ é invariante também por $T^{**}=T$. O resto da demonstração é análogo à demonstração do teorema espectral.
+\end{proof}
