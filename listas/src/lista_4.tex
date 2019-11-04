@@ -1,0 +1,246 @@
+\documentclass[12pt]{article}
+\usepackage[portuguese]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage{amsmath,amssymb,amsthm,amsfonts}
+\usepackage[T1]{fontenc}
+\usepackage{fourier}
+\usepackage[listings,skins,breakable]{tcolorbox}
+\usepackage{ctable}
+
+\newcommand{\norm}[1]{\| #1 \|}
+
+\begin{document}
+
+\ \vspace{-1.4cm}
+\begin{tcolorbox}[colback=black!0]
+    \noindent
+    \begin{minipage}{0.14\linewidth}
+        \hspace*{-0.2cm}\includegraphics[height = 2.5cm]{UFSC.png}
+    \end{minipage}
+	\noindent
+	\begin{minipage}{0.79\linewidth}
+	    \begin{center}
+	        \vspace*{0.2cm}
+	        {\bf \large Universidade Federal de Santa Catarina} \\ \vspace{0.3cm}
+			{\bf \large Centro de Ciências Físicas e Matemáticas} \\ \vspace{0.3cm}
+			{\bf \large Departamento de Matemática}
+		\end{center}
+	\end{minipage}
+\end{tcolorbox}
+
+\noindent\textbf{Disciplina:} MTM5812 - H-Álgebra II\\
+\textbf{Professora:} Melissa Weber Mendonça
+
+\begin{center}
+    \Large{4\textordfeminine\ Lista de Exercícios}
+\end{center}
+
+\begin{enumerate}
+   \item Encontre a norma e o produto interno entre os pares de vetores abaixo:
+   \begin{itemize}
+      \item[a)] $x = (2,3)$, $y = (-2,1)$.
+      \item[b)] $x = (1,-1,0)$, $y = (3,1,-2)$
+      \item[c)] $x = (1,4,0,2)$, $y=(2,-2,1,3)$
+   \end{itemize}
+
+   \item Encontre um exemplo em $\mathbb{R}^2$ de dois vetores linearmente independentes que não são ortogonais entre si. 
+
+   \item Encontre todos os vetores ortogonais a $(1,1,1)$ e $(1, -1,0)$.
+
+   \item Encontre um vetor ortogonal ao espaço linha e um vetor ortogonal ao espaço coluna de
+   \begin{equation*}
+      A =
+      \begin{bmatrix}
+         1 & 2 & 1\\
+         2 & 4 & 3\\
+         3 & 6 & 4
+      \end{bmatrix}
+   \end{equation*}
+
+   \item Entre os vetores abaixo, quais pares são ortogonais?
+   \begin{equation*}
+      u =
+      \begin{pmatrix}
+         1\\2\\-2\\1
+      \end{pmatrix}
+      ; v = 
+      \begin{pmatrix}
+         4\\0\\4\\0
+      \end{pmatrix}
+      ; w = 
+      \begin{pmatrix}
+         1\\-1\\-1\\-1
+      \end{pmatrix}
+      ; t = 
+      \begin{pmatrix}
+         1\\1\\1\\1
+      \end{pmatrix}
+   \end{equation*}
+
+   \item Dada a matriz 
+   $$A =
+   \begin{pmatrix}
+      1 & 2 & 1\\
+      2 & 4 & 3\\
+      3 & 6 & 4
+   \end{pmatrix}
+   $$
+   encontre um vetor ortogonal ao espaço linha de $A$ (${\cal{I}}m(A^T)$), um vetor ortogonal ao espaço coluna de $A$ (${\cal{I}}m(A)$) e um vetor ortogonal ao espaço nulo de $A$ (${\cal{N}}(A)$).
+
+   \item Dê um exemplo, em $\mathbb{R}^2$, de vetores linearmente independentes que não são ortogonais, e um outro exemplo de vetores ortogonais que não são linearmente independentes.
+
+   \item Por que as seguintes afirmações são falsas?
+   \begin{itemize}
+      \item[(a)] Se $V$ é ortogonal a $W$, então $V^{\perp}$ é ortogonal a $W^{\perp}$.
+      \item[(b)] $V$ ortogonal a $W$ e $W$ ortogonal a $Z$ implica em $V$ ser ortogonal a $Z$.
+   \end{itemize}
+
+   \item Encontre uma base para o complemento ortogonal do espaço linha de $A =
+   \begin{pmatrix}
+      1 & 0 & 2\\
+      1 & 1 & 4
+   \end{pmatrix}$.
+   Em seguida, decomponha o vetor $(3,3,3)$ em um componente no espaço linha de $A$ e um componente no complemento ortogonal deste espaço.
+
+   \item Seja $P$ o plano em $\mathbb{R}^3$ com a equação $x+2y-z=0$. Encontre um vetor perpendicular a $P$. Qual matriz possui o plano $P$ como seu espaço nulo? Qual matriz possui $P$ como seu espaço linha?
+
+   \item Encontre o complemento ortogonal do plano gerado pelos vetores $(1,1,2)$ e $(1,2,3)$, construindo uma matriz $A$ com estes vetores como linhas e encontrando a solução de $Ax=0$. 
+
+   \item Demonstre que $x-y$ é ortogonal a $x+y$ se e somente se $\norm{x} = \norm{y}$.
+   % \item O teorema fundamental da álgebra é, às vezes, descrito como \emph{alternativa de Fredholm}: para qualquer $A$ e $b$, um, e somente um, dos seguintes sistemas tem uma solução:
+   % \begin{itemize}
+   %    \item[(i)] $Ax=b$
+   %    \item[(ii)] $A^Ty=0, y^Tb \ne 0$.
+   % \end{itemize}
+   % Demonstre que (i) e (ii) não podem ser satisfeitos ao mesmo tempo.
+   \item Para cada item abaixo, crie uma matriz com as propriedades pedidas. Se não for possível, justifique:
+   \begin{itemize}
+      \item[(a)] O espaço coluna contém $\begin{pmatrix} 1\\2\\-3\end{pmatrix}$ e $\begin{pmatrix}2\\-3\\5\end{pmatrix}$, e o espaço nulo contém $\begin{pmatrix}1\\1\\1\end{pmatrix}$.
+      \item[(b)] O espaço linha contém $\begin{pmatrix}1\\2\\-3\end{pmatrix}$ e $\begin{pmatrix}2\\-3\\5\end{pmatrix}$, e o espaço nulo contém $\begin{pmatrix}1\\1\\1\end{pmatrix}$.
+      \item[(c)] $Ax = \begin{pmatrix}1\\1\\1\end{pmatrix}$ tem uma solução e $A^T\begin{pmatrix}1\\0\\0\end{pmatrix} = \begin{pmatrix}0\\0\\0\end{pmatrix}$.
+      \item[(d)] Cada linha é ortogonal a cada coluna (com $A$ não nula).
+      \item[(e)] As colunas somam-se a uma coluna de zeros, as linhas somam-se a uma linha de números 1.
+   \end{itemize}
+   \item Dois planos em $\mathbb{R}^3$ não podem ser ortogonais: basta pensar no piso e na parede de um quarto para ver que eles compartilham toda uma reta. Encontre um vetor que pertença às imagens de $A$ e $B$, onde
+   \begin{equation*}
+      A =
+      \begin{pmatrix}
+         1 & 2\\
+         1 & 3\\
+         1 & 2
+      \end{pmatrix}
+      \mbox{ e } B =
+      \begin{pmatrix}
+         5 & 4\\
+         6 & 3\\
+         5 & 1
+      \end{pmatrix}
+   \end{equation*}
+   \item Seja $P$ o plano de vetores em $\mathbb{R}^4$ que satisfaz $x_1+x_2+x_3+x_4 = 0$. Escreva uma base para $P^{\perp}$. Crie uma matriz que tenha $P$ como seu espaço nulo.
+   \item Se todas as colunas de $A$ forem vetores unitários, todos simultaneamente perpendiculares, quem é $A^TA$?
+   \item Eleve ao quadrado a matriz $P = \dfrac{aa^T}{a^Ta}$, que projeta qualquer vetor na reta que contém $a$, e demonstre que $P^2=P$.
+   \item Encontre a matriz de projeção $P_1$ sobre a reta na direção de $a=
+   \begin{pmatrix}
+      1\\3
+   \end{pmatrix}$. Encontre também a matriz $P_2$ que projeta sobre a reta perpendicular a $a$. Em seguida, calcule $P_1+P_2$ e $P_1P_2$. Explique.
+
+%   \item A molécula de metano (CH$_4$) está organizada como se o átomo de carbono estivesse no centro de um tetraedro regular com quatro átomos de hidrogênio nos vértices. Se os vértices forem colocados em $(0,0,0)$, $(1,1,0)$, $(1,0,1)$ e $(0,1,1)$ - observando que todas as seis arestas medem $\sqrt{2}$, de forma que este é um tetraedro regular - qual será o cosseno do ângulo entre os raios que vão do centro $(\frac{1}{2},\frac{1}{2},\frac{1}{2})$ aos vértices?
+   \item Prove que o traço de $P = \frac{aa^T}{a^Ta}$ (que é a soma dos elementos da diagonal desta matriz) sempre é igual a 1.
+   \item Qual múltiplo de $a=(1,1,1)$ está mais próximo de $b=(2,4,4)$?
+   \item Demonstre que a norma de $Ax$ é igual à norma de $A^Tx$ caso $AA^T=A^TA$.
+   \item Encontre a matriz de projeção na reta gerada por $a$ nos dois itens abaixo. Faça também a projeção do vetor $b$ sobre a reta que passa por $a$. Certifique-se de que o erro $e = b-\mbox{pr}_{a}(b)$ seja perpendicular a $a$:
+   \begin{itemize}
+      \item[(a)] $b =
+      \begin{pmatrix}
+         1\\2\\2
+      \end{pmatrix}
+      $ e $a=
+      \begin{pmatrix}
+         1\\1\\1
+      \end{pmatrix}$
+      \item[(b)] $b=
+      \begin{pmatrix}
+         1\\3\\1
+      \end{pmatrix}
+      $ e $a =
+      \begin{pmatrix}
+         -1\\-3\\-1
+      \end{pmatrix}
+      $
+   \end{itemize}
+   \item Se os vetores $a_1, a_2$ e $b$ são ortogonais, o que são $A^TA$ e $A^Tb$? Qual é a projeção de $b$ no plano gerado por $a_1$ e $a_2$?
+
+   \item Encontre a projeção de $b=(1,2)$ nos dois vetores (que não são ortogonais entre si) $a_1 = (1,0)$ e $a_2 = (1,1)$. Mostre que, diferentemente do caso ortogonal, a projeção de $b$ no espaço gerado por $a_1$ e $a_2$ não é igual à soma das projeções de $b$ nas retas que passam por $a_1$ e $a_2$.
+
+   % \item Escreva $E^2 = \norm{Ax-b}^2$ e defina como zero suas derivadas em relação a $u$ e $v$, se
+   % \begin{equation*}
+   %    A =
+   %    \begin{pmatrix}
+   %       1 & 0\\
+   %       0 & 1\\
+   %       1 & 1
+   %    \end{pmatrix},
+   %    x =
+   %    \begin{pmatrix}
+   %       u\\v
+   %    \end{pmatrix}
+   %    \mbox{ e } b =
+   %    \begin{pmatrix}
+   %       1\\3\\4
+   %    \end{pmatrix}
+   % \end{equation*}
+   % (para calcular estas derivadas, faça o seguinte: a derivada de $E^2$ em relação a $u$ é a derivada da função $E$, considerando-se $v$ como constante; repita o mesmo para $v$). Compare as equações resultantes com $A^TA\overline{x}=A^Tb$, confirmando que tanto o cálculo quanto a geometria fornecem as equações normais. Encontre a solução $\overline{x}$ e a projeção $p=A\overline{x}$.
+
+   \item Sendo $u$ um vetor unitário, demonstre que $Q=I-2uu^T$ é uma matriz ortogonal simétrica (essa matriz é chamada \emph{transformação de Householder}). Calcule $Q$ quanto $u = (\frac{1}{2},\frac{1}{2},-\frac{1}{2},-\frac{1}{2})$.
+   
+   \item Partindo dos vetores não ortogonais
+   $$a =
+   \begin{pmatrix}
+      1\\1\\0
+   \end{pmatrix}, b =
+   \begin{pmatrix}
+      1 \\ 0 \\1
+   \end{pmatrix}
+   , c =
+   \begin{pmatrix}
+      0\\1\\1
+   \end{pmatrix}$$
+   encontre os vetores ortonormais $q_1, q_2$ e $q_3$.
+
+   \item Encontre uma base ortonormal para o espaço gerado pelos vetores $a_1 = (1,-1,0,0)$, $a_2 = (0,1,-1,0)$, $a_3 = (0,0,1,-1)$.
+
+   \item Aplique o processo de Gram-Schmidt nos vetores $(1,-1,0)$, $(0,1,-1)$ e $(1,0,-1)$ para encontrar um conjunto ortonormal. Qual é a dimensão do subespaço gerado por estes vetores?
+
+   \item Encontre a melhor representação com uma reta (por mínimos quadrados) para as medidas:
+   \begin{tabular}{r c l}
+      $b=4$ & em & $t=-2$\\
+      $b=1$ & em & $t=0$\\
+      $b=3$ & em & $t=-1$\\
+      $b=0$ & em & $t=2$\\
+   \end{tabular}
+   Depois, encontre a projeção de $b=(4,3,1,0)$ no espaço coluna de $A=
+   \begin{pmatrix}
+      1 & -2\\
+      1 & -1\\
+      1 & 0\\
+      1 & 2
+   \end{pmatrix}$.
+
+   \item Resolva $Ax=b$ aproximadamente, usando mínimos quadrados, e depois encontre $p=A\overline{x}$ se 
+   \begin{equation*}
+      A =
+      \begin{pmatrix}
+         1 & 0\\
+         0 & 1\\
+         1 & 1
+      \end{pmatrix}
+      \mbox{ e }
+      b =
+      \begin{pmatrix}
+         1\\1\\0
+      \end{pmatrix}
+   \end{equation*}
+   Certifique-se de que o erro $b-p$ seja perpendicular às colunas de $A$.
+
+\end{enumerate}
+\end{document}

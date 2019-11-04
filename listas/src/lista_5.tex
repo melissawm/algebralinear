@@ -1,0 +1,268 @@
+\documentclass[12pt]{article}
+\usepackage[portuguese]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage{amsmath,amssymb,amsthm,amsfonts}
+\usepackage[T1]{fontenc}
+\usepackage{fourier}
+\usepackage[listings,skins,breakable]{tcolorbox}
+\usepackage{ctable}
+
+\begin{document}
+
+\ \vspace{-1.4cm}
+\begin{tcolorbox}[colback=black!0]
+    \noindent
+    \begin{minipage}{0.14\linewidth}
+        \hspace*{-0.2cm}\includegraphics[height = 2.5cm]{UFSC.png}
+    \end{minipage}
+	\noindent
+	\begin{minipage}{0.79\linewidth}
+	    \begin{center}
+	        \vspace*{0.2cm}
+	        {\bf \large Universidade Federal de Santa Catarina} \\ \vspace{0.3cm}
+			{\bf \large Centro de Ciências Físicas e Matemáticas} \\ \vspace{0.3cm}
+			{\bf \large Departamento de Matemática}
+		\end{center}
+	\end{minipage}
+\end{tcolorbox}
+
+\noindent\textbf{Disciplina:} MTM5812 - H-Álgebra II\\
+\textbf{Professora:} Melissa Weber Mendonça
+
+\begin{center}
+    \Large{5\textordfeminine\ Lista de Exercícios}
+\end{center}
+
+\begin{enumerate}
+   \item Encontre os autovalores e autovetores das matrizes abaixo.
+   \begin{center}
+      \begin{minipage}{0.4\textwidth}
+         \begin{itemize}
+            \item[a)] $\begin{pmatrix} 3 & -1 & -3\\0 & 2 & -3\\0 & 0 & -1\end{pmatrix}$
+            \item[b)] $\begin{pmatrix} 0 & 0 & 2\\0 & -1 & 0\\2 & 0 & 0\end{pmatrix}$
+         \end{itemize}
+      \end{minipage}
+      \begin{minipage}{0.4\textwidth}
+         \begin{itemize}
+            \item[c)] $\begin{pmatrix} 2 & -1\\3 & 4\end{pmatrix}$
+            \item[d)] $\begin{pmatrix} 1 & 0 & 0\\1 & 1 & -2\\0 & 1 & -1\end{pmatrix}$
+         \end{itemize}
+      \end{minipage}
+   \end{center}
+
+\item Encontre os autovalores e autovetores de
+  \begin{equation*}
+    A = \begin{pmatrix}1 & -1\\2 & 4\end{pmatrix}.
+  \end{equation*}
+  \begin{itemize}
+  \item[a)] Verifique que o traço é igual à soma dos autovalores e que o determinante é igual ao produto deles. 
+  \item[b)] Se mudarmos a matriz para $A-7I$, quais serão os autovalores e autovetores e como eles se relacionam com os de $A$?
+  \item[c)] Considerando $\lambda \ne 0$, mostre que se $x$ é autovetor de $A$, então $x$ também é autovetor de $A^{-1}$, e encontre o autovalor correspondente.
+  \end{itemize}
+  
+\item Dê um exemplo para mostrar que os autovalores podem se alterar quando um múltiplo de uma linha é subtraido de outra linha. Por que um autovalor nulo não é alterado pelas etapas da eliminação gaussiana?
+
+\item
+    \begin{itemize}
+    \item[a)] Construa matrizes 2 por 2 de modo que os autovalores de $AB$ não sejam os produtos dos autovalores de $A$ e $B$, $\lambda_A$ e $\lambda_B$, respectivamente, e os autovalores de $A+B$ não sejam a soma dos autovalores individuais $\lambda_A+\lambda_B$.
+    \item[b)] Verifique, no entanto, que a soma dos autovalores de $A+B$ é igual à soma de todos os autovalores individuais de $A$ e $B$, assim como seus produtos. Por que isto é verdadeiro?
+    \end{itemize}
+
+\item Os vetores $v_1=(1,1)$ e $v_2=(2,-1)$ são autovetores de $A\in {\mathbb{R}}^{2\times 2}$ associados a $\lambda_1=5$ e $\lambda_2=-1$, respectivamente. Encontre a imagem de $v=(4,1)$ pela transformação $A$.
+
+\item Suponha que $A$ possui autovalores $0, 3, 5$ com autovetores independentes $u,v,w$.
+  \begin{itemize}
+  \item[a)] Forneça uma base para o espaço nulo de uma base para o espaço-coluna.
+  \item[b)] Encontre uma solução particular para $Ax=v+w$. Encontre todas as soluções.
+  \item[c)] Mostre que $Ax=u$ não possui solução.
+  \end{itemize}
+
+\item A partir do vetor unitário $u=(\frac{1}{6}, \frac{1}{6}, \frac{3}{6}, \frac{5}{6})$, construa a matriz de projeção de posto 1 $P=uu^T$. 
+  \begin{itemize}
+  \item[a)] Mostre que $Pu=u$. Então, $u$ é um autovetor com $\lambda =1$.
+  \item[b)] Se $v$ é perpendicular a $u$, mostre que $Pv$ é o vetor nulo. Então, $\lambda =0$.
+  \item[c)] Encontre três autovetores independentes de $P$, todos com autovalor $\lambda =0$.
+  \end{itemize}
+
+\item Sabe-se que uma matriz $B$ 3 por 3 possui autovalores $0,1,2$. Esta informação é suficiente para encontrar três dos seguintes itens (quais?):
+  \begin{itemize}
+  \item[a)] o posto de $B$;
+  \item[b)] o determinante de $B^TB$;
+  \item[c)] os autovalores de $B^TB$;
+  \item[d)] os autovalores de $(B+I)^{-1}$.
+  \end{itemize}
+
+\item Mostre que se $u$ e $v$ são autovalores de uma transformação linear associados a um autovalor $\lambda$, então $\alpha u-\beta v$ também é autovetor associado ao mesmo $\lambda$.
+
+\item Quando $P$, matriz de permutação, troca as linhas 1 e 2 ou as colunas 1 e 2 de $A$, os autovalores de $A$ não se alteram. Encontre os autovetores de $A$ e $PAP$ para $\lambda =11$:
+  \begin{equation*}
+    A = \begin{pmatrix}
+        1 & 2 & 1\\
+        3 & 6 & 3\\
+        4 & 8 & 4
+      \end{pmatrix}
+      \text{ e } PAP=
+      \begin{pmatrix}
+        6 & 3 & 3\\
+        2 & 1 & 1\\
+        8 & 4 & 4
+      \end{pmatrix}.
+  \end{equation*}
+
+% Diagonalização
+\item Verificar se cada matriz é diagonalizável, calculando sua diagonalização quando possível.
+\begin{center}
+   \begin{minipage}{0.4\textwidth}
+      \begin{itemize}
+         \item[a)] $\begin{pmatrix} 2 & -2\\2 & -2\end{pmatrix}$
+         \item[b)] $\begin{pmatrix}2 & 0\\2 & -2\end{pmatrix}$
+         \item[c)] $\begin{pmatrix} 2 & 0\\2 & 2\end{pmatrix}$
+      \end{itemize}
+   \end{minipage}
+   \begin{minipage}{0.4\textwidth}
+      \begin{itemize}
+         \item[d)] $\begin{pmatrix} 1 & 0 & 0\\-2 & 3& -1\\0 & -4 & 3\end{pmatrix}$
+         \item[e)] $\begin{pmatrix} 1 & -2 & -2\\0 & 1 & 0\\0 & 2 & 3\end{pmatrix}$
+         \item[f)] $\begin{pmatrix} 2 & 3 & -1\\0 & 1 & -4\\0 & 0 & 3\end{pmatrix}$
+      \end{itemize}
+   \end{minipage}
+\end{center}
+
+\item Se os autovalores de $A$ são 1,1,2, quais das seguintes alternativas são verdadeiras? Justifique ou dê um contra-exemplo.
+  \begin{itemize}
+  \item[a)] $A$ é inversível
+  \item[b)] $A$ é diagonalizável.
+  \end{itemize}
+
+\item Verdadeiro ou falso: se as $n$ colunas de $S$ (matriz cujas colunas são autovetores de $A$) são independentes, então:
+  \begin{itemize}
+  \item[a)] $A$ é inversível
+  \item[b)] $A$ é diagonalizável
+  \item[c)] $S$ é inversível
+  \item[d)] $S$ é diagonalizável
+  \end{itemize}
+
+\item Se $A=S\Lambda S^{-1}$, então encontre a diagonalização de $A^3$ e $A^{-1}$.
+
+\item Se $A= \begin{pmatrix} 4 & 3\\ 1 & 2\end{pmatrix}$, encontre $A^{100}$ diagonalizando $A$.
+
+\item As potências $A^k$ da matriz
+    \begin{equation*}
+      A = \begin{pmatrix}
+        0,8 & 0,3\\
+        0,2 & 0,7
+      \end{pmatrix}
+  \end{equation*}
+  tendem a um limite quando $k\rightarrow \infty$. 
+  \begin{itemize}
+  \item[a)] Encontre este limite.
+  \item[b)] Verifique que $A^2 = \frac{A+A^\infty}{2}$. Por que?
+  \end{itemize}
+
+\item Diagonalize $A$ e calcule $S\Lambda^k S^{-1}$ para provar esta fórmula para $A^k$:
+  \begin{equation*}
+    A = \begin{pmatrix}
+        2 & 1\\
+        1 & 2
+      \end{pmatrix}
+    \text{ é tal que } A^k = \frac{1}{2}
+      \begin{pmatrix}
+        3^k+1 & 3^k-1\\
+        3^k-1 & 3^k+1
+      \end{pmatrix}.
+  \end{equation*}
+
+\item Lucas começou a sequência de Fibonacci com $L_0=2$ e $L_1=1$. A regra $L_{k+2}=L_{k+1}+L_k$ é a mesma, de modo que $A$ ainda é uma matriz de Fibonacci. Some seus dois autovetores:
+  \begin{equation*}
+    \begin{pmatrix}
+        \lambda_1\\
+        1
+      \end{pmatrix}
+      +
+      \begin{pmatrix}
+        \lambda_2\\
+        1
+      \end{pmatrix}
+      =
+      \begin{pmatrix}
+        \frac{1}{2} (1+\sqrt{5})\\
+        1
+      \end{pmatrix}
+      +
+      \begin{pmatrix}
+        \frac{1}{2} (1-\sqrt{5})\\
+        1
+      \end{pmatrix}
+      =
+      \begin{pmatrix}
+        1\\
+        2
+      \end{pmatrix}
+      =
+      \begin{pmatrix}
+        L_1\\
+        L_0
+      \end{pmatrix}.
+  \end{equation*}
+  Calcule o número de Lucas $L_{10}$ pela regra iterativa, e aproximadamente por $\lambda_1^{10}$.
+
+\item Considere todas as matrizes $A$ 4 por 4 que são diagonalizadas pela mesma matriz fixa de autovetores. Mostre que as matrizes $A$ formam um subespaço. Qual é o subespaço quando $S=I$, e qual é sua dimensão nesse caso?
+
+\item Para cada matriz simétrica abaixo, encontrar a sua diagonalização $\Lambda = P^TAP$. 
+\begin{equation*}
+   \text{a)} \begin{pmatrix} 2 & 2 \\2 & 2\end{pmatrix} \qquad \text{b)} \begin{pmatrix} 1 & 0 & 1\\0 & -1 & 0\\1 & 0 & 1\end{pmatrix} \qquad \text{c)} \begin{pmatrix} 3 & -1 & 1\\-1 & 5 & -1\\1 & -1 & 3\end{pmatrix}
+\end{equation*}
+
+\item Encontre uma ``raiz quadrada matricial'' para $A = \begin{pmatrix} 5 & 4\\4 & 5 \end{pmatrix}$. Por que não existe esta raiz quadrada para $B = \begin{pmatrix}4 & 5\\5 & 4\end{pmatrix}$?
+
+% Matrizes complexas
+
+\item Apresente a matriz $A^H$ e calcule $C=A^HA$ para
+  \begin{equation*}
+    A = 
+      \begin{pmatrix}
+        1 & i & 0\\
+        i & 0 & 1
+      \end{pmatrix}.
+  \end{equation*}
+  Qual é a relação entre $C$ e $C^H$? Isto continua sendo verdadeiro para qualquer $A$?
+
+\item Como o determinante de uma matriz $A^H$ está relacionado ao determinante de $A$? Prove que o determinante de uma matriz hermitiana é real.
+
+\item Verdadeiro ou falso? Justifique ou dê um contra-exemplo:
+  \begin{itemize}
+  \item[a)] Se $A$ for hermitiana, então $A+iI$ será inversível.
+  \item[b)] Se $Q$ for ortogonal, então $Q+\frac{1}{2}I$ será inversível.
+  \item[c)] Se $A$ for real, então $A+iI$ será inversível.
+  \end{itemize}
+
+\item Descreva todas as matrizes 3 por 3 que são simultaneamente hermitianas, unitárias e diagonais. Quantas existem?
+
+\item Como os autovalores de $A^H$ (quadrada) se relacionam com os autovalores de $A$?
+
+\item Se $A+iB$ é uma matriz hermitiana ($A$ e $B$ reais), mostre que $\begin{pmatrix}
+A & -B\\ B & A \end{pmatrix}$ é simétrica.
+
+\item Se $u^Hu=1$, mostre que $I-2uu^H$ é hermitiana e também unitária. A matriz de posto 1 $uu^H$ é a projeção sobre qual reta em ${\mathbb{C}}^n$?
+
+\item Uma matriz com autovetores ortonormais tem a forma $A=U\Lambda U^{-1}=U\Lambda U^H$. Prove que $AA^H=A^HA$. %Estas são justamente as matrizes normais.
+
+%\item Suponha que $T$ seja uma matriz triangular superior 3 por 3 com elementos $t_{ij}$. Compare os elementos de $TT^H$ e $T^HT$ e mostre que, se eles forem iguais, então $T$ deve ser diagonal: \emph{todas as matrizes triangulares normais são diagonais}.
+
+% \item \textbf{Desafio:} Diagonalize $A$ e calcule $S\Lambda^k S^{-1}$ para provar esta fórmula para $A^k$:
+%   \begin{equation*}
+%     A = \left(
+%       \begin{array}{c c}
+%         2 & 1\\
+%         1 & 2
+%       \end{array}
+%     \right) \mbox{ é tal que } A^k = \frac{1}{2}\left(
+%       \begin{array}{c c}
+%         3^k+1 & 3^k-1\\
+%         3^k-1 & 3^k+1
+%       \end{array}
+%     \right).
+%   \end{equation*}
+
+\end{enumerate}
+\end{document}
